@@ -437,64 +437,299 @@
         .social-btn:hover { background: var(--accent-gold); color: var(--primary-dark); transform: translateY(-3px); border-color: var(--accent-gold); }
         .copyright { text-align: center; font-size: 0.85rem; }
 
-        /* --- RESPONSIVE --- */
+                /* --- RESPONSIVE TABLET (max 992px) --- */
         @media (max-width: 992px) {
-            .hero-wrapper, .about-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-text h1 { font-size: 2.8rem; }
-            .hero-badges, .btn-group { justify-content: center; }
-            .hero-image-container { margin-top: 50px; }
-            .stats-bar { grid-template-columns: 1fr 1fr; margin-top: 30px; }
-            .contact-wrapper { flex-direction: column; }
+            .hero-wrapper, .about-grid { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+                gap: 30px;
+            }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { max-width: 100%; font-size: 1.05rem; }
+            .hero-badges { justify-content: center; }
+            .btn-group { justify-content: center; display: flex; }
+            .hero-image-container { margin-top: 30px; }
+            .hero-img-frame { max-width: 350px; margin: 0 auto; }
             
-            /* Mobile Menu Standard */
+            .stats-bar { 
+                grid-template-columns: 1fr 1fr; 
+                margin-top: 30px; 
+                padding: 20px;
+            }
+            
+            .about-grid { gap: 40px; }
+            .about-content { text-align: left; }
+            .about-content .section-title { text-align: left !important; }
+            
+            .service-grid { grid-template-columns: 1fr; }
+            
+            .contact-wrapper { flex-direction: column; }
+            .contact-info { padding: 40px 30px; }
+            .contact-form { padding: 40px 30px; }
+            
             .nav-links { 
                 display: none; 
                 position: absolute; 
-                top: 80px; left: 0; width: 100%; 
+                top: 70px; left: 0; width: 100%; 
                 background: var(--primary-dark); 
                 flex-direction: column; 
                 padding: 20px; 
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+                gap: 15px;
             }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             
             .timeline-line { display: none; }
-            .detail-card { left: 50%; transform: translateX(-50%); bottom: -20px; width: 80%; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .timeline-wrapper { 
+                flex-direction: column; 
+                gap: 25px;
+                align-items: center;
+            }
+            .sop-step { min-width: auto; width: 100%; max-width: 350px; }
             
-            /* Gallery Responsive */
-            .gallery-grid-modern { grid-template-columns: 1fr; }
-            .gallery-card { height: 350px; }
+            .detail-card { 
+                left: 50%; 
+                transform: translateX(-50%); 
+                bottom: -20px; 
+                width: 85%; 
+                max-width: 300px;
+            }
+            
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+            
+            /* Gallery */
+            .gallery-grid-modern { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            .gallery-card { height: 320px; }
+            
+            .section-padding { padding: 60px 0; }
+            .section-title { margin-bottom: 40px; }
+            .section-title h2 { font-size: 1.8rem; }
         }
+
+        /* --- RESPONSIVE HP KECIL (max 576px) --- */
         @media (max-width: 576px) {
-            .footer-grid { grid-template-columns: 1fr; }
-            .stats-bar { grid-template-columns: 1fr; }
+            .container { padding: 0 15px; }
+            
+            /* Hero */
+            .hero-split { 
+                padding-top: 90px; 
+                padding-bottom: 60px;
+                min-height: auto;
+            }
+            .hero-text h1 { 
+                font-size: 2rem; 
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            .hero-text p { 
+                font-size: 0.95rem; 
+                margin-bottom: 25px;
+            }
+            .hero-badges { 
+                gap: 8px; 
+                margin-bottom: 20px;
+            }
+            .badge { 
+                padding: 8px 12px; 
+                font-size: 0.75rem;
+            }
+            .btn-premium { 
+                padding: 14px 30px; 
+                font-size: 0.9rem;
+            }
+            
+            .hero-img-frame { 
+                max-width: 280px; 
+                border-radius: 25px;
+                border-width: 8px;
+            }
+            .detail-card { 
+                padding: 10px 15px;
+                border-radius: 12px;
+                bottom: -15px;
+                width: 80%;
+                max-width: 260px;
+            }
+            .detail-card div:last-child div:first-child {
+                font-size: 0.85rem;
+            }
+            
+            /* Stats Bar */
+            .stats-bar { 
+                grid-template-columns: 1fr 1fr; 
+                margin-top: -40px;
+                padding: 15px;
+                gap: 15px;
+                border-radius: 15px;
+            }
+            .stat-number { font-size: 1.5rem; }
+            .stat-label { font-size: 0.7rem; letter-spacing: 0.5px; }
+            
+            /* About */
+            .about-img-main { border-radius: 20px; }
+            .experience-badge { 
+                padding: 15px; 
+                border-radius: 15px;
+                bottom: -15px; 
+                right: -10px;
+            }
+            .experience-badge h3 { font-size: 1.5rem; }
+            .feature-list li { margin-bottom: 15px; }
+            .feature-list i { 
+                width: 30px; 
+                height: 30px; 
+                font-size: 0.85rem;
+                margin-right: 12px;
+            }
+            
+            /* Services */
+            .service-card { 
+                padding: 30px 25px; 
+                border-radius: 15px;
+            }
+            .service-icon { 
+                width: 55px; 
+                height: 55px; 
+                font-size: 1.5rem;
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
+            .service-card h3 { font-size: 1.2rem; }
+            
+            /* SOP */
+            .sop-section { padding: 60px 0; }
+            .step-icon-box { 
+                width: 65px; 
+                height: 65px; 
+                font-size: 1.5rem;
+            }
+            .sop-step h4 { font-size: 1.1rem; }
+            .sop-step p { font-size: 0.85rem; }
+            
+            /* Gallery - FIX UTAMA */
+            .gallery-grid-modern { 
+                grid-template-columns: 1fr; 
+                gap: 15px;
+                margin-top: 30px;
+            }
+            .gallery-card { 
+                height: 280px; 
+                border-radius: 15px;
+            }
+            .gallery-overlay { padding: 20px; }
+            .overlay-content h3 { font-size: 1.2rem; }
+            .overlay-content p { font-size: 0.8rem; }
+            .desc-small { font-size: 0.78rem !important; }
+            .gallery-tag { 
+                padding: 4px 10px; 
+                font-size: 0.7rem;
+                margin-bottom: 8px;
+            }
+            
+            /* Contact */
+            .contact-wrapper { border-radius: 20px; }
+            .contact-info { 
+                padding: 30px 20px; 
+            }
+            .contact-info h3 { font-size: 1.5rem !important; }
+            .contact-form { 
+                padding: 30px 20px; 
+            }
+            .form-control { 
+                padding: 12px; 
+                font-size: 0.9rem;
+            }
+            .form-label { font-size: 0.85rem; }
+            
+            /* Fix grid 2 kolom di HP */
+            .contact-form > form > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: 0 !important;
+            }
+            
+            /* Footer */
+            .footer-grid { 
+                grid-template-columns: 1fr; 
+                gap: 25px;
+                margin-bottom: 40px;
+                padding-bottom: 40px;
+            }
+            footer { padding: 50px 0 20px; }
+            .footer-col h4 { 
+                font-size: 1.1rem; 
+                margin-bottom: 15px;
+            }
+            .social-icons { margin-top: 15px; }
+            .copyright { font-size: 0.8rem; }
+            
+            /* Section Title */
+            .section-title span { 
+                font-size: 0.75rem; 
+                letter-spacing: 2px;
+            }
+            .section-title h2 { 
+                font-size: 1.5rem; 
+                line-height: 1.3;
+            }
+            .section-padding { padding: 50px 0; }
+            .section-title { margin-bottom: 30px; }
+            
+            /* Nav */
+            nav { padding: 12px 15px; height: 65px; }
+            .logo-main { font-size: 1.3rem; }
+            .logo-desc { font-size: 0.65rem; }
+            .nav-links { top: 65px; padding: 15px; }
+            .nav-links a { font-size: 0.9rem; padding: 8px 0; }
+            .cta-menu { 
+                padding: 10px 20px; 
+                font-size: 0.85rem !important;
+                text-align: center;
+                display: inline-block;
+                width: auto;
+            }
+            .admin-login-btn {
+                width: 35px !important;
+                height: 35px !important;
+                font-size: 0.85rem !important;
+            }
         }
-    
-            /* Style Khusus Tombol Login Admin di Navbar */
-        .admin-login-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .admin-login-btn:hover {
-            background: var(--accent-gold);
-            color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        /* Pastikan posisi icon rapi */
-        .admin-login-btn i {
-            margin: 0; /* Reset margin jika ada */
+        
+        /* --- RESPONSIVE HP SANGAT KECIL (max 380px) --- */
+        @media (max-width: 380px) {
+            .hero-text h1 { font-size: 1.7rem; }
+            .hero-text p { font-size: 0.9rem; }
+            .badge { 
+                padding: 6px 10px; 
+                font-size: 0.7rem; 
+                gap: 5px;
+            }
+            .btn-premium { 
+                padding: 12px 25px; 
+                font-size: 0.85rem;
+            }
+            .hero-img-frame { max-width: 240px; }
+            .stats-bar { 
+                grid-template-columns: 1fr; 
+                gap: 10px;
+            }
+            .stat-item { 
+                display: flex; 
+                align-items: center; 
+                gap: 10px;
+                text-align: left;
+            }
+            .stat-number { 
+                font-size: 1.3rem; 
+                margin-bottom: 0;
+            }
+            .gallery-card { height: 250px; }
+            .section-title h2 { font-size: 1.3rem; }
+            .contact-info { padding: 25px 15px; }
+            .contact-form { padding: 25px 15px; }
         }
         
     </style>
