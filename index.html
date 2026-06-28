@@ -17,14 +17,11 @@
     <style>
         /* --- 1. VARIABLES & RESET --- */
         :root {
-            --primary-dark: #064e3b;   /* Hijau Tua Gelap */
-            --primary-mid: #059669;    /* Hijau Emerald */
-            --accent-gold: #fbbf24;    /* Emas Cerah */
+            --primary-dark: #064e3b;
+            --primary-mid: #059669;
+            --accent-gold: #fbbf24;
             --white: #ffffff;
-            
-            /* Gradasi Hero */
             --hero-gradient: linear-gradient(135deg, #ffffff 0%, #ecfdf5 40%, #064e3b 100%);
-            
             --shadow-soft: 0 20px 40px -10px rgba(6, 78, 59, 0.15);
         }
 
@@ -74,6 +71,8 @@
             cursor: pointer;
             width: 100%;
             text-align: center;
+            font-family: inherit;
+            font-size: 1rem;
         }
         .btn-premium:hover { 
             transform: translateY(-3px); 
@@ -81,7 +80,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2); 
         }
 
-                /* --- 3. HEADER (FULL WIDTH & MEPET) --- */
+        /* --- 3. HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: var(--primary-dark);
@@ -94,35 +93,36 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
-        /* Nav langsung memenuhi lebar layar, tanpa container pembatas */
         nav { 
             display: flex; 
-            justify-content: space-between; /* Logo mentok kiri, Menu mentok kanan */
+            justify-content: space-between;
             align-items: center; 
             width: 100%;
-            padding: 20px 40px; /* Jarak dari tepi layar kiri & kanan (bisa disesuaikan) */
+            padding: 20px 40px;
             height: 80px;
             box-sizing: border-box;
         }
 
-        /* Jika scroll, padding sedikit mengecil agar rapi */
         header.scrolled nav {
             padding: 15px 40px;
             height: 70px;
         }
         
-        /* Logo Styling */
+        /* Logo */
         .logo-container {
             display: flex;
             flex-direction: column;
             line-height: 1.2;
             text-align: left;
-            /* Pastikan tidak ada margin kiri tambahan */
-            margin-left: 0; 
+            margin-left: 0;
+            flex-shrink: 1;
+            min-width: 0;
+            overflow: hidden;
         }
         .logo-main { 
             font-size: 1.6rem; font-weight: 700; color: var(--white); 
             font-family: 'Playfair Display', serif; letter-spacing: -0.5px;
+            white-space: nowrap;
         }
         .logo-main span { color: var(--accent-gold); }
         
@@ -133,6 +133,9 @@
             font-weight: 400;
             letter-spacing: 0.5px;
             margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         /* Menu Navigasi */
@@ -147,25 +150,43 @@
             border-radius: 50px;
             font-weight: 700 !important;
         }
-        
-        .menu-toggle { display: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
 
-        /* Responsive Header Mobile */
-        @media (max-width: 992px) {
-            nav { padding: 15px 20px; height: 70px; } /* Padding lebih kecil di HP */
-            
-            .nav-links { 
-                display: none; 
-                position: absolute; 
-                top: 70px; left: 0; width: 100%; 
-                background: var(--primary-dark); 
-                flex-direction: column; 
-                padding: 20px; 
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-                gap: 20px;
-            }
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
+        /* Tombol Login Admin */
+        .admin-login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7) !important;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .admin-login-btn:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark) !important;
+            transform: translateY(-2px);
+            border-color: var(--accent-gold);
+        }
+        .admin-login-btn i { margin: 0; }
+        
+        /* Hamburger Toggle */
+        .menu-toggle { 
+            display: none; 
+            color: var(--white); 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            flex-shrink: 0;
+            min-width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
         }
 
         /* --- 4. HERO SECTION --- */
@@ -264,7 +285,7 @@
         .feature-list i {
             background: var(--primary-dark); color: var(--accent-gold); width: 35px; height: 35px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin-right: 20px; margin-top: 5px; font-size: 1rem;
+            margin-right: 20px; margin-top: 5px; font-size: 1rem; flex-shrink: 0;
         }
 
         /* --- 7. SERVICES SECTION --- */
@@ -354,6 +375,7 @@
             transform: translateY(20px);
             transition: transform 0.4s ease;
             color: var(--white);
+            width: 100%;
         }
 
         .gallery-card:hover .gallery-img-box img { transform: scale(1.1); }
@@ -409,7 +431,7 @@
         .form-label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--primary-dark); }
         .form-control { 
             width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px; 
-            background: #f9f9f9; font-family: inherit; transition: 0.3s;
+            background: #f9f9f9; font-family: inherit; transition: 0.3s; font-size: 1rem;
         }
         .form-control:focus { outline: none; border-color: var(--accent-gold); background: #fff; box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1); }
         textarea.form-control { resize: vertical; min-height: 100px; }
@@ -437,9 +459,84 @@
         .social-btn:hover { background: var(--accent-gold); color: var(--primary-dark); transform: translateY(-3px); border-color: var(--accent-gold); }
         .copyright { text-align: center; font-size: 0.85rem; }
 
-                /* --- RESPONSIVE TABLET (max 992px) --- */
+
+        /* ============================================ */
+        /* ========== RESPONSIVE - TABLET ============= */
+        /* ============================================ */
         @media (max-width: 992px) {
-            .hero-wrapper, .about-grid { 
+            /* --- NAVBAR MOBILE FIX --- */
+            nav { 
+                padding: 15px 20px; 
+                height: 70px; 
+            }
+            header.scrolled nav {
+                padding: 12px 20px;
+                height: 60px;
+            }
+
+            .logo-container {
+                max-width: 65%;
+            }
+            .logo-main { 
+                font-size: 1.3rem; 
+            }
+            .logo-desc { 
+                font-size: 0.65rem; 
+            }
+
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 70px; 
+                left: 0; 
+                width: 100%; 
+                background: var(--primary-dark); 
+                flex-direction: column; 
+                padding: 25px 20px; 
+                box-shadow: 0 15px 30px rgba(0,0,0,0.2); 
+                gap: 10px;
+                z-index: 999;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            header.scrolled .nav-links {
+                top: 60px;
+            }
+            .nav-links.active { 
+                display: flex; 
+            }
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-links a {
+                display: block;
+                padding: 12px 15px;
+                font-size: 1rem;
+                border-radius: 8px;
+            }
+            .nav-links a:hover {
+                background: rgba(255,255,255,0.05);
+            }
+            .cta-menu {
+                padding: 12px 24px !important;
+                display: inline-block !important;
+                width: auto !important;
+                margin: 5px auto !important;
+                font-size: 0.9rem !important;
+            }
+            .admin-login-btn {
+                width: 44px !important;
+                height: 44px !important;
+                margin: 5px auto !important;
+                font-size: 1rem !important;
+            }
+
+            .menu-toggle { 
+                display: flex; 
+            }
+
+            /* --- HERO --- */
+            .hero-wrapper { 
                 grid-template-columns: 1fr; 
                 text-align: center; 
                 gap: 30px;
@@ -451,35 +548,30 @@
             .hero-image-container { margin-top: 30px; }
             .hero-img-frame { max-width: 350px; margin: 0 auto; }
             
+            /* --- STATS --- */
             .stats-bar { 
                 grid-template-columns: 1fr 1fr; 
                 margin-top: 30px; 
                 padding: 20px;
             }
             
-            .about-grid { gap: 40px; }
+            /* --- ABOUT --- */
+            .about-grid { 
+                grid-template-columns: 1fr; 
+                gap: 40px; 
+            }
             .about-content { text-align: left; }
             .about-content .section-title { text-align: left !important; }
             
+            /* --- SERVICES --- */
             .service-grid { grid-template-columns: 1fr; }
             
+            /* --- CONTACT --- */
             .contact-wrapper { flex-direction: column; }
             .contact-info { padding: 40px 30px; }
             .contact-form { padding: 40px 30px; }
             
-            .nav-links { 
-                display: none; 
-                position: absolute; 
-                top: 70px; left: 0; width: 100%; 
-                background: var(--primary-dark); 
-                flex-direction: column; 
-                padding: 20px; 
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-                gap: 15px;
-            }
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
-            
+            /* --- SOP --- */
             .timeline-line { display: none; }
             .timeline-wrapper { 
                 flex-direction: column; 
@@ -488,6 +580,7 @@
             }
             .sop-step { min-width: auto; width: 100%; max-width: 350px; }
             
+            /* --- DETAIL CARD --- */
             .detail-card { 
                 left: 50%; 
                 transform: translateX(-50%); 
@@ -496,32 +589,80 @@
                 max-width: 300px;
             }
             
+            /* --- FOOTER --- */
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
             
-            /* Gallery */
+            /* --- GALLERY --- */
             .gallery-grid-modern { 
                 grid-template-columns: 1fr; 
                 gap: 20px;
             }
             .gallery-card { height: 320px; }
             
+            /* --- SECTION --- */
             .section-padding { padding: 60px 0; }
             .section-title { margin-bottom: 40px; }
             .section-title h2 { font-size: 1.8rem; }
         }
 
-        /* --- RESPONSIVE HP KECIL (max 576px) --- */
+        /* ============================================ */
+        /* ========== RESPONSIVE - HP KECIL =========== */
+        /* ============================================ */
         @media (max-width: 576px) {
             .container { padding: 0 15px; }
+
+            /* --- NAVBAR HP --- */
+            nav { 
+                padding: 12px 15px; 
+                height: 65px; 
+            }
+            header.scrolled nav {
+                padding: 10px 15px;
+                height: 58px;
+            }
+
+            .logo-container {
+                max-width: 60%;
+            }
+            .logo-main { 
+                font-size: 1.15rem; 
+            }
+            .logo-desc { 
+                font-size: 0.6rem; 
+            }
+
+            .nav-links { 
+                top: 65px; 
+                padding: 20px 15px; 
+            }
+            header.scrolled .nav-links {
+                top: 58px;
+            }
+            .nav-links a { 
+                font-size: 0.95rem; 
+                padding: 10px 15px; 
+            }
+
+            .menu-toggle {
+                min-width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+
+            .admin-login-btn {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 0.95rem !important;
+            }
             
-            /* Hero */
+            /* --- HERO --- */
             .hero-split { 
-                padding-top: 90px; 
+                padding-top: 80px; 
                 padding-bottom: 60px;
                 min-height: auto;
             }
             .hero-text h1 { 
-                font-size: 2rem; 
+                font-size: 1.8rem; 
                 line-height: 1.2;
                 margin-bottom: 15px;
             }
@@ -532,18 +673,19 @@
             .hero-badges { 
                 gap: 8px; 
                 margin-bottom: 20px;
+                justify-content: center;
             }
             .badge { 
                 padding: 8px 12px; 
                 font-size: 0.75rem;
             }
             .btn-premium { 
-                padding: 14px 30px; 
+                padding: 14px 25px; 
                 font-size: 0.9rem;
             }
             
             .hero-img-frame { 
-                max-width: 280px; 
+                max-width: 260px; 
                 border-radius: 25px;
                 border-width: 8px;
             }
@@ -552,13 +694,21 @@
                 border-radius: 12px;
                 bottom: -15px;
                 width: 80%;
-                max-width: 260px;
+                max-width: 240px;
+                gap: 10px;
             }
-            .detail-card div:last-child div:first-child {
+            .detail-card div:first-child {
+                padding: 8px !important;
                 font-size: 0.85rem;
             }
+            .detail-card div:last-child div:first-child {
+                font-size: 0.8rem;
+            }
+            .detail-card div:last-child div:last-child {
+                font-size: 0.7rem;
+            }
             
-            /* Stats Bar */
+            /* --- STATS --- */
             .stats-bar { 
                 grid-template-columns: 1fr 1fr; 
                 margin-top: -40px;
@@ -569,7 +719,7 @@
             .stat-number { font-size: 1.5rem; }
             .stat-label { font-size: 0.7rem; letter-spacing: 0.5px; }
             
-            /* About */
+            /* --- ABOUT --- */
             .about-img-main { border-radius: 20px; }
             .experience-badge { 
                 padding: 15px; 
@@ -586,7 +736,7 @@
                 margin-right: 12px;
             }
             
-            /* Services */
+            /* --- SERVICES --- */
             .service-card { 
                 padding: 30px 25px; 
                 border-radius: 15px;
@@ -600,7 +750,7 @@
             }
             .service-card h3 { font-size: 1.2rem; }
             
-            /* SOP */
+            /* --- SOP --- */
             .sop-section { padding: 60px 0; }
             .step-icon-box { 
                 width: 65px; 
@@ -610,9 +760,9 @@
             .sop-step h4 { font-size: 1.1rem; }
             .sop-step p { font-size: 0.85rem; }
             
-            /* Gallery - FIX UTAMA */
+            /* --- GALLERY HP FIX --- */
             .gallery-grid-modern { 
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr !important; 
                 gap: 15px;
                 margin-top: 30px;
             }
@@ -621,7 +771,7 @@
                 border-radius: 15px;
             }
             .gallery-overlay { padding: 20px; }
-            .overlay-content h3 { font-size: 1.2rem; }
+            .overlay-content h3 { font-size: 1.1rem; }
             .overlay-content p { font-size: 0.8rem; }
             .desc-small { font-size: 0.78rem !important; }
             .gallery-tag { 
@@ -630,12 +780,12 @@
                 margin-bottom: 8px;
             }
             
-            /* Contact */
+            /* --- CONTACT --- */
             .contact-wrapper { border-radius: 20px; }
             .contact-info { 
                 padding: 30px 20px; 
             }
-            .contact-info h3 { font-size: 1.5rem !important; }
+            .contact-info h3 { font-size: 1.4rem !important; }
             .contact-form { 
                 padding: 30px 20px; 
             }
@@ -645,13 +795,15 @@
             }
             .form-label { font-size: 0.85rem; }
             
-            /* Fix grid 2 kolom di HP */
-            .contact-form > form > div[style*="grid-template-columns"] {
-                grid-template-columns: 1fr !important;
-                gap: 0 !important;
+            /* Fix grid 2 kolom di form HP */
+            .contact-form form > div[style*="grid-template-columns"] {
+                display: block !important;
+            }
+            .contact-form form > div[style*="grid-template-columns"] > .form-group {
+                margin-bottom: 20px;
             }
             
-            /* Footer */
+            /* --- FOOTER --- */
             .footer-grid { 
                 grid-template-columns: 1fr; 
                 gap: 25px;
@@ -666,7 +818,7 @@
             .social-icons { margin-top: 15px; }
             .copyright { font-size: 0.8rem; }
             
-            /* Section Title */
+            /* --- SECTION --- */
             .section-title span { 
                 font-size: 0.75rem; 
                 letter-spacing: 2px;
@@ -677,41 +829,58 @@
             }
             .section-padding { padding: 50px 0; }
             .section-title { margin-bottom: 30px; }
-            
-            /* Nav */
-            nav { padding: 12px 15px; height: 65px; }
-            .logo-main { font-size: 1.3rem; }
-            .logo-desc { font-size: 0.65rem; }
-            .nav-links { top: 65px; padding: 15px; }
-            .nav-links a { font-size: 0.9rem; padding: 8px 0; }
-            .cta-menu { 
-                padding: 10px 20px; 
-                font-size: 0.85rem !important;
-                text-align: center;
-                display: inline-block;
-                width: auto;
-            }
-            .admin-login-btn {
-                width: 35px !important;
-                height: 35px !important;
-                font-size: 0.85rem !important;
-            }
         }
         
-        /* --- RESPONSIVE HP SANGAT KECIL (max 380px) --- */
+        /* ============================================ */
+        /* ======= RESPONSIVE - HP SANGAT KECIL ======= */
+        /* ============================================ */
         @media (max-width: 380px) {
-            .hero-text h1 { font-size: 1.7rem; }
-            .hero-text p { font-size: 0.9rem; }
+            /* --- NAVBAR --- */
+            nav { 
+                padding: 10px 12px; 
+                height: 60px; 
+            }
+            header.scrolled nav {
+                padding: 8px 12px;
+                height: 55px;
+            }
+            .logo-container {
+                max-width: 55%;
+            }
+            .logo-main { 
+                font-size: 1rem; 
+            }
+            .logo-desc { 
+                font-size: 0.55rem; 
+            }
+            .nav-links { 
+                top: 60px; 
+                padding: 15px 12px; 
+            }
+            header.scrolled .nav-links {
+                top: 55px;
+            }
+            .menu-toggle {
+                min-width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
+
+            /* --- HERO --- */
+            .hero-text h1 { font-size: 1.6rem; }
+            .hero-text p { font-size: 0.85rem; }
             .badge { 
                 padding: 6px 10px; 
                 font-size: 0.7rem; 
                 gap: 5px;
             }
             .btn-premium { 
-                padding: 12px 25px; 
+                padding: 12px 20px; 
                 font-size: 0.85rem;
             }
-            .hero-img-frame { max-width: 240px; }
+            .hero-img-frame { max-width: 220px; }
+
+            /* --- STATS --- */
             .stats-bar { 
                 grid-template-columns: 1fr; 
                 gap: 10px;
@@ -726,8 +895,14 @@
                 font-size: 1.3rem; 
                 margin-bottom: 0;
             }
+
+            /* --- GALLERY --- */
             .gallery-card { height: 250px; }
+            
+            /* --- SECTION --- */
             .section-title h2 { font-size: 1.3rem; }
+
+            /* --- CONTACT --- */
             .contact-info { padding: 25px 15px; }
             .contact-form { padding: 25px 15px; }
         }
@@ -736,33 +911,31 @@
 </head>
 <body>
 
-        <!-- Header Menu -->
+    <!-- Header Menu -->
     <header id="navbar">
-        <!-- Hapus div container di sini agar full width -->
         <nav>
-            <!-- BAGIAN LOGO (RATA KIRI) -->
+            <!-- LOGO (RATA KIRI) -->
             <a href="#" class="logo-container">
                 <div class="logo-main">PPC <span>Certified</span></div>
                 <div class="logo-desc">Jasa Sampling Pupuk & Pestisida Profesional</div>
             </a>
             
-            <!-- BAGIAN MENU (RATA KANAN) -->
+            <!-- MENU (RATA KANAN) -->
             <ul class="nav-links">
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#about">Profil</a></li>
                 <li><a href="#services">Layanan</a></li>
                 <li><a href="#sop">SOP Kerja</a></li>
                 <li><a href="#gallery">Galeri</a></li>
-    
-            <!-- Tombol Login Admin Baru -->
                 <li>
                     <a href="admin.html" target="_blank" class="admin-login-btn" title="Login Admin">
-                <i class="fa-solid fa-lock"></i>
+                        <i class="fa-solid fa-lock"></i>
                     </a>
                 </li>
-    
                 <li><a href="#contact" class="cta-menu">Hubungi Saya</a></li>
             </ul>
+
+            <!-- HAMBURGER TOGGLE -->
             <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         </nav>
     </header>
@@ -886,7 +1059,7 @@
         </div>
     </section>
 
-        <!-- Gallery Section -->
+    <!-- Gallery Section -->
     <section id="gallery" class="section-padding">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
@@ -1011,14 +1184,13 @@
             else header.classList.remove('scrolled');
         });
 
-        // Mobile Menu Toggle (Simple & Stable)
+        // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         
         if(menuToggle) {
             menuToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
-                // Ubah ikon hamburger jadi X
                 const icon = menuToggle.querySelector('i');
                 if(navLinks.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
@@ -1030,21 +1202,28 @@
             });
         }
 
+        // Close mobile menu when link clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+
         // FUNGSI KIRIM KE WHATSAPP
         function kirimKeWhatsApp(e) {
-            e.preventDefault(); // Mencegah reload halaman
+            e.preventDefault();
 
-            // Ambil data dari form
             const nama = document.getElementById('nama').value;
             const perusahaan = document.getElementById('perusahaan').value;
             const alamat = document.getElementById('alamat').value;
             const email = document.getElementById('email').value;
             const hp = document.getElementById('hp').value;
 
-            // Nomor WhatsApp Tujuan (Ganti dengan nomor Anda, format 62...)
             const nomorWA = "628175761165"; 
 
-            // Buat Narasi Pesan
             const pesan = `Halo Admin PPC Certified, saya ingin konsultasi terkait jasa sampling.%0A%0A` +
                           `*DATA PEMOHON:*%0A` +
                           `👤 Nama: ${nama}%0A` +
@@ -1054,12 +1233,11 @@
                           `📱 No. HP: ${hp}%0A%0A` +
                           `Mohon info ketersediaan jadwal sampling. Terima kasih.`;
 
-            // Buka WhatsApp
             window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
         }
     </script>
 
-        <script>
+    <script>
         // LOAD GALLERY DATA FROM LOCALSTORAGE
         function loadGallery() {
             const galleryGrid = document.getElementById('galleryGrid');
@@ -1089,7 +1267,6 @@
                     </div>
                 `).join('');
             } else {
-                // Default data if localStorage is empty
                 const defaultData = [
                     {
                         tag: 'Pupuk Anorganik',
@@ -1136,16 +1313,13 @@
                 ];
                 
                 localStorage.setItem('galleryData', JSON.stringify(defaultData));
-                loadGallery(); // Reload with default data
+                loadGallery();
             }
         }
 
-        // Load gallery when page loads
         document.addEventListener('DOMContentLoaded', loadGallery);
     </script>
 
-
-    
 </body>
 </html>
 
