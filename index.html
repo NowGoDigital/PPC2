@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>PPC Certified | Jasa Sampling Sarana Produk Pertanian</title>
+    <title>PPC Certified | Jasa Sampling Pupuk & Pestisida Profesional</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,6 @@
             --shadow-soft: 0 20px 40px -10px rgba(6, 78, 59, 0.15);
         }
 
-        /* KUNCI UTAMA: Scrollbar fix untuk semua device */
         html {
             overflow-x: hidden;
             width: 100%;
@@ -39,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* Wrapper untuk mencegah overflow horizontal */
         .page-wrapper {
             width: 100%;
             max-width: 100vw;
@@ -78,7 +76,6 @@
         }
         .section-padding { padding: 100px 0; }
         
-        /* Setiap section harus overflow hidden untuk mencegah scrollbar */
         section {
             width: 100%;
             overflow: hidden;
@@ -154,7 +151,6 @@
             height: 70px;
         }
         
-        /* Logo Styling */
         .logo-container {
             display: flex;
             flex-direction: column;
@@ -186,7 +182,6 @@
             text-overflow: ellipsis;
         }
         
-        /* Menu Navigasi */
         .nav-links { 
             display: flex; 
             gap: 30px; 
@@ -208,7 +203,6 @@
             font-weight: 700 !important;
         }
 
-        /* Tombol Login Admin */
         .admin-login-btn {
             display: flex;
             align-items: center;
@@ -229,7 +223,6 @@
             border-color: var(--accent-gold);
         }
         
-        /* Hamburger Toggle */
         .menu-toggle { 
             display: none; 
             color: var(--white); 
@@ -321,7 +314,6 @@
             max-width: 100%;
         }
 
-        /* --- PHOTO CONTAINER --- */
         .hero-image-container { 
             position: relative; 
             display: flex; 
@@ -595,11 +587,15 @@
             line-height: 1.6; 
         }
 
-        /* --- 9. GALLERY MODERN --- */
+        /* ================================================ */
+        /* === 9. GALLERY MODERN - 4 KOLOM + SCROLLBAR ==== */
+        /* ================================================ */
+        
+        /* Grid 4 kolom di desktop */
         .gallery-grid-modern {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
             margin-top: 50px;
             width: 100%;
         }
@@ -613,35 +609,69 @@
             height: 400px;
             cursor: pointer;
             max-width: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
+        /* Container gambar dengan scrollbar vertikal */
         .gallery-img-box {
             width: 100%;
             height: 100%;
             position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
+        /* Gambar di dalam container scroll */
         .gallery-img-box img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            min-height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
+        /* ========= CUSTOM SCROLLBAR VERTIKAL ========= */
+        .gallery-img-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .gallery-img-box::-webkit-scrollbar-track {
+            background: rgba(6, 78, 59, 0.08);
+            border-radius: 4px;
+        }
+        .gallery-img-box::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-mid) 0%, var(--primary-dark) 100%);
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .gallery-img-box::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--accent-gold) 0%, var(--primary-mid) 100%);
+        }
+        
+        /* Firefox scrollbar */
+        .gallery-img-box {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-mid) rgba(6, 78, 59, 0.08);
+        }
+
+        /* Overlay info */
         .gallery-overlay {
             position: absolute;
             top: 0; 
             left: 0; 
             width: 100%; 
             height: 100%;
-            background: linear-gradient(to top, rgba(6, 78, 59, 0.95) 0%, rgba(6, 78, 59, 0.7) 60%, transparent 100%);
+            background: linear-gradient(to top, rgba(6, 78, 59, 0.95) 0%, rgba(6, 78, 59, 0.7) 50%, transparent 100%);
             opacity: 0;
             visibility: hidden;
             transition: all 0.4s ease;
             display: flex;
             align-items: flex-end;
-            padding: 30px;
+            padding: 25px;
             box-sizing: border-box;
+            z-index: 5;
+            pointer-events: none;
         }
 
         .overlay-content {
@@ -650,48 +680,123 @@
             color: var(--white);
             width: 100%;
             word-wrap: break-word;
+            pointer-events: auto;
         }
 
-        .gallery-card:hover .gallery-img-box img { transform: scale(1.1); }
+        .gallery-card:hover .gallery-img-box img { transform: scale(1.05); }
         .gallery-card:hover .gallery-overlay { opacity: 1; visibility: visible; }
         .gallery-card:hover .overlay-content { transform: translateY(0); }
 
         .gallery-tag {
             background: var(--accent-gold);
             color: var(--primary-dark);
-            padding: 5px 12px;
+            padding: 4px 12px;
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .overlay-content h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             margin-bottom: 5px;
             line-height: 1.2;
         }
 
         .overlay-content p {
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
             opacity: 0.9;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             word-wrap: break-word;
         }
 
         .desc-small {
-            font-size: 0.85rem !important;
-            margin-top: 10px;
+            font-size: 0.78rem !important;
+            margin-top: 8px;
             line-height: 1.5;
             opacity: 0.8 !important;
             border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 10px;
+            padding-top: 8px;
+        }
+        
+        /* Indikator scroll (hint di pojok kanan atas) */
+        .scroll-indicator {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(6, 78, 59, 0.85);
+            color: var(--white);
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 4;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        .scroll-indicator i {
+            animation: bounceDown 1.5s infinite;
+        }
+        .gallery-card:hover .scroll-indicator {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes bounceDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(3px); }
+        }
+        
+        /* ========= TOMBOL LOAD MORE ========= */
+        .load-more-wrapper {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .btn-load-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-dark);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        .btn-load-more:hover {
+            background: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(6, 78, 59, 0.25);
+        }
+        .btn-load-more:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .gallery-counter {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
 
         /* --- 10. CONTACT SECTION --- */
@@ -848,7 +953,6 @@
         /* ========== RESPONSIVE - TABLET (max 992px) == */
         /* ============================================ */
         @media (max-width: 992px) {
-            /* --- NAVBAR TABLET --- */
             nav { 
                 padding: 15px 20px; 
                 height: 70px; 
@@ -920,7 +1024,6 @@
                 display: flex; 
             }
 
-            /* --- HERO --- */
             .hero-wrapper { 
                 grid-template-columns: 1fr; 
                 text-align: center; 
@@ -933,14 +1036,12 @@
             .hero-image-container { margin-top: 30px; }
             .hero-img-frame { max-width: 350px; margin: 0 auto; }
             
-            /* --- STATS --- */
             .stats-bar { 
                 grid-template-columns: 1fr 1fr; 
                 margin-top: 30px; 
                 padding: 20px;
             }
             
-            /* --- ABOUT --- */
             .about-grid { 
                 grid-template-columns: 1fr; 
                 gap: 40px; 
@@ -948,15 +1049,12 @@
             .about-content { text-align: left; }
             .about-content .section-title { text-align: left !important; }
             
-            /* --- SERVICES --- */
             .service-grid { grid-template-columns: 1fr; }
             
-            /* --- CONTACT --- */
             .contact-wrapper { flex-direction: column; }
             .contact-info { padding: 40px 30px; }
             .contact-form { padding: 40px 30px; }
             
-            /* --- SOP --- */
             .timeline-line { display: none; }
             .timeline-wrapper { 
                 flex-direction: column; 
@@ -969,7 +1067,6 @@
                 max-width: 350px; 
             }
             
-            /* --- DETAIL CARD TABLET --- */
             .detail-card { 
                 left: 50%; 
                 transform: translateX(-50%); 
@@ -978,17 +1075,15 @@
                 max-width: 300px;
             }
             
-            /* --- FOOTER --- */
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
-            
-            /* --- GALLERY --- */
+            /* GALERI TABLET: 2 kolom */
             .gallery-grid-modern { 
-                grid-template-columns: 1fr; 
+                grid-template-columns: repeat(2, 1fr) !important; 
                 gap: 20px;
             }
-            .gallery-card { height: 320px; }
+            .gallery-card { height: 350px; }
             
-            /* --- SECTION --- */
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+            
             .section-padding { padding: 60px 0; }
             .section-title { margin-bottom: 40px; }
             .section-title h2 { font-size: 1.8rem; }
@@ -1005,7 +1100,6 @@
                 box-sizing: border-box;
             }
 
-            /* --- NAVBAR HP FIX --- */
             nav { 
                 padding: 10px 15px; 
                 height: 65px; 
@@ -1058,7 +1152,6 @@
                 font-size: 0.95rem !important;
             }
             
-            /* --- HERO HP --- */
             .hero-split { 
                 padding-top: 90px; 
                 padding-bottom: 60px;
@@ -1094,7 +1187,6 @@
                 margin: 0 auto;
             }
             
-            /* --- DETAIL CARD HP --- */
             .detail-card { 
                 position: relative !important;
                 left: auto !important;
@@ -1111,7 +1203,6 @@
                 animation: none !important;
             }
             
-            /* --- STATS HP --- */
             .stats-bar { 
                 grid-template-columns: 1fr 1fr; 
                 margin-top: -40px;
@@ -1124,7 +1215,6 @@
             .stat-number { font-size: 1.5rem; }
             .stat-label { font-size: 0.7rem; letter-spacing: 0.5px; }
             
-            /* --- ABOUT HP --- */
             .about-img-wrapper {
                 padding: 0 10px;
             }
@@ -1144,7 +1234,6 @@
                 margin-right: 12px;
             }
             
-            /* --- SERVICES HP --- */
             .service-card { 
                 padding: 30px 20px; 
                 border-radius: 15px;
@@ -1158,7 +1247,6 @@
             }
             .service-card h3 { font-size: 1.2rem; }
             
-            /* --- SOP HP --- */
             .sop-section { 
                 padding: 60px 0;
                 width: 100%;
@@ -1181,7 +1269,7 @@
             .sop-step h4 { font-size: 1.1rem; }
             .sop-step p { font-size: 0.85rem; padding: 0 10px; }
             
-            /* --- GALLERY HP --- */
+            /* GALERI HP: 1 kolom */
             .gallery-grid-modern { 
                 grid-template-columns: 1fr !important; 
                 gap: 15px;
@@ -1189,7 +1277,7 @@
                 width: 100%;
             }
             .gallery-card { 
-                height: 280px; 
+                height: 320px; 
                 border-radius: 15px;
                 width: 100%;
                 max-width: 100%;
@@ -1204,7 +1292,15 @@
                 margin-bottom: 8px;
             }
             
-            /* --- CONTACT HP --- */
+            /* Tombol load more HP */
+            .btn-load-more {
+                padding: 14px 30px;
+                font-size: 0.9rem;
+            }
+            .load-more-wrapper {
+                margin-top: 35px;
+            }
+            
             .contact-wrapper { border-radius: 20px; }
             .contact-info { 
                 padding: 30px 20px; 
@@ -1220,7 +1316,6 @@
             }
             .form-label { font-size: 0.85rem; }
             
-            /* Fix grid 2 kolom di form HP */
             .contact-form form > div[style*="grid-template-columns"] {
                 display: block !important;
                 grid-template-columns: 1fr !important;
@@ -1229,7 +1324,6 @@
                 margin-bottom: 20px;
             }
             
-            /* --- FOOTER HP --- */
             footer {
                 padding: 50px 0 20px;
                 width: 100%;
@@ -1253,7 +1347,6 @@
             .social-icons { margin-top: 15px; }
             .copyright { font-size: 0.8rem; }
             
-            /* --- SECTION HP --- */
             .section-title span { 
                 font-size: 0.75rem; 
                 letter-spacing: 2px;
@@ -1264,18 +1357,6 @@
             }
             .section-padding { padding: 50px 0; }
             .section-title { margin-bottom: 30px; }
-            
-            /* --- FIX UNTUK SCROLLBAR HP --- */
-            .stats-bar, 
-            .contact-wrapper,
-            .service-card,
-            .gallery-card,
-            .footer-grid,
-            .timeline-wrapper {
-                width: 100% !important;
-                max-width: 100% !important;
-                box-sizing: border-box !important;
-            }
         }
         
         /* ============================================ */
@@ -1286,7 +1367,6 @@
                 padding: 0 12px;
             }
             
-            /* --- NAVBAR HP KECIL --- */
             nav { 
                 padding: 8px 12px; 
                 height: 60px; 
@@ -1318,7 +1398,6 @@
                 font-size: 1.1rem;
             }
 
-            /* --- HERO HP KECIL --- */
             .hero-text h1 { font-size: 1.6rem; }
             .hero-text p { font-size: 0.85rem; }
             .badge { 
@@ -1332,7 +1411,6 @@
             }
             .hero-img-frame { max-width: 220px; }
 
-            /* --- STATS HP KECIL --- */
             .stats-bar { 
                 grid-template-columns: 1fr; 
                 gap: 10px;
@@ -1348,19 +1426,14 @@
                 margin-bottom: 0;
             }
 
-            /* --- GALLERY HP KECIL --- */
-            .gallery-card { height: 250px; }
+            .gallery-card { height: 280px; }
             
-            /* --- SECTION HP KECIL --- */
             .section-title h2 { font-size: 1.3rem; }
 
-            /* --- CONTACT HP KECIL --- */
             .contact-info { padding: 25px 15px; }
             .contact-form { padding: 25px 15px; }
         }
         
-        /* ====== FIX GLOBAL SCROLLBAR ====== */
-        /* Sembunyikan scrollbar tapi tetap bisa scroll */
         body::-webkit-scrollbar {
             width: 0;
             display: none;
@@ -1374,19 +1447,16 @@
 </head>
 <body>
 
-    <!-- WRAPPER UTAMA UNTUK MENCEGAH OVERFLOW -->
     <div class="page-wrapper">
 
     <!-- Header Menu -->
     <header id="navbar">
         <nav>
-            <!-- LOGO (RATA KIRI) -->
             <a href="#" class="logo-container">
                 <div class="logo-main">PPC <span>Certified</span></div>
-                <div class="logo-desc">Jasa Sampling Sarana Produk Pertanian</div>
+                <div class="logo-desc">Jasa Sampling Pupuk & Pestisida Profesional</div>
             </a>
             
-            <!-- MENU (RATA KANAN) -->
             <ul class="nav-links">
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#about">Profil</a></li>
@@ -1401,7 +1471,6 @@
                 <li><a href="#contact" class="cta-menu">Hubungi Saya</a></li>
             </ul>
 
-            <!-- HAMBURGER TOGGLE -->
             <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         </nav>
     </header>
@@ -1532,12 +1601,21 @@
                 <span>Portofolio</span>
                 <h2>Dokumentasi Lapangan & Integritas Data</h2>
                 <p style="max-width: 600px; margin: 15px auto 0; color: #666;">
-                    Setiap langkah pengambilan contoh didokumentasikan sebagai bukti transparansi dan akuntabilitas (Chain of Custody).
+                    Setiap langkah pengambilan contoh didokumentasikan sebagai bukti transparansi dan akuntabilitas (Chain of Custody). <strong>Geser ke atas/bawah pada gambar untuk melihat detail lengkap.</strong>
                 </p>
             </div>
             
             <div class="gallery-grid-modern" id="galleryGrid">
                 <!-- Items will be loaded dynamically -->
+            </div>
+            
+            <!-- Tombol Load More & Counter -->
+            <div class="load-more-wrapper" id="loadMoreWrapper" style="display: none;">
+                <button class="btn-load-more" id="loadMoreBtn" onclick="loadMoreGallery()">
+                    <i class="fa-solid fa-arrow-down"></i>
+                    <span>Tampilkan Lebih Banyak</span>
+                </button>
+                <span class="gallery-counter" id="galleryCounter"></span>
             </div>
         </div>
     </section>
@@ -1645,14 +1723,12 @@
     <script>
         AOS.init({ duration: 1000, once: true });
         
-        // Navbar Scroll Effect
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             if (window.scrollY > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
 
-        // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         
@@ -1670,7 +1746,6 @@
             });
         }
 
-        // Close mobile menu when link clicked
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -1680,7 +1755,6 @@
             });
         });
 
-        // FUNGSI KIRIM KE WHATSAPP
         function kirimKeWhatsApp(e) {
             e.preventDefault();
 
@@ -1706,83 +1780,197 @@
     </script>
 
     <script>
-        // LOAD GALLERY DATA FROM LOCALSTORAGE
-        function loadGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            const stored = localStorage.getItem('galleryData');
-            
-            if (stored) {
-                const galleryData = JSON.parse(stored);
-                
-                if (galleryData.length === 0) {
-                    galleryGrid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1; padding: 40px;">Belum ada item galeri.</p>';
-                    return;
-                }
-
-                galleryGrid.innerHTML = galleryData.map((item, index) => `
-                    <div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
-                        <div class="gallery-img-box">
-                            <img src="${item.image}" alt="${item.title}">
-                            <div class="gallery-overlay">
-                                <div class="overlay-content">
-                                    <span class="gallery-tag">${item.tag}</span>
-                                    <h3>${item.title}</h3>
-                                    <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
-                                    <p class="desc-small">${item.description}</p>
-                                </div>
+        // ============================================
+        // GALLERY SYSTEM - 4 KOLOM + LOAD MORE + SCROLL
+        // ============================================
+        
+        let currentDisplayCount = 8; // Default tampilkan 8 item
+        const ITEMS_PER_LOAD = 4;   // Setiap klik load more, tambah 4
+        
+        function renderGalleryCard(item, index) {
+            return `
+                <div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index % 4) * 80}">
+                    <div class="gallery-img-box">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="scroll-indicator">
+                            <i class="fa-solid fa-angles-up-down"></i>
+                            <span>Geser</span>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <span class="gallery-tag">${item.tag}</span>
+                                <h3>${item.title}</h3>
+                                <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
+                                <p class="desc-small">${item.description}</p>
                             </div>
                         </div>
                     </div>
-                `).join('');
+                </div>
+            `;
+        }
+        
+        function loadGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            const loadMoreWrapper = document.getElementById('loadMoreWrapper');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const galleryCounter = document.getElementById('galleryCounter');
+            const stored = localStorage.getItem('galleryData');
+            
+            let galleryData = [];
+            
+            if (stored) {
+                galleryData = JSON.parse(stored);
             } else {
-                const defaultData = [
+                // Data default 8 item agar galeri terlihat penuh
+                galleryData = [
                     {
                         tag: 'Pupuk Anorganik',
                         title: 'Sampling Lot Urea Curah',
                         location: 'Gudang Pelindo, Surabaya',
-                        description: 'Pengambilan contoh menggunakan metode tusuk (probe) pada 20 titik berbeda untuk memastikan homogenitas.',
+                        description: 'Pengambilan contoh menggunakan metode tusuk (probe) pada 20 titik berbeda untuk memastikan homogenitas lot pupuk urea curah.',
                         image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop'
                     },
                     {
                         tag: 'Chain of Custody',
                         title: 'Segel & Labeling Resmi',
                         location: 'Laboratorium PT. XYZ',
-                        description: 'Penerapan segel hologram dan tanda tangan basah di atas kemasan sampel untuk menjamin keaslian.',
+                        description: 'Penerapan segel hologram dan tanda tangan basah di atas kemasan sampel untuk menjamin keaslian dan integritas data.',
                         image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop'
                     },
                     {
                         tag: 'Pestisida Cair',
                         title: 'Verifikasi Insektisida',
                         location: 'Pabrik Cikarang, Bekasi',
-                        description: 'Penghomogenan cairan dalam tangki reaktor sebelum pengambilan contoh akhir (final batch).',
+                        description: 'Penghomogenan cairan dalam tangki reaktor sebelum pengambilan contoh akhir (final batch) untuk uji laboratorium.',
                         image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop'
                     },
                     {
                         tag: 'Administrasi',
                         title: 'Penandatanganan BAS',
                         location: 'Kantor Regulator',
-                        description: 'Validasi data hasil sampling melalui Berita Acara Sampling (BAS) yang disetujui dua belah pihak.',
+                        description: 'Validasi data hasil sampling melalui Berita Acara Sampling (BAS) yang disetujui oleh dua belah pihak berwenang.',
                         image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop'
                     },
                     {
                         tag: 'Peralatan',
                         title: 'Preparasi Alat Sampling',
-                        location: 'Area Steril',
-                        description: 'Pembersihan alat stainless steel dengan alkohol teknis untuk mencegah kontaminasi silang antar lot.',
+                        location: 'Area Steril Laboratorium',
+                        description: 'Pembersihan alat stainless steel dengan alkohol teknis untuk mencegah kontaminasi silang antar lot sampling.',
                         image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop'
                     },
                     {
                         tag: 'Pupuk Organik',
                         title: 'Sampling Kompos Granul',
-                        location: 'Pabrik Bogor',
-                        description: 'Metode kuadran pada tumpukan curah untuk mendapatkan representasi kadar air yang akurat.',
+                        location: 'Pabrik Pengolahan, Bogor',
+                        description: 'Metode kuadran pada tumpukan curah untuk mendapatkan representasi kadar air yang akurat dan representatif.',
                         image: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop'
+                    },
+                    {
+                        tag: 'Lapangan',
+                        title: 'Inspeksi Gudang Pupuk',
+                        location: 'Gudang Distributor, NTB',
+                        description: 'Verifikasi kondisi penyimpanan dan pengambilan sampel acak dari berbagai titik gudang untuk audit kualitas.',
+                        image: 'https://images.unsplash.com/photo-1592982736253-57fa9f9b7c77?q=80&w=800&auto=format&fit=crop'
+                    },
+                    {
+                        tag: 'Dokumentasi',
+                        title: 'Foto Bukti Sampling',
+                        location: 'Pelabuhan Tanjung Perak',
+                        description: 'Dokumentasi visual lengkap setiap tahap sampling sebagai bukti integritas dan akuntabilitas proses.',
+                        image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800&auto=format&fit=crop'
                     }
                 ];
                 
-                localStorage.setItem('galleryData', JSON.stringify(defaultData));
-                loadGallery();
+                localStorage.setItem('galleryData', JSON.stringify(galleryData));
             }
+            
+            if (galleryData.length === 0) {
+                galleryGrid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1; padding: 40px;">Belum ada item galeri. Silakan tambahkan melalui halaman Admin.</p>';
+                loadMoreWrapper.style.display = 'none';
+                return;
+            }
+
+            // Reset display count jika data lebih sedikit
+            if (currentDisplayCount > galleryData.length) {
+                currentDisplayCount = galleryData.length;
+            }
+            
+            // Render item sesuai jumlah yang ditampilkan
+            const displayData = galleryData.slice(0, currentDisplayCount);
+            galleryGrid.innerHTML = displayData.map((item, index) => renderGalleryCard(item, index)).join('');
+            
+            // Update tombol load more & counter
+            if (galleryData.length > 8) {
+                loadMoreWrapper.style.display = 'block';
+                
+                if (currentDisplayCount >= galleryData.length) {
+                    // Semua sudah ditampilkan
+                    loadMoreBtn.disabled = true;
+                    loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
+                } else {
+                    loadMoreBtn.disabled = false;
+                    const remaining = galleryData.length - currentDisplayCount;
+                    loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
+                }
+                
+                // Update counter
+                galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${galleryData.length} foto portofolio`;
+            } else {
+                loadMoreWrapper.style.display = 'none';
+            }
+            
+            // Refresh AOS untuk animasi baru
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+        
+        function loadMoreGallery() {
+            const stored = localStorage.getItem('galleryData');
+            if (!stored) return;
+            
+            const galleryData = JSON.parse(stored);
+            const prevCount = currentDisplayCount;
+            
+            currentDisplayCount = Math.min(currentDisplayCount + ITEMS_PER_LOAD, galleryData.length);
+            
+            const galleryGrid = document.getElementById('galleryGrid');
+            const newItems = galleryData.slice(prevCount, currentDisplayCount);
+            
+            // Append item baru (bukan replace semua)
+            newItems.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.innerHTML = renderGalleryCard(item, prevCount + index);
+                const card = div.firstElementChild;
+                galleryGrid.appendChild(card);
+            });
+            
+            // Update tombol & counter
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const galleryCounter = document.getElementById('galleryCounter');
+            
+            if (currentDisplayCount >= galleryData.length) {
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
+            } else {
+                const remaining = galleryData.length - currentDisplayCount;
+                loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
+            }
+            
+            galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${galleryData.length} foto portofolio`;
+            
+            // Refresh AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+            
+            // Smooth scroll ke item baru pertama
+            setTimeout(() => {
+                const newCards = galleryGrid.querySelectorAll('.gallery-card');
+                if (newCards[prevCount]) {
+                    newCards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
         }
 
         document.addEventListener('DOMContentLoaded', loadGallery);
