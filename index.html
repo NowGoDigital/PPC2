@@ -425,9 +425,14 @@
             display: grid; 
             grid-template-columns: 1fr 1fr; 
             gap: 80px; 
-            align-items: center; 
+            align-items: start; 
         }
-        .about-img-wrapper { position: relative; }
+        .about-img-wrapper { 
+            position: relative; 
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
         .about-img-main { 
             width: 100%; 
             border-radius: 30px; 
@@ -455,6 +460,46 @@
         /* ============================================ */
         /* ======= ENHANCED ABOUT SECTION ============= */
         /* ============================================ */
+
+        /* Stats Mini Bar - Under Image */
+        .stats-mini {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 20px 15px;
+            background: #f0fdf4;
+            border-radius: 15px;
+            border: 1px solid #bbf7d0;
+            width: 100%;
+            margin-top: 60px;
+        }
+
+        .stats-mini-item {
+            text-align: center;
+            padding: 10px 5px;
+            border-right: 1px solid #bbf7d0;
+        }
+
+        .stats-mini-item:last-child {
+            border-right: none;
+        }
+
+        .stats-mini-number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .stats-mini-label {
+            font-size: 0.7rem;
+            color: var(--primary-mid);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
         /* Card Perusahaan CV Bina Mahabbah Jaya */
         .company-card {
@@ -571,45 +616,6 @@
             border-radius: 50px;
             font-size: 0.7rem;
             font-weight: 700;
-        }
-
-        /* Stats Mini Bar */
-        .stats-mini {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #f0fdf4;
-            border-radius: 15px;
-            border: 1px solid #bbf7d0;
-        }
-
-        .stats-mini-item {
-            text-align: center;
-            padding: 10px 5px;
-            border-right: 1px solid #bbf7d0;
-        }
-
-        .stats-mini-item:last-child {
-            border-right: none;
-        }
-
-        .stats-mini-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            font-family: 'Playfair Display', serif;
-            line-height: 1;
-            margin-bottom: 5px;
-        }
-
-        .stats-mini-label {
-            font-size: 0.75rem;
-            color: var(--primary-mid);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         /* ============================================ */
@@ -1549,6 +1555,16 @@
             }
             .experience-badge h3 { font-size: 1.5rem; }
             
+            /* Stats Mini - HP */
+            .stats-mini {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 5px;
+                padding: 15px 10px;
+                margin-top: 45px;
+            }
+            .stats-mini-number { font-size: 1.3rem; }
+            .stats-mini-label { font-size: 0.65rem; }
+            
             /* Company Card - HP */
             .company-card {
                 flex-direction: column;
@@ -1568,20 +1584,6 @@
             .cert-badge { padding: 15px; }
             .cert-badge h5 { font-size: 0.9rem; }
             .cert-badge p { font-size: 0.75rem; }
-            
-            /* Stats Mini - HP */
-            .stats-mini {
-                grid-template-columns: 1fr;
-                gap: 0;
-                padding: 15px;
-            }
-            .stats-mini-item {
-                border-right: none;
-                border-bottom: 1px solid #bbf7d0;
-                padding: 12px 5px;
-            }
-            .stats-mini-item:last-child { border-bottom: none; }
-            .stats-mini-number { font-size: 1.5rem; }
             
             /* Feature List Horizontal - HP: 1 kolom */
             .feature-list-horizontal {
@@ -1945,6 +1947,7 @@
         <div class="container">
             <!-- Grid 2 Kolom: Gambar + Konten -->
             <div class="about-grid">
+                <!-- KOLOM KIRI: Gambar + Stats Mini -->
                 <div class="about-img-wrapper" data-aos="fade-right">
                     <img src="PPC.jpg" alt="Professional PPC" class="about-img-main">
                     <div class="experience-badge">
@@ -1952,7 +1955,25 @@
                         <p>Tahun Pengalaman</p>
                         <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.8;">Sampling Nasional</p>
                     </div>
+                    
+                    <!-- Stats Mini - Persis di bawah gambar PPC -->
+                    <div class="stats-mini">
+                        <div class="stats-mini-item">
+                            <div class="stats-mini-number">15+</div>
+                            <div class="stats-mini-label">Tahun</div>
+                        </div>
+                        <div class="stats-mini-item">
+                            <div class="stats-mini-number">8+</div>
+                            <div class="stats-mini-label">Wilayah</div>
+                        </div>
+                        <div class="stats-mini-item">
+                            <div class="stats-mini-number">2</div>
+                            <div class="stats-mini-label">Sertifikat</div>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- KOLOM KANAN: Konten Profil -->
                 <div class="about-content" data-aos="fade-left">
                     <div class="section-title" style="text-align: left; margin-bottom: 30px;">
                         <span>Profil Ahli</span>
@@ -1991,22 +2012,6 @@
                             <h5>KAN - LSP PPMB Kemendag</h5>
                             <p>Balai Sertifikasi Kemendag RI</p>
                             <span class="cert-status">✓ AKTIF</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Stats Mini -->
-                    <div class="stats-mini">
-                        <div class="stats-mini-item">
-                            <div class="stats-mini-number">15+</div>
-                            <div class="stats-mini-label">Tahun</div>
-                        </div>
-                        <div class="stats-mini-item">
-                            <div class="stats-mini-number">8+</div>
-                            <div class="stats-mini-label">Wilayah</div>
-                        </div>
-                        <div class="stats-mini-item">
-                            <div class="stats-mini-number">2</div>
-                            <div class="stats-mini-label">Sertifikat</div>
                         </div>
                     </div>
                 </div>
@@ -2307,14 +2312,13 @@
         // GALLERY SYSTEM + FILTER + LOAD MORE
         // ============================================
         
-        let galleryDataGlobal = [];     // Data asli dari localStorage
-        let filteredData = [];          // Data setelah filter/sort
-        let currentDisplayCount = 8;    // Default tampilkan 8 item
-        const ITEMS_PER_LOAD = 4;       // Setiap klik load more, tambah 4
-        let currentFilter = 'newest';   // 'newest' atau 'oldest'
-        let currentYear = 'all';        // 'all' atau tahun spesifik
+        let galleryDataGlobal = [];
+        let filteredData = [];
+        let currentDisplayCount = 8;
+        const ITEMS_PER_LOAD = 4;
+        let currentFilter = 'newest';
+        let currentYear = 'all';
         
-        // Format tanggal ke format Indonesia
         function formatTanggal(dateStr) {
             if (!dateStr) return '';
             const bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
@@ -2323,7 +2327,6 @@
             return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
         }
         
-        // Dapatkan tahun unik dari data
         function getUniqueYears(data) {
             const years = new Set();
             data.forEach(item => {
@@ -2332,14 +2335,12 @@
                     if (!isNaN(year)) years.add(year.toString());
                 }
             });
-            return Array.from(years).sort((a, b) => b - a); // Descending
+            return Array.from(years).sort((a, b) => b - a);
         }
         
-        // Sort & filter data
         function sortAndFilterData(data, filter, year) {
             let result = [...data];
             
-            // Filter berdasarkan tahun
             if (year !== 'all') {
                 result = result.filter(item => {
                     if (!item.date) return false;
@@ -2348,22 +2349,20 @@
                 });
             }
             
-            // Sort berdasarkan tanggal
             result.sort((a, b) => {
                 const dateA = a.date ? new Date(a.date).getTime() : 0;
                 const dateB = b.date ? new Date(b.date).getTime() : 0;
                 
                 if (filter === 'newest') {
-                    return dateB - dateA; // Terbaru dulu
+                    return dateB - dateA;
                 } else {
-                    return dateA - dateB; // Terlama dulu
+                    return dateA - dateB;
                 }
             });
             
             return result;
         }
         
-        // Render satu card galeri
         function renderGalleryCard(item, index) {
             const tanggalFormatted = formatTanggal(item.date);
             const dateBadge = tanggalFormatted 
@@ -2392,15 +2391,12 @@
             `;
         }
         
-        // Populate dropdown tahun
         function populateYearFilter() {
             const yearSelect = document.getElementById('yearFilter');
             const years = getUniqueYears(galleryDataGlobal);
             
-            // Reset
             yearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
             
-            // Tambahkan option untuk setiap tahun
             years.forEach(year => {
                 const option = document.createElement('option');
                 option.value = year;
@@ -2408,11 +2404,9 @@
                 yearSelect.appendChild(option);
             });
             
-            // Set value sesuai filter aktif
             yearSelect.value = currentYear;
         }
         
-        // Update info filter yang aktif
         function updateFilterInfo() {
             const infoEl = document.getElementById('filterInfo');
             const totalFiltered = filteredData.length;
@@ -2438,14 +2432,12 @@
             }
         }
         
-        // Render galeri
         function renderGallery() {
             const galleryGrid = document.getElementById('galleryGrid');
             const loadMoreWrapper = document.getElementById('loadMoreWrapper');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const galleryCounter = document.getElementById('galleryCounter');
             
-            // Reset display count saat filter berubah
             currentDisplayCount = Math.min(8, filteredData.length);
             
             if (filteredData.length === 0) {
@@ -2461,11 +2453,9 @@
                 return;
             }
             
-            // Render item sesuai jumlah yang ditampilkan
             const displayData = filteredData.slice(0, currentDisplayCount);
             galleryGrid.innerHTML = displayData.map((item, index) => renderGalleryCard(item, index)).join('');
             
-            // Update tombol load more & counter
             if (filteredData.length > 8) {
                 loadMoreWrapper.style.display = 'block';
                 
@@ -2490,33 +2480,26 @@
             }
         }
         
-        // Apply filter (Terbaru/Terlama)
         function applyFilter(filter) {
             currentFilter = filter;
             
-            // Update tombol aktif
             document.getElementById('btnNewest').classList.toggle('active', filter === 'newest');
             document.getElementById('btnOldest').classList.toggle('active', filter === 'oldest');
             
-            // Re-sort & render
             filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
             renderGallery();
         }
         
-        // Apply filter tahun
         function applyYearFilter(year) {
             currentYear = year;
             
-            // Update styling select
             const yearSelect = document.getElementById('yearFilter');
             yearSelect.classList.toggle('active', year !== 'all');
             
-            // Re-sort & render
             filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
             renderGallery();
         }
         
-        // Load more gallery
         function loadMoreGallery() {
             const prevCount = currentDisplayCount;
             currentDisplayCount = Math.min(currentDisplayCount + ITEMS_PER_LOAD, filteredData.length);
@@ -2531,7 +2514,6 @@
                 galleryGrid.appendChild(card);
             });
             
-            // Update tombol & counter
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const galleryCounter = document.getElementById('galleryCounter');
             
@@ -2557,14 +2539,12 @@
             }, 100);
         }
         
-        // Load gallery dari localStorage
         function loadGallery() {
             const stored = localStorage.getItem('galleryData');
             
             if (stored) {
                 galleryDataGlobal = JSON.parse(stored);
             } else {
-                // Data default dengan tanggal (backward compatibility)
                 galleryDataGlobal = [
                     {
                         tag: 'Pupuk Anorganik',
@@ -2619,12 +2599,10 @@
                 localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
             }
             
-            // Backward compatibility: tambahkan date jika tidak ada
             let needUpdate = false;
             galleryDataGlobal = galleryDataGlobal.map((item, index) => {
                 if (!item.date) {
                     needUpdate = true;
-                    // Generate date berdasarkan index (data lama dianggap dari 2024)
                     const month = String((index % 12) + 1).padStart(2, '0');
                     const day = String((index % 28) + 1).padStart(2, '0');
                     return { ...item, date: `2024-${month}-${day}` };
@@ -2636,13 +2614,10 @@
                 localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
             }
             
-            // Populate dropdown tahun
             populateYearFilter();
             
-            // Initial sort (terbaru dulu)
             filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
             
-            // Render
             renderGallery();
         }
 
