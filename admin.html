@@ -61,17 +61,43 @@
         .login-logo p { color: var(--gray-600); font-size: 0.9rem; }
 
         .form-group { margin-bottom: 20px; }
-        .form-label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--gray-800); font-size: 0.9rem; }
+        .form-label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: var(--gray-800); 
+            font-size: 0.9rem; 
+        }
         
         .form-control {
-            width: 100%; padding: 14px 16px; border: 2px solid var(--gray-200);
-            border-radius: 10px; font-size: 1rem; font-family: inherit; transition: 0.3s;
+            width: 100%; 
+            padding: 14px 16px; 
+            border: 2px solid var(--gray-200);
+            border-radius: 10px; 
+            font-size: 1rem; 
+            font-family: inherit; 
+            transition: 0.3s;
         }
-        .form-control:focus { outline: none; border-color: var(--primary-mid); box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1); }
+        .form-control:focus { 
+            outline: none; 
+            border-color: var(--primary-mid); 
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1); 
+        }
+        
+        /* Khusus input date */
+        input[type="date"].form-control {
+            cursor: pointer;
+        }
 
         .btn {
-            padding: 14px 28px; border: none; border-radius: 10px; font-weight: 600;
-            font-size: 1rem; cursor: pointer; transition: 0.3s; font-family: inherit;
+            padding: 14px 28px; 
+            border: none; 
+            border-radius: 10px; 
+            font-weight: 600;
+            font-size: 1rem; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            font-family: inherit;
         }
         .btn-primary { background: var(--primary-mid); color: var(--white); width: 100%; }
         .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
@@ -94,18 +120,33 @@
         .dashboard.active { display: block; }
 
         .header {
-            background: var(--primary-dark); color: var(--white); padding: 20px 30px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); flex-wrap: wrap; gap: 15px;
+            background: var(--primary-dark); 
+            color: var(--white); 
+            padding: 20px 30px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            flex-wrap: wrap; 
+            gap: 15px;
         }
         .header-left h1 { font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
         .header-actions { display: flex; gap: 10px; align-items: center; }
 
         .btn-header {
-            background: rgba(255,255,255,0.1); color: var(--white);
-            border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px;
-            border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;
-            font-family: inherit; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.1); 
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.2); 
+            padding: 10px 20px;
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            transition: 0.3s;
+            font-family: inherit; 
+            font-size: 0.9rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
         }
         .btn-change-pw:hover { background: var(--accent-gold); color: var(--primary-dark); border-color: var(--accent-gold); }
         .btn-logout:hover { background: var(--danger); border-color: var(--danger); }
@@ -116,74 +157,154 @@
         .page-title p { color: var(--gray-600); }
 
         .action-bar {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 30px; flex-wrap: wrap; gap: 15px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            margin-bottom: 30px; 
+            flex-wrap: wrap; 
+            gap: 15px;
         }
         .stats-box {
-            background: var(--white); padding: 20px 25px; border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px;
+            background: var(--white); 
+            padding: 20px 25px; 
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
         }
         .stats-icon {
-            width: 50px; height: 50px; background: var(--primary-mid); border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.3rem;
+            width: 50px; 
+            height: 50px; 
+            background: var(--primary-mid); 
+            border-radius: 10px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--white); 
+            font-size: 1.3rem;
         }
         .stats-info h3 { font-size: 1.8rem; color: var(--primary-dark); line-height: 1; }
         .stats-info p { font-size: 0.85rem; color: var(--gray-600); margin-top: 3px; }
 
         /* GALLERY GRID IN ADMIN */
         .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px; margin-top: 30px;
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px; 
+            margin-top: 30px;
         }
         .gallery-item {
-            background: var(--white); border-radius: 15px; overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: 0.3s;
+            background: var(--white); 
+            border-radius: 15px; 
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
+            transition: 0.3s;
         }
-        .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-        .gallery-image { width: 100%; height: 250px; object-fit: cover; background: var(--gray-100); }
+        .gallery-item:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+        }
+        .gallery-image { 
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover; 
+            background: var(--gray-100); 
+        }
         .gallery-info { padding: 20px; }
         .gallery-tag {
-            display: inline-block; background: var(--accent-gold); color: var(--primary-dark);
-            padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
-            text-transform: uppercase; margin-bottom: 10px;
+            display: inline-block; 
+            background: var(--accent-gold); 
+            color: var(--primary-dark);
+            padding: 5px 12px; 
+            border-radius: 50px; 
+            font-size: 0.75rem; 
+            font-weight: 700;
+            text-transform: uppercase; 
+            margin-bottom: 10px;
+        }
+        .gallery-date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
         }
         .gallery-info h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--primary-dark); }
         .gallery-info p { font-size: 0.9rem; color: var(--gray-600); margin-bottom: 5px; }
         .gallery-actions {
-            display: flex; gap: 10px; margin-top: 15px;
-            padding-top: 15px; border-top: 1px solid var(--gray-200);
+            display: flex; 
+            gap: 10px; 
+            margin-top: 15px;
+            padding-top: 15px; 
+            border-top: 1px solid var(--gray-200);
         }
 
         /* MODALS */
         .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 1000; align-items: center;
-            justify-content: center; padding: 20px;
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.5); 
+            z-index: 1000; 
+            align-items: center;
+            justify-content: center; 
+            padding: 20px;
         }
         .modal.active { display: flex; }
         .modal-content {
-            background: var(--white); border-radius: 20px; max-width: 600px; width: 100%;
-            max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: var(--white); 
+            border-radius: 20px; 
+            max-width: 600px; 
+            width: 100%;
+            max-height: 90vh; 
+            overflow-y: auto; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
         .modal-header {
-            padding: 25px 30px; border-bottom: 1px solid var(--gray-200);
-            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 30px; 
+            border-bottom: 1px solid var(--gray-200);
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
         }
         .modal-header h2 { font-size: 1.5rem; color: var(--primary-dark); }
         .modal-close {
-            background: none; border: none; font-size: 1.5rem; color: var(--gray-600);
-            cursor: pointer; padding: 5px; line-height: 1;
+            background: none; 
+            border: none; 
+            font-size: 1.5rem; 
+            color: var(--gray-600);
+            cursor: pointer; 
+            padding: 5px; 
+            line-height: 1;
         }
         .modal-body { padding: 30px; }
         .modal-footer {
-            padding: 20px 30px; border-top: 1px solid var(--gray-200);
-            display: flex; gap: 10px; justify-content: flex-end;
+            padding: 20px 30px; 
+            border-top: 1px solid var(--gray-200);
+            display: flex; 
+            gap: 10px; 
+            justify-content: flex-end;
         }
 
         .image-preview {
-            width: 100%; height: 200px; background: var(--gray-100); border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 15px; overflow: hidden;
+            width: 100%; 
+            height: 200px; 
+            background: var(--gray-100); 
+            border-radius: 10px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-bottom: 15px; 
+            overflow: hidden;
         }
         .image-preview img { max-width: 100%; max-height: 100%; object-fit: cover; }
         .image-preview i { font-size: 3rem; color: var(--gray-300); }
@@ -199,12 +320,33 @@
         .password-requirements li { margin-bottom: 5px; padding-left: 25px; position: relative; }
         .password-requirements li:before { content: "○"; position: absolute; left: 0; color: var(--gray-300); }
         .password-requirements li.valid:before { content: "✓"; color: var(--primary-mid); }
+        
+        /* Info box untuk tanggal */
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #1e40af;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .info-box i {
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
 
         @media (max-width: 768px) {
             .header { flex-direction: column; text-align: center; }
             .header-actions { width: 100%; justify-content: center; }
             .main-content { padding: 20px 15px; }
             .gallery-grid { grid-template-columns: 1fr; }
+            .modal-body { padding: 20px; }
+            .modal-header { padding: 20px; }
+            .modal-footer { padding: 15px 20px; }
         }
     </style>
 </head>
@@ -289,8 +431,18 @@
                 <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-body">
+                <div class="info-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div>
+                        <strong>Tanggal Upload</strong> digunakan untuk mengurutkan foto di halaman utama (Terbaru/Terlama) dan memfilter berdasarkan tahun.
+                    </div>
+                </div>
                 <form id="galleryForm">
                     <input type="hidden" id="editIndex" value="-1">
+                    <div class="form-group">
+                        <label class="form-label">Tanggal Upload <span style="color: var(--danger);">*</span></label>
+                        <input type="date" class="form-control" id="uploadDate" required>
+                    </div>
                     <div class="form-group">
                         <label class="form-label">Tag/Kategori</label>
                         <input type="text" class="form-control" id="tag" placeholder="Contoh: Pupuk Anorganik" required>
@@ -382,7 +534,6 @@
         const DEFAULT_USERNAME = 'admin';
         const DEFAULT_PASSWORD = 'admin123';
 
-        // Fungsi mengambil kredensial (dari localStorage atau default)
         function getCurrentCredentials() {
             const storedUsername = localStorage.getItem('adminUsername');
             const storedPassword = localStorage.getItem('adminPassword');
@@ -390,6 +541,24 @@
                 username: storedUsername || DEFAULT_USERNAME,
                 password: storedPassword || DEFAULT_PASSWORD
             };
+        }
+        
+        // Format tanggal ke format Indonesia
+        function formatTanggalAdmin(dateStr) {
+            if (!dateStr) return '-';
+            const bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '-';
+            return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+        }
+        
+        // Dapatkan tanggal hari ini dalam format YYYY-MM-DD
+        function getTodayDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
         }
 
         // --- INITIALIZATION ---
@@ -476,7 +645,6 @@
             document.querySelectorAll('.password-requirements li').forEach(li => li.classList.remove('valid'));
         }
 
-        // Cek kekuatan password saat mengetik
         document.getElementById('newPassword').addEventListener('input', function() {
             const pw = this.value;
             const bar = document.getElementById('passwordStrengthBar');
@@ -526,7 +694,6 @@
                 return;
             }
 
-            // Simpan password baru
             localStorage.setItem('adminPassword', newPw);
             showPasswordSuccess('Password berhasil diubah!');
         }
@@ -536,12 +703,49 @@
             const stored = localStorage.getItem('galleryData');
             if (stored) {
                 galleryData = JSON.parse(stored);
+                
+                // Backward compatibility: tambahkan date jika tidak ada
+                let needUpdate = false;
+                galleryData = galleryData.map((item, index) => {
+                    if (!item.date) {
+                        needUpdate = true;
+                        const month = String((index % 12) + 1).padStart(2, '0');
+                        const day = String((index % 28) + 1).padStart(2, '0');
+                        return { ...item, date: `2024-${month}-${day}` };
+                    }
+                    return item;
+                });
+                
+                if (needUpdate) {
+                    saveToStorage();
+                }
             } else {
-                // Data Default jika kosong
+                // Data Default dengan tanggal
                 galleryData = [
-                    { tag: 'Pupuk Anorganik', title: 'Sampling Lot Urea Curah', location: 'Gudang Pelindo, Surabaya', description: 'Pengambilan contoh menggunakan metode tusuk.', image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800' },
-                    { tag: 'Chain of Custody', title: 'Segel & Labeling Resmi', location: 'Laboratorium PT. XYZ', description: 'Penerapan segel hologram dan tanda tangan basah.', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800' },
-                    { tag: 'Pestisida Cair', title: 'Verifikasi Insektisida', location: 'Pabrik Cikarang', description: 'Penghomogenan cairan dalam tangki reaktor.', image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800' }
+                    { 
+                        tag: 'Pupuk Anorganik', 
+                        title: 'Sampling Lot Urea Curah', 
+                        location: 'Gudang Pelindo, Surabaya', 
+                        description: 'Pengambilan contoh menggunakan metode tusuk.', 
+                        image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800',
+                        date: '2026-06-15'
+                    },
+                    { 
+                        tag: 'Chain of Custody', 
+                        title: 'Segel & Labeling Resmi', 
+                        location: 'Laboratorium PT. XYZ', 
+                        description: 'Penerapan segel hologram dan tanda tangan basah.', 
+                        image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800',
+                        date: '2026-05-20'
+                    },
+                    { 
+                        tag: 'Pestisida Cair', 
+                        title: 'Verifikasi Insektisida', 
+                        location: 'Pabrik Cikarang', 
+                        description: 'Penghomogenan cairan dalam tangki reaktor.', 
+                        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800',
+                        date: '2026-04-10'
+                    }
                 ];
                 saveToStorage();
             }
@@ -559,26 +763,47 @@
                 grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; padding:40px; color:#666;">Belum ada data galeri.</p>';
                 return;
             }
+            
+            // Sort berdasarkan tanggal (terbaru dulu) untuk tampilan admin
+            const sortedData = [...galleryData].sort((a, b) => {
+                const dateA = a.date ? new Date(a.date).getTime() : 0;
+                const dateB = b.date ? new Date(b.date).getTime() : 0;
+                return dateB - dateA;
+            });
 
-            grid.innerHTML = galleryData.map((item, index) => `
-                <div class="gallery-item">
-                    <img src="${item.image}" alt="${item.title}" class="gallery-image">
-                    <div class="gallery-info">
-                        <span class="gallery-tag">${item.tag}</span>
-                        <h3>${item.title}</h3>
-                        <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
-                        <p style="font-size:0.85rem; margin-top:5px;">${item.description}</p>
-                        <div class="gallery-actions">
-                            <button class="btn btn-secondary" onclick="editGallery(${index})">
-                                <i class="fa-solid fa-pen"></i> Edit
-                            </button>
-                            <button class="btn btn-danger" onclick="deleteGallery(${index})">
-                                <i class="fa-solid fa-trash"></i> Hapus
-                            </button>
+            grid.innerHTML = sortedData.map((item) => {
+                // Cari index asli di galleryData
+                const originalIndex = galleryData.findIndex(orig => 
+                    orig.title === item.title && 
+                    orig.image === item.image && 
+                    orig.date === item.date
+                );
+                
+                const tanggalFormatted = formatTanggalAdmin(item.date);
+                
+                return `
+                    <div class="gallery-item">
+                        <img src="${item.image}" alt="${item.title}" class="gallery-image">
+                        <div class="gallery-info">
+                            <span class="gallery-tag">${item.tag}</span>
+                            <span class="gallery-date-badge">
+                                <i class="fa-regular fa-calendar"></i> ${tanggalFormatted}
+                            </span>
+                            <h3>${item.title}</h3>
+                            <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
+                            <p style="font-size:0.85rem; margin-top:5px;">${item.description}</p>
+                            <div class="gallery-actions">
+                                <button class="btn btn-secondary" onclick="editGallery(${originalIndex})">
+                                    <i class="fa-solid fa-pen"></i> Edit
+                                </button>
+                                <button class="btn btn-danger" onclick="deleteGallery(${originalIndex})">
+                                    <i class="fa-solid fa-trash"></i> Hapus
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         // Modal Functions
@@ -588,6 +813,8 @@
             document.getElementById('galleryForm').reset();
             document.getElementById('editIndex').value = -1;
             document.getElementById('imagePreview').innerHTML = '<i class="fa-solid fa-image"></i>';
+            // Set tanggal default = hari ini
+            document.getElementById('uploadDate').value = getTodayDate();
         }
 
         function closeModal() {
@@ -604,6 +831,7 @@
             document.getElementById('location').value = item.location;
             document.getElementById('description').value = item.description;
             document.getElementById('imageUrl').value = item.image;
+            document.getElementById('uploadDate').value = item.date || getTodayDate();
             document.getElementById('imagePreview').innerHTML = `<img src="${item.image}">`;
         }
 
@@ -617,12 +845,20 @@
 
         function saveGallery() {
             const idx = parseInt(document.getElementById('editIndex').value);
+            const uploadDate = document.getElementById('uploadDate').value;
+            
+            if (!uploadDate) {
+                alert('Mohon isi tanggal upload!');
+                return;
+            }
+            
             const newData = {
                 tag: document.getElementById('tag').value,
                 title: document.getElementById('title').value,
                 location: document.getElementById('location').value,
                 description: document.getElementById('description').value,
-                image: document.getElementById('imageUrl').value
+                image: document.getElementById('imageUrl').value,
+                date: uploadDate
             };
 
             if (!newData.tag || !newData.title || !newData.image) {
