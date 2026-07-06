@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>PPC Certified | Jasa Sampling Pupuk & Pestisida Profesional</title>
+    <title>PPC Certified | Jasa Sampling Sarana Produk Pertanian</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -588,15 +588,96 @@
         }
 
         /* ================================================ */
-        /* === 9. GALLERY MODERN - 4 KOLOM + SCROLLBAR ==== */
+        /* === 9. GALLERY - FILTER BAR + GRID + SCROLL ==== */
         /* ================================================ */
+        
+        /* ===== FILTER BAR ===== */
+        .gallery-filter-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+        
+        .filter-btn {
+            padding: 10px 24px;
+            border: 2px solid var(--primary-dark);
+            background: transparent;
+            color: var(--primary-dark);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        
+        .filter-btn:hover {
+            background: rgba(6, 78, 59, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn.active {
+            background: var(--primary-dark);
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(6, 78, 59, 0.25);
+        }
+        
+        .filter-btn.active i {
+            color: var(--accent-gold);
+        }
+        
+        .filter-select {
+            padding: 10px 20px;
+            border: 2px solid var(--primary-dark);
+            border-radius: 50px;
+            background: var(--white);
+            color: var(--primary-dark);
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s ease;
+            min-width: 140px;
+        }
+        
+        .filter-select:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15);
+        }
+        
+        .filter-select.active {
+            background: var(--primary-dark);
+            color: var(--white);
+            border-color: var(--primary-dark);
+        }
+        
+        .filter-info {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .filter-info strong {
+            color: var(--primary-dark);
+        }
         
         /* Grid 4 kolom di desktop */
         .gallery-grid-modern {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
-            margin-top: 50px;
+            margin-top: 0;
             width: 100%;
         }
 
@@ -610,6 +691,12 @@
             cursor: pointer;
             max-width: 100%;
             border: 1px solid rgba(0,0,0,0.05);
+            animation: fadeInCard 0.5s ease;
+        }
+        
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Container gambar dengan scrollbar vertikal */
@@ -622,7 +709,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Gambar di dalam container scroll */
         .gallery-img-box img {
             width: 100%;
             height: auto;
@@ -632,7 +718,7 @@
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* ========= CUSTOM SCROLLBAR VERTIKAL ========= */
+        /* Custom scrollbar vertikal */
         .gallery-img-box::-webkit-scrollbar {
             width: 8px;
         }
@@ -643,19 +729,16 @@
         .gallery-img-box::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, var(--primary-mid) 0%, var(--primary-dark) 100%);
             border-radius: 4px;
-            transition: background 0.3s;
         }
         .gallery-img-box::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, var(--accent-gold) 0%, var(--primary-mid) 100%);
         }
         
-        /* Firefox scrollbar */
         .gallery-img-box {
             scrollbar-width: thin;
             scrollbar-color: var(--primary-mid) rgba(6, 78, 59, 0.08);
         }
 
-        /* Overlay info */
         .gallery-overlay {
             position: absolute;
             top: 0; 
@@ -698,6 +781,18 @@
             display: inline-block;
             margin-bottom: 8px;
         }
+        
+        .gallery-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,255,255,0.15);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            margin-left: 8px;
+            backdrop-filter: blur(5px);
+        }
 
         .overlay-content h3 {
             font-family: 'Playfair Display', serif;
@@ -725,7 +820,7 @@
             padding-top: 8px;
         }
         
-        /* Indikator scroll (hint di pojok kanan atas) */
+        /* Indikator scroll */
         .scroll-indicator {
             position: absolute;
             top: 12px;
@@ -757,7 +852,7 @@
             50% { transform: translateY(3px); }
         }
         
-        /* ========= TOMBOL LOAD MORE ========= */
+        /* Tombol Load More */
         .load-more-wrapper {
             text-align: center;
             margin-top: 50px;
@@ -797,6 +892,23 @@
             color: #666;
             font-size: 0.85rem;
             font-weight: 500;
+        }
+        
+        /* Pesan kosong */
+        .gallery-empty {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+            color: #666;
+        }
+        .gallery-empty i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        .gallery-empty h3 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
         }
 
         /* --- 10. CONTACT SECTION --- */
@@ -1269,11 +1381,31 @@
             .sop-step h4 { font-size: 1.1rem; }
             .sop-step p { font-size: 0.85rem; padding: 0 10px; }
             
+            /* ===== FILTER BAR HP ===== */
+            .gallery-filter-bar {
+                gap: 8px;
+                margin-bottom: 25px;
+                padding: 0;
+            }
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+                gap: 5px;
+            }
+            .filter-select {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+                min-width: 120px;
+            }
+            .filter-info {
+                font-size: 0.8rem;
+                margin-bottom: 15px;
+            }
+            
             /* GALERI HP: 1 kolom */
             .gallery-grid-modern { 
                 grid-template-columns: 1fr !important; 
                 gap: 15px;
-                margin-top: 30px;
                 width: 100%;
             }
             .gallery-card { 
@@ -1291,8 +1423,12 @@
                 font-size: 0.7rem;
                 margin-bottom: 8px;
             }
+            .gallery-date {
+                font-size: 0.65rem;
+                padding: 2px 8px;
+                margin-left: 5px;
+            }
             
-            /* Tombol load more HP */
             .btn-load-more {
                 padding: 14px 30px;
                 font-size: 0.9rem;
@@ -1426,6 +1562,17 @@
                 margin-bottom: 0;
             }
 
+            /* Filter bar HP kecil: full width */
+            .gallery-filter-bar {
+                flex-direction: column;
+                width: 100%;
+            }
+            .filter-btn,
+            .filter-select {
+                width: 100%;
+                justify-content: center;
+            }
+            
             .gallery-card { height: 280px; }
             
             .section-title h2 { font-size: 1.3rem; }
@@ -1454,7 +1601,7 @@
         <nav>
             <a href="#" class="logo-container">
                 <div class="logo-main">PPC <span>Certified</span></div>
-                <div class="logo-desc">Jasa Sampling Pupuk & Pestisida Profesional</div>
+                <div class="logo-desc">Jasa Sampling Sarana Produk Pertanian</div>
             </a>
             
             <ul class="nav-links">
@@ -1601,9 +1748,27 @@
                 <span>Portofolio</span>
                 <h2>Dokumentasi Lapangan & Integritas Data</h2>
                 <p style="max-width: 600px; margin: 15px auto 0; color: #666;">
-                    Setiap langkah pengambilan contoh didokumentasikan sebagai bukti transparansi dan akuntabilitas (Chain of Custody). <strong>Geser ke atas/bawah pada gambar untuk melihat detail lengkap.</strong>
+                    Setiap langkah pengambilan contoh didokumentasikan sebagai bukti transparansi dan akuntabilitas (Chain of Custody).
                 </p>
             </div>
+            
+            <!-- ===== FILTER BAR ===== -->
+            <div class="gallery-filter-bar" data-aos="fade-up">
+                <button class="filter-btn active" id="btnNewest" onclick="applyFilter('newest')">
+                    <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    <span>Terbaru</span>
+                </button>
+                <button class="filter-btn" id="btnOldest" onclick="applyFilter('oldest')">
+                    <i class="fa-solid fa-arrow-up-wide-short"></i>
+                    <span>Terlama</span>
+                </button>
+                <select class="filter-select" id="yearFilter" onchange="applyYearFilter(this.value)">
+                    <option value="all">Semua Tahun</option>
+                </select>
+            </div>
+            
+            <!-- Info filter aktif -->
+            <div class="filter-info" id="filterInfo" style="display: none;"></div>
             
             <div class="gallery-grid-modern" id="galleryGrid">
                 <!-- Items will be loaded dynamically -->
@@ -1781,13 +1946,72 @@
 
     <script>
         // ============================================
-        // GALLERY SYSTEM - 4 KOLOM + LOAD MORE + SCROLL
+        // GALLERY SYSTEM + FILTER + LOAD MORE
         // ============================================
         
-        let currentDisplayCount = 8; // Default tampilkan 8 item
-        const ITEMS_PER_LOAD = 4;   // Setiap klik load more, tambah 4
+        let galleryDataGlobal = [];     // Data asli dari localStorage
+        let filteredData = [];          // Data setelah filter/sort
+        let currentDisplayCount = 8;    // Default tampilkan 8 item
+        const ITEMS_PER_LOAD = 4;       // Setiap klik load more, tambah 4
+        let currentFilter = 'newest';   // 'newest' atau 'oldest'
+        let currentYear = 'all';        // 'all' atau tahun spesifik
         
+        // Format tanggal ke format Indonesia
+        function formatTanggal(dateStr) {
+            if (!dateStr) return '';
+            const bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '';
+            return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+        }
+        
+        // Dapatkan tahun unik dari data
+        function getUniqueYears(data) {
+            const years = new Set();
+            data.forEach(item => {
+                if (item.date) {
+                    const year = new Date(item.date).getFullYear();
+                    if (!isNaN(year)) years.add(year.toString());
+                }
+            });
+            return Array.from(years).sort((a, b) => b - a); // Descending
+        }
+        
+        // Sort & filter data
+        function sortAndFilterData(data, filter, year) {
+            let result = [...data];
+            
+            // Filter berdasarkan tahun
+            if (year !== 'all') {
+                result = result.filter(item => {
+                    if (!item.date) return false;
+                    const itemYear = new Date(item.date).getFullYear().toString();
+                    return itemYear === year;
+                });
+            }
+            
+            // Sort berdasarkan tanggal
+            result.sort((a, b) => {
+                const dateA = a.date ? new Date(a.date).getTime() : 0;
+                const dateB = b.date ? new Date(b.date).getTime() : 0;
+                
+                if (filter === 'newest') {
+                    return dateB - dateA; // Terbaru dulu
+                } else {
+                    return dateA - dateB; // Terlama dulu
+                }
+            });
+            
+            return result;
+        }
+        
+        // Render satu card galeri
         function renderGalleryCard(item, index) {
+            const tanggalFormatted = formatTanggal(item.date);
+            const dateBadge = tanggalFormatted 
+                ? `<span class="gallery-date"><i class="fa-regular fa-calendar"></i> ${tanggalFormatted}</span>` 
+                : '';
+            
             return `
                 <div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index % 4) * 80}">
                     <div class="gallery-img-box">
@@ -1799,6 +2023,7 @@
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <span class="gallery-tag">${item.tag}</span>
+                                ${dateBadge}
                                 <h3>${item.title}</h3>
                                 <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
                                 <p class="desc-small">${item.description}</p>
@@ -1809,135 +2034,138 @@
             `;
         }
         
-        function loadGallery() {
+        // Populate dropdown tahun
+        function populateYearFilter() {
+            const yearSelect = document.getElementById('yearFilter');
+            const years = getUniqueYears(galleryDataGlobal);
+            
+            // Reset
+            yearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
+            
+            // Tambahkan option untuk setiap tahun
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            });
+            
+            // Set value sesuai filter aktif
+            yearSelect.value = currentYear;
+        }
+        
+        // Update info filter yang aktif
+        function updateFilterInfo() {
+            const infoEl = document.getElementById('filterInfo');
+            const totalFiltered = filteredData.length;
+            const totalAll = galleryDataGlobal.length;
+            
+            if (currentYear !== 'all' || currentFilter !== 'newest') {
+                let infoText = `Menampilkan <strong>${totalFiltered}</strong> dari ${totalAll} foto`;
+                
+                if (currentYear !== 'all') {
+                    infoText += ` pada tahun <strong>${currentYear}</strong>`;
+                }
+                
+                if (currentFilter === 'oldest') {
+                    infoText += ' (diurutkan dari <strong>terlama</strong>)';
+                } else {
+                    infoText += ' (diurutkan dari <strong>terbaru</strong>)';
+                }
+                
+                infoEl.innerHTML = infoText;
+                infoEl.style.display = 'block';
+            } else {
+                infoEl.style.display = 'none';
+            }
+        }
+        
+        // Render galeri
+        function renderGallery() {
             const galleryGrid = document.getElementById('galleryGrid');
             const loadMoreWrapper = document.getElementById('loadMoreWrapper');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const galleryCounter = document.getElementById('galleryCounter');
-            const stored = localStorage.getItem('galleryData');
             
-            let galleryData = [];
+            // Reset display count saat filter berubah
+            currentDisplayCount = Math.min(8, filteredData.length);
             
-            if (stored) {
-                galleryData = JSON.parse(stored);
-            } else {
-                // Data default 8 item agar galeri terlihat penuh
-                galleryData = [
-                    {
-                        tag: 'Pupuk Anorganik',
-                        title: 'Sampling Lot Urea Curah',
-                        location: 'Gudang Pelindo, Surabaya',
-                        description: 'Pengambilan contoh menggunakan metode tusuk (probe) pada 20 titik berbeda untuk memastikan homogenitas lot pupuk urea curah.',
-                        image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop'
-                    },
-                    {
-                        tag: 'Chain of Custody',
-                        title: 'Segel & Labeling Resmi',
-                        location: 'Laboratorium PT. XYZ',
-                        description: 'Penerapan segel hologram dan tanda tangan basah di atas kemasan sampel untuk menjamin keaslian dan integritas data.',
-                        image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop'
-                    },
-                    {
-                        tag: 'Pestisida Cair',
-                        title: 'Verifikasi Insektisida',
-                        location: 'Pabrik Cikarang, Bekasi',
-                        description: 'Penghomogenan cairan dalam tangki reaktor sebelum pengambilan contoh akhir (final batch) untuk uji laboratorium.',
-                        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop'
-                    },
-                    {
-                        tag: 'Administrasi',
-                        title: 'Penandatanganan BAS',
-                        location: 'Kantor Regulator',
-                        description: 'Validasi data hasil sampling melalui Berita Acara Sampling (BAS) yang disetujui oleh dua belah pihak berwenang.',
-                        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop'
-                    },
-                    {
-                        tag: 'Peralatan',
-                        title: 'Preparasi Alat Sampling',
-                        location: 'Area Steril Laboratorium',
-                        description: 'Pembersihan alat stainless steel dengan alkohol teknis untuk mencegah kontaminasi silang antar lot sampling.',
-                        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop'
-                    },
-                    {
-                        tag: 'Pupuk Organik',
-                        title: 'Sampling Kompos Granul',
-                        location: 'Pabrik Pengolahan, Bogor',
-                        description: 'Metode kuadran pada tumpukan curah untuk mendapatkan representasi kadar air yang akurat dan representatif.',
-                        image: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop'
-                    },
-                    {
-                        tag: 'Lapangan',
-                        title: 'Inspeksi Gudang Pupuk',
-                        location: 'Gudang Distributor, NTB',
-                        description: 'Verifikasi kondisi penyimpanan dan pengambilan sampel acak dari berbagai titik gudang untuk audit kualitas.',
-                        image: 'https://images.unsplash.com/photo-1592982736253-57fa9f9b7c77?q=80&w=800&auto=format&fit=crop'
-                    },
-                    {
-                        tag: 'Dokumentasi',
-                        title: 'Foto Bukti Sampling',
-                        location: 'Pelabuhan Tanjung Perak',
-                        description: 'Dokumentasi visual lengkap setiap tahap sampling sebagai bukti integritas dan akuntabilitas proses.',
-                        image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800&auto=format&fit=crop'
-                    }
-                ];
-                
-                localStorage.setItem('galleryData', JSON.stringify(galleryData));
-            }
-            
-            if (galleryData.length === 0) {
-                galleryGrid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1; padding: 40px;">Belum ada item galeri. Silakan tambahkan melalui halaman Admin.</p>';
+            if (filteredData.length === 0) {
+                galleryGrid.innerHTML = `
+                    <div class="gallery-empty">
+                        <i class="fa-regular fa-image"></i>
+                        <h3>Tidak Ada Foto</h3>
+                        <p>Tidak ada foto yang sesuai dengan filter "${currentYear === 'all' ? 'Semua Tahun' : 'Tahun ' + currentYear}". Silakan coba filter lain.</p>
+                    </div>
+                `;
                 loadMoreWrapper.style.display = 'none';
+                updateFilterInfo();
                 return;
-            }
-
-            // Reset display count jika data lebih sedikit
-            if (currentDisplayCount > galleryData.length) {
-                currentDisplayCount = galleryData.length;
             }
             
             // Render item sesuai jumlah yang ditampilkan
-            const displayData = galleryData.slice(0, currentDisplayCount);
+            const displayData = filteredData.slice(0, currentDisplayCount);
             galleryGrid.innerHTML = displayData.map((item, index) => renderGalleryCard(item, index)).join('');
             
             // Update tombol load more & counter
-            if (galleryData.length > 8) {
+            if (filteredData.length > 8) {
                 loadMoreWrapper.style.display = 'block';
                 
-                if (currentDisplayCount >= galleryData.length) {
-                    // Semua sudah ditampilkan
+                if (currentDisplayCount >= filteredData.length) {
                     loadMoreBtn.disabled = true;
                     loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
                 } else {
                     loadMoreBtn.disabled = false;
-                    const remaining = galleryData.length - currentDisplayCount;
+                    const remaining = filteredData.length - currentDisplayCount;
                     loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
                 }
                 
-                // Update counter
-                galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${galleryData.length} foto portofolio`;
+                galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${filteredData.length} foto`;
             } else {
                 loadMoreWrapper.style.display = 'none';
             }
             
-            // Refresh AOS untuk animasi baru
+            updateFilterInfo();
+            
             if (typeof AOS !== 'undefined') {
                 AOS.refresh();
             }
         }
         
+        // Apply filter (Terbaru/Terlama)
+        function applyFilter(filter) {
+            currentFilter = filter;
+            
+            // Update tombol aktif
+            document.getElementById('btnNewest').classList.toggle('active', filter === 'newest');
+            document.getElementById('btnOldest').classList.toggle('active', filter === 'oldest');
+            
+            // Re-sort & render
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            renderGallery();
+        }
+        
+        // Apply filter tahun
+        function applyYearFilter(year) {
+            currentYear = year;
+            
+            // Update styling select
+            const yearSelect = document.getElementById('yearFilter');
+            yearSelect.classList.toggle('active', year !== 'all');
+            
+            // Re-sort & render
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            renderGallery();
+        }
+        
+        // Load more gallery
         function loadMoreGallery() {
-            const stored = localStorage.getItem('galleryData');
-            if (!stored) return;
-            
-            const galleryData = JSON.parse(stored);
             const prevCount = currentDisplayCount;
-            
-            currentDisplayCount = Math.min(currentDisplayCount + ITEMS_PER_LOAD, galleryData.length);
+            currentDisplayCount = Math.min(currentDisplayCount + ITEMS_PER_LOAD, filteredData.length);
             
             const galleryGrid = document.getElementById('galleryGrid');
-            const newItems = galleryData.slice(prevCount, currentDisplayCount);
+            const newItems = filteredData.slice(prevCount, currentDisplayCount);
             
-            // Append item baru (bukan replace semua)
             newItems.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.innerHTML = renderGalleryCard(item, prevCount + index);
@@ -1949,28 +2177,115 @@
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const galleryCounter = document.getElementById('galleryCounter');
             
-            if (currentDisplayCount >= galleryData.length) {
+            if (currentDisplayCount >= filteredData.length) {
                 loadMoreBtn.disabled = true;
                 loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
             } else {
-                const remaining = galleryData.length - currentDisplayCount;
+                const remaining = filteredData.length - currentDisplayCount;
                 loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
             }
             
-            galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${galleryData.length} foto portofolio`;
+            galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${filteredData.length} foto`;
             
-            // Refresh AOS
             if (typeof AOS !== 'undefined') {
                 AOS.refresh();
             }
             
-            // Smooth scroll ke item baru pertama
             setTimeout(() => {
                 const newCards = galleryGrid.querySelectorAll('.gallery-card');
                 if (newCards[prevCount]) {
                     newCards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             }, 100);
+        }
+        
+        // Load gallery dari localStorage
+        function loadGallery() {
+            const stored = localStorage.getItem('galleryData');
+            
+            if (stored) {
+                galleryDataGlobal = JSON.parse(stored);
+            } else {
+                // Data default dengan tanggal (backward compatibility)
+                galleryDataGlobal = [
+                    {
+                        tag: 'Pupuk Anorganik',
+                        title: 'Sampling Lot Urea Curah',
+                        location: 'Gudang Pelindo, Surabaya',
+                        description: 'Pengambilan contoh menggunakan metode tusuk (probe) pada 20 titik berbeda untuk memastikan homogenitas.',
+                        image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop',
+                        date: '2026-06-15'
+                    },
+                    {
+                        tag: 'Chain of Custody',
+                        title: 'Segel & Labeling Resmi',
+                        location: 'Laboratorium PT. XYZ',
+                        description: 'Penerapan segel hologram dan tanda tangan basah di atas kemasan sampel untuk menjamin keaslian.',
+                        image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop',
+                        date: '2026-05-20'
+                    },
+                    {
+                        tag: 'Pestisida Cair',
+                        title: 'Verifikasi Insektisida',
+                        location: 'Pabrik Cikarang, Bekasi',
+                        description: 'Penghomogenan cairan dalam tangki reaktor sebelum pengambilan contoh akhir (final batch).',
+                        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop',
+                        date: '2026-04-10'
+                    },
+                    {
+                        tag: 'Administrasi',
+                        title: 'Penandatanganan BAS',
+                        location: 'Kantor Regulator',
+                        description: 'Validasi data hasil sampling melalui Berita Acara Sampling (BAS) yang disetujui dua belah pihak.',
+                        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
+                        date: '2025-12-05'
+                    },
+                    {
+                        tag: 'Peralatan',
+                        title: 'Preparasi Alat Sampling',
+                        location: 'Area Steril',
+                        description: 'Pembersihan alat stainless steel dengan alkohol teknis untuk mencegah kontaminasi silang antar lot.',
+                        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop',
+                        date: '2025-10-18'
+                    },
+                    {
+                        tag: 'Pupuk Organik',
+                        title: 'Sampling Kompos Granul',
+                        location: 'Pabrik Bogor',
+                        description: 'Metode kuadran pada tumpukan curah untuk mendapatkan representasi kadar air yang akurat.',
+                        image: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop',
+                        date: '2025-08-22'
+                    }
+                ];
+                
+                localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
+            }
+            
+            // Backward compatibility: tambahkan date jika tidak ada
+            let needUpdate = false;
+            galleryDataGlobal = galleryDataGlobal.map((item, index) => {
+                if (!item.date) {
+                    needUpdate = true;
+                    // Generate date berdasarkan index (data lama dianggap dari 2024)
+                    const month = String((index % 12) + 1).padStart(2, '0');
+                    const day = String((index % 28) + 1).padStart(2, '0');
+                    return { ...item, date: `2024-${month}-${day}` };
+                }
+                return item;
+            });
+            
+            if (needUpdate) {
+                localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
+            }
+            
+            // Populate dropdown tahun
+            populateYearFilter();
+            
+            // Initial sort (terbaru dulu)
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            
+            // Render
+            renderGallery();
         }
 
         document.addEventListener('DOMContentLoaded', loadGallery);
