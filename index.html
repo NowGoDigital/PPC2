@@ -1580,6 +1580,220 @@
             .contact-info { padding: 25px 15px; }
             .contact-form { padding: 25px 15px; }
         }
+
+
+        /* ============================================ */
+/* ======= ENHANCED ABOUT SECTION ============= */
+/* ============================================ */
+
+/* Card Perusahaan CV Bina Mahabbah Jaya */
+.company-card {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+    color: var(--white);
+    padding: 20px 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.2);
+    border-left: 5px solid var(--accent-gold);
+}
+
+.company-card-icon {
+    width: 55px;
+    height: 55px;
+    background: var(--accent-gold);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    flex-shrink: 0;
+}
+
+.company-card-content h4 {
+    font-size: 1.15rem;
+    margin-bottom: 5px;
+    color: var(--white);
+    font-family: 'Playfair Display', serif;
+}
+
+.company-card-content p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.company-card-content strong {
+    color: var(--accent-gold);
+}
+
+/* Dual Certification Badge */
+.dual-cert-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.cert-badge {
+    background: var(--white);
+    border: 2px solid var(--accent-gold);
+    border-radius: 15px;
+    padding: 18px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--primary-mid));
+}
+
+.cert-badge:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.15);
+    border-color: var(--primary-mid);
+}
+
+.cert-badge-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    color: var(--accent-gold);
+    font-size: 1.3rem;
+}
+
+.cert-badge h5 {
+    font-size: 0.85rem;
+    color: var(--primary-dark);
+    margin-bottom: 5px;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.3;
+}
+
+.cert-badge p {
+    font-size: 0.72rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+.cert-badge .cert-status {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 10px;
+    background: #d1fae5;
+    color: var(--primary-mid);
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* Stats Mini Bar */
+.stats-mini {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f0fdf4;
+    border-radius: 15px;
+    border: 1px solid #bbf7d0;
+}
+
+.stats-mini-item {
+    text-align: center;
+    padding: 10px 5px;
+    border-right: 1px solid #bbf7d0;
+}
+
+.stats-mini-item:last-child {
+    border-right: none;
+}
+
+.stats-mini-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.stats-mini-label {
+    font-size: 0.75rem;
+    color: var(--primary-mid);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .company-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+        gap: 12px;
+    }
+    .company-card-content h4 { font-size: 1.05rem; }
+    .company-card-content p { font-size: 0.8rem; }
+    
+    .dual-cert-wrapper {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .cert-badge { padding: 15px; }
+    .cert-badge h5 { font-size: 0.9rem; }
+    .cert-badge p { font-size: 0.75rem; }
+    
+    .stats-mini {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 15px;
+    }
+    .stats-mini-item {
+        border-right: none;
+        border-bottom: 1px solid #bbf7d0;
+        padding: 12px 5px;
+    }
+    .stats-mini-item:last-child { border-bottom: none; }
+    .stats-mini-number { font-size: 1.5rem; }
+}
+
+@media (max-width: 380px) {
+    .company-card-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    .cert-badge-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
+
+
+
+
+
+
         
         body::-webkit-scrollbar {
             width: 0;
@@ -1667,26 +1881,108 @@
     </div>
 
     <!-- About Section -->
-    <section id="about" class="section-padding">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-img-wrapper" data-aos="fade-right">
-                    <img src="PPC.jpg" alt="Professional PPC" class="about-img-main">
-                    <div class="experience-badge"><h3>SKKNI</h3><p>Certified</p></div>
-                </div>
-                <div class="about-content" data-aos="fade-left">
-                    <div class="section-title" style="text-align: left; margin-bottom: 40px;">
-                        <span>Tentang Ahli</span><h2>Komitmen pada<br>Akuritas & Integritas</h2>
-                    </div>
-                    <p style="margin-bottom: 30px; color: #374151;">Sampling bukan sekadar mengambil barang. Ini adalah fondasi hukum dari kualitas produk agribisnis. Dengan sertifikasi BNSP, saya memastikan setiap langkah pengambilan contoh pupuk dan pestisida bebas dari bias dan kontaminasi.</p>
-                    <ul class="feature-list">
-                        <li><i class="fa-solid fa-check"></i> <div><strong>Metode Statistik Valid</strong><p style="font-size: 0.9rem; color: #666;">Random sampling & quartering terukur.</p></div></li>
-                        <li><i class="fa-solid fa-shield-halved"></i> <div><strong>Chain of Custody Aman</strong><p style="font-size: 0.9rem; color: #666;">Segel resmi & dokumentasi lengkap.</p></div></li>
-                    </ul>
+<section id="about" class="section-padding">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-img-wrapper" data-aos="fade-right">
+                <img src="PPC.jpg" alt="Professional PPC" class="about-img-main">
+                <div class="experience-badge">
+                    <h3>15+</h3>
+                    <p>Tahun Pengalaman</p>
+                    <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.8;">Sampling Nasional</p>
                 </div>
             </div>
+            <div class="about-content" data-aos="fade-left">
+                <div class="section-title" style="text-align: left; margin-bottom: 30px;">
+                    <span>Profil Ahli</span>
+                    <h2>Kompetensi Tersertifikasi &<br>Pengalaman Nasional</h2>
+                </div>
+                
+                <p style="margin-bottom: 25px; color: #374151; text-align: justify;">
+                    Sampling bukan sekadar mengambil barang — ini adalah <strong>fondasi hukum dari kualitas produk agribisnis</strong>. Untuk itu diperlukan personal dengan kompetensi tersertifikasi sesuai regulasi yang berlaku. Sebagai Petugas Pengambil Contoh (PPC) yang tersertifikasi oleh <strong>Badan Nasional Sertifikasi Profesi (BNSP)</strong> dan Lembaga Sertifikasi Profesi yang diakreditasi oleh <strong>Komite Akreditasi Nasional (KAN)</strong>, setiap prosedur pengambilan contoh pupuk dan pestisida dijamin mengacu pada Standar Nasional Indonesia (SNI) yang berlaku, sehingga diperoleh hasil sampling yang representatif dari keseluruhan produk.
+                </p>
+                
+                <!-- Company Card CV Bina Mahabbah Jaya -->
+                <div class="company-card">
+                    <div class="company-card-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div class="company-card-content">
+                        <h4>CV Bina Mahabbah Jaya Mataram</h4>
+                        <p>Melayani Jasa Pengambilan Contoh <strong>Sarana Produksi Pertanian</strong>: Pupuk Organik, Pupuk Anorganik, Pupuk Hayati, serta Pestisida (Herbisida, Insektisida, Fungisida).</p>
+                    </div>
+                </div>
+                
+                <!-- Dual Certification -->
+                <div class="dual-cert-wrapper">
+                    <div class="cert-badge">
+                        <div class="cert-badge-icon">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <h5>BNSP - LSP Pertanian Organik</h5>
+                        <p>Badan Nasional Sertifikasi Profesi</p>
+                        <span class="cert-status">✓ AKTIF</span>
+                    </div>
+                    <div class="cert-badge">
+                        <div class="cert-badge-icon">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h5>KAN - LSP PPMB Kemendag</h5>
+                        <p>Balai Sertifikasi Kemendag RI</p>
+                        <span class="cert-status">✓ AKTIF</span>
+                    </div>
+                </div>
+                
+                <!-- Stats Mini -->
+                <div class="stats-mini">
+                    <div class="stats-mini-item">
+                        <div class="stats-mini-number">15+</div>
+                        <div class="stats-mini-label">Tahun</div>
+                    </div>
+                    <div class="stats-mini-item">
+                        <div class="stats-mini-number">8+</div>
+                        <div class="stats-mini-label">Wilayah</div>
+                    </div>
+                    <div class="stats-mini-item">
+                        <div class="stats-mini-number">2</div>
+                        <div class="stats-mini-label">Sertifikat</div>
+                    </div>
+                </div>
+                
+                <ul class="feature-list">
+                    <li>
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <div>
+                            <strong>Cakupan Sampling Nasional</strong>
+                            <p style="font-size: 0.9rem; color: #666;">Pengalaman sampling dari Jawa, Kalimantan, Sulawesi, Bali, NTB, NTT, Maluku, hingga Papua.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <div>
+                            <strong>Dokumentasi Geo-Tagged</strong>
+                            <p style="font-size: 0.9rem; color: #666;">Setiap titik sampling terdokumentasi dengan open camera & terverifikasi Google Maps.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <strong>Metode Statistik Valid (SNI)</strong>
+                            <p style="font-size: 0.9rem; color: #666;">Random sampling & quartering terukur sesuai standar nasional.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-file-contract"></i>
+                        <div>
+                            <strong>Chain of Custody Terjamin</strong>
+                            <p style="font-size: 0.9rem; color: #666;">Segel resmi & Berita Acara Sampling (BAS) lengkap untuk audit hukum.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Services Section -->
     <section id="services" class="section-padding services-section">
