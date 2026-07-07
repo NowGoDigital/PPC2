@@ -217,27 +217,28 @@
         }
         .about-img-main { width: 100%; border-radius: 30px; box-shadow: var(--shadow-soft); }
         
-        /* === EXPERIENCE BADGE - DIPERKECIL & PINDAH KE KIRI BAWAH === */
+        /* ============================================ */
+        /* === EXPERIENCE BADGE - POJOK KANAN BAWAH === */
+        /* ============================================ */
         .experience-badge {
             position: absolute;
-            bottom: 25px;
-            left: 25px;
-            background: linear-gradient(135deg, rgba(6, 78, 59, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%);
-            backdrop-filter: blur(10px);
+            bottom: -20px;
+            right: -15px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #047857 100%);
             color: var(--white);
-            padding: 14px 18px;
-            border-radius: 14px;
+            padding: 12px 18px;
+            border-radius: 12px;
             text-align: left;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 25px rgba(6, 78, 59, 0.35);
             border: 2px solid var(--accent-gold);
             display: flex;
             align-items: center;
-            gap: 12px;
-            z-index: 3;
-            max-width: 200px;
+            gap: 10px;
+            z-index: 5;
+            max-width: 185px;
         }
         .experience-badge h3 {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             color: var(--accent-gold);
             margin: 0;
             line-height: 1;
@@ -249,18 +250,18 @@
             line-height: 1.2;
         }
         .experience-badge .badge-text strong {
-            font-size: 0.8rem;
+            font-size: 0.72rem;
             color: var(--white);
             font-weight: 700;
             letter-spacing: 0.3px;
         }
         .experience-badge .badge-text span {
-            font-size: 0.68rem;
-            color: rgba(255,255,255,0.75);
+            font-size: 0.62rem;
+            color: rgba(255,255,255,0.7);
             margin-top: 2px;
         }
 
-        /* === STATS MINI BAR - LEBIH RAPAT KE GAMBAR === */
+        /* === STATS MINI BAR === */
         .stats-mini {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -270,7 +271,7 @@
             border-radius: 15px;
             border: 1px solid #bbf7d0;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 35px;
         }
         .stats-mini-item {
             text-align: center;
@@ -319,31 +320,19 @@
             transform: translate(30%, -30%);
         }
         .company-card-icon {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             background: var(--accent-gold);
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: var(--primary-dark);
-            flex-shrink: 0;
-            position: relative;
-            z-index: 1;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; color: var(--primary-dark);
+            flex-shrink: 0; position: relative; z-index: 1;
         }
         .company-card-content { position: relative; z-index: 1; }
         .company-card-content h4 {
-            font-size: 1.05rem;
-            margin-bottom: 4px;
-            color: var(--white);
-            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem; margin-bottom: 4px;
+            color: var(--white); font-family: 'Playfair Display', serif;
         }
-        .company-card-content p {
-            font-size: 0.82rem;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
+        .company-card-content p { font-size: 0.82rem; opacity: 0.9; line-height: 1.5; }
         .company-card-content strong { color: var(--accent-gold); }
 
         /* === DUAL CERTIFICATION BADGE === */
@@ -386,47 +375,30 @@
         }
         .cert-badge:hover::after { transform: translateX(100%); }
         .cert-badge-icon {
-            width: 42px;
-            height: 42px;
+            width: 42px; height: 42px;
             background: var(--primary-dark);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             margin: 0 auto 10px;
-            color: var(--accent-gold);
-            font-size: 1.1rem;
+            color: var(--accent-gold); font-size: 1.1rem;
         }
         .cert-badge h5 {
-            font-size: 0.8rem;
-            color: var(--primary-dark);
-            margin-bottom: 4px;
-            font-family: 'Playfair Display', serif;
-            line-height: 1.3;
+            font-size: 0.8rem; color: var(--primary-dark);
+            margin-bottom: 4px; font-family: 'Playfair Display', serif; line-height: 1.3;
         }
-        .cert-badge p {
-            font-size: 0.7rem;
-            color: #666;
-            line-height: 1.3;
-            margin-bottom: 6px;
-        }
+        .cert-badge p { font-size: 0.7rem; color: #666; line-height: 1.3; margin-bottom: 6px; }
         .cert-badge .cert-status {
-            display: inline-block;
-            padding: 2px 10px;
-            background: #d1fae5;
-            color: var(--primary-mid);
-            border-radius: 50px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.3px;
+            display: inline-block; padding: 2px 10px;
+            background: #d1fae5; color: var(--primary-mid);
+            border-radius: 50px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3px;
         }
 
         /* ============================================ */
-        /* === COMPACT CHECKLIST FEATURE LIST ========== */
+        /* === FEATURE LIST - 4 KOLOM 1 BARIS ========== */
         /* ============================================ */
         .feature-list-compact {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             gap: 12px;
             margin-top: 10px;
             padding: 0;
@@ -434,49 +406,49 @@
         }
         .feature-list-compact li {
             display: flex;
+            flex-direction: column;
             align-items: flex-start;
-            gap: 12px;
-            padding: 12px 14px;
+            gap: 8px;
+            padding: 14px 12px;
             background: var(--white);
             border-radius: 10px;
             border: 1px solid rgba(6, 78, 59, 0.06);
-            border-left: 3px solid var(--accent-gold);
+            border-top: 3px solid var(--accent-gold);
             transition: all 0.3s ease;
             word-wrap: break-word;
         }
         .feature-list-compact li:hover {
-            transform: translateX(4px);
-            box-shadow: 0 6px 15px rgba(6, 78, 59, 0.08);
-            border-left-width: 5px;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(6, 78, 59, 0.1);
+            border-top-width: 4px;
             background: #f0fdf4;
         }
         .feature-list-compact .check-icon {
-            width: 28px;
-            height: 28px;
-            min-width: 28px;
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent-gold);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             flex-shrink: 0;
-            margin-top: 2px;
             box-shadow: 0 3px 8px rgba(6, 78, 59, 0.2);
         }
         .feature-list-compact .check-content strong {
             display: block;
             color: var(--primary-dark);
-            font-size: 0.9rem;
-            line-height: 1.3;
+            font-size: 0.82rem;
+            line-height: 1.25;
             font-family: 'Playfair Display', serif;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
         .feature-list-compact .check-content p {
-            font-size: 0.78rem !important;
+            font-size: 0.72rem !important;
             color: #6b7280 !important;
-            line-height: 1.45 !important;
+            line-height: 1.4 !important;
             margin: 0 !important;
         }
 
@@ -523,7 +495,7 @@
         .sop-step p { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
 
         /* ================================================ */
-        /* === 9. GALLERY - FILTER BAR + GRID + SCROLL ==== */
+        /* === 9. GALLERY ================================= */
         /* ================================================ */
         .gallery-filter-bar {
             display: flex; justify-content: center; align-items: center;
@@ -561,7 +533,6 @@
             border: 1px solid rgba(0,0,0,0.05); animation: fadeInCard 0.5s ease;
         }
         @keyframes fadeInCard { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
         .gallery-img-box {
             width: 100%; height: 100%; position: relative;
             overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth;
@@ -673,6 +644,7 @@
         .social-btn:hover { background: var(--accent-gold); color: var(--primary-dark); transform: translateY(-3px); border-color: var(--accent-gold); }
         .copyright { text-align: center; font-size: 0.85rem; word-wrap: break-word; }
 
+
         /* ============================================ */
         /* ========== RESPONSIVE - TABLET (max 992px) == */
         /* ============================================ */
@@ -682,7 +654,6 @@
             .logo-container { max-width: 60%; }
             .logo-main { font-size: 1.3rem; }
             .logo-desc { font-size: 0.65rem; }
-
             .nav-links {
                 display: none; position: absolute; top: 70px; left: 0;
                 width: 100%; background: var(--primary-dark); flex-direction: column;
@@ -719,6 +690,12 @@
             .timeline-wrapper { flex-direction: column; gap: 25px; align-items: center; }
             .sop-step { min-width: auto; width: 100%; max-width: 350px; }
             .detail-card { left: 50%; transform: translateX(-50%); bottom: -20px; width: 85%; max-width: 300px; }
+            
+            /* Feature List Tablet - 2 kolom */
+            .feature-list-compact {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
             
             .gallery-grid-modern { grid-template-columns: repeat(2, 1fr) !important; gap: 20px; }
             .gallery-card { height: 350px; }
@@ -770,18 +747,17 @@
             
             /* Experience Badge HP */
             .experience-badge {
-                bottom: 15px; left: 15px;
-                padding: 10px 14px; gap: 10px;
-                max-width: 170px;
+                bottom: -15px; right: -5px;
+                padding: 10px 14px; gap: 8px; max-width: 160px;
             }
-            .experience-badge h3 { font-size: 1.4rem; }
-            .experience-badge .badge-text strong { font-size: 0.72rem; }
-            .experience-badge .badge-text span { font-size: 0.62rem; }
+            .experience-badge h3 { font-size: 1.3rem; }
+            .experience-badge .badge-text strong { font-size: 0.68rem; }
+            .experience-badge .badge-text span { font-size: 0.58rem; }
             
             /* Stats Mini HP */
             .stats-mini {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 5px; padding: 15px 10px; margin-top: 15px;
+                gap: 5px; padding: 15px 10px; margin-top: 30px;
             }
             .stats-mini-number { font-size: 1.3rem; }
             .stats-mini-label { font-size: 0.65rem; }
@@ -797,13 +773,18 @@
             .cert-badge h5 { font-size: 0.85rem; }
             .cert-badge p { font-size: 0.72rem; }
             
-            /* Checklist HP - 1 kolom */
+            /* Feature List HP - 1 kolom horizontal */
             .feature-list-compact {
                 grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .feature-list-compact li {
+                flex-direction: row;
+                align-items: flex-start;
+                padding: 12px 14px;
                 gap: 10px;
             }
-            .feature-list-compact li { padding: 11px 12px; gap: 10px; }
-            .feature-list-compact .check-icon { width: 26px; height: 26px; min-width: 26px; font-size: 0.7rem; }
+            .feature-list-compact .check-icon { width: 30px; height: 30px; min-width: 30px; font-size: 0.75rem; }
             .feature-list-compact .check-content strong { font-size: 0.85rem; }
             .feature-list-compact .check-content p { font-size: 0.75rem !important; }
             
@@ -883,14 +864,16 @@
             .company-card-icon { width: 45px; height: 45px; font-size: 1.2rem; }
             .cert-badge-icon { width: 40px; height: 40px; font-size: 1rem; }
             
-            /* Experience badge HP kecil */
             .experience-badge {
-                padding: 8px 12px; gap: 8px; max-width: 155px;
-                bottom: 12px; left: 12px;
+                padding: 8px 12px; gap: 7px; max-width: 145px;
+                bottom: -12px; right: 0px;
             }
-            .experience-badge h3 { font-size: 1.25rem; }
-            .experience-badge .badge-text strong { font-size: 0.68rem; }
-            .experience-badge .badge-text span { font-size: 0.58rem; }
+            .experience-badge h3 { font-size: 1.2rem; }
+            .experience-badge .badge-text strong { font-size: 0.62rem; }
+            .experience-badge .badge-text span { font-size: 0.55rem; }
+            
+            .feature-list-compact .check-content strong { font-size: 0.8rem; }
+            .feature-list-compact .check-content p { font-size: 0.7rem !important; }
         }
         
         body::-webkit-scrollbar { width: 0; display: none; }
@@ -977,7 +960,7 @@
                 <div class="about-img-wrapper" data-aos="fade-right">
                     <img src="PPC.jpg" alt="Professional PPC" class="about-img-main">
                     
-                    <!-- Experience Badge - DIPERKECIL & PINDAH KE KIRI BAWAH -->
+                    <!-- Experience Badge - POJOK KANAN BAWAH -->
                     <div class="experience-badge">
                         <h3>15+</h3>
                         <div class="badge-text">
@@ -986,7 +969,7 @@
                         </div>
                     </div>
                     
-                    <!-- Stats Mini - Lebih Rapat -->
+                    <!-- Stats Mini -->
                     <div class="stats-mini">
                         <div class="stats-mini-item">
                             <div class="stats-mini-number">15+</div>
@@ -1045,26 +1028,26 @@
                         </div>
                     </div>
                     
-                    <!-- COMPACT CHECKLIST FEATURE LIST -->
+                    <!-- FEATURE LIST - 4 KOLOM 1 BARIS -->
                     <ul class="feature-list-compact">
                         <li>
                             <div class="check-icon"><i class="fa-solid fa-map-location-dot"></i></div>
                             <div class="check-content">
                                 <strong>Cakupan Nasional</strong>
-                                <p>Jawa, Kalimantan, Sulawesi, Bali, NTB, NTT, Maluku, hingga Papua.</p>
+                                <p>Jawa, Kalimantan, Sulawesi, Bali, NTB, NTT, Maluku, Papua.</p>
                             </div>
                         </li>
                         <li>
                             <div class="check-icon"><i class="fa-solid fa-camera-retro"></i></div>
                             <div class="check-content">
-                                <strong>Dokumentasi Geo-Tagged</strong>
-                                <p>Open camera & terverifikasi Google Maps di setiap titik.</p>
+                                <strong>Geo-Tagged</strong>
+                                <p>Open camera & terverifikasi Google Maps setiap titik.</p>
                             </div>
                         </li>
                         <li>
                             <div class="check-icon"><i class="fa-solid fa-shield-halved"></i></div>
                             <div class="check-content">
-                                <strong>Metode Valid (SNI)</strong>
+                                <strong>Metode SNI</strong>
                                 <p>Random sampling & quartering sesuai standar nasional.</p>
                             </div>
                         </li>
