@@ -103,12 +103,6 @@
         .experience-badge .badge-text strong { font-size: 0.72rem; color: var(--white); font-weight: 700; letter-spacing: 0.3px; }
         .experience-badge .badge-text span { font-size: 0.62rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
 
-        .stats-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 18px 15px; background: #f0fdf4; border-radius: 15px; border: 1px solid #bbf7d0; width: 100%; margin-top: 35px; }
-        .stats-mini-item { text-align: center; padding: 8px 5px; border-right: 1px solid #bbf7d0; }
-        .stats-mini-item:last-child { border-right: none; }
-        .stats-mini-number { font-size: 1.6rem; font-weight: 700; color: var(--primary-dark); font-family: 'Playfair Display', serif; line-height: 1; margin-bottom: 5px; }
-        .stats-mini-label { font-size: 0.7rem; color: var(--primary-mid); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-
         .company-card { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 100%); color: var(--white); padding: 18px 22px; border-radius: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 18px; box-shadow: 0 10px 25px rgba(6,78,59,0.2); border-left: 5px solid var(--accent-gold); position: relative; overflow: hidden; }
         .company-card::before { content: ''; position: absolute; top: 0; right: 0; width: 120px; height: 120px; background: radial-gradient(circle, rgba(251,191,36,0.15) 0%, transparent 70%); border-radius: 50%; transform: translate(30%,-30%); }
         .company-card-icon { width: 50px; height: 50px; background: var(--accent-gold); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--primary-dark); flex-shrink: 0; position: relative; z-index: 1; }
@@ -129,8 +123,7 @@
         .cert-badge .cert-status { display: inline-block; padding: 2px 10px; background: #d1fae5; color: var(--primary-mid); border-radius: 50px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3px; }
 
         /* ============================================ */
-        /* === FEATURE LIST - ICON DI KIRI, TEXT KANAN = */
-        /* === FULL WIDTH 4 KOLOM ====================== */
+        /* === FEATURE LIST - ICON KIRI, TEXT KANAN ==== */
         /* ============================================ */
         .feature-list-compact {
             display: grid;
@@ -325,7 +318,6 @@
             .sop-step { min-width: auto; width: 100%; max-width: 350px; }
             .detail-card { left: 50%; transform: translateX(-50%); bottom: -20px; width: 85%; max-width: 300px; }
 
-            /* Feature List Tablet - 2 kolom, tetap horizontal */
             .feature-list-compact {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
@@ -372,9 +364,6 @@
             .experience-badge h3 { font-size: 1.3rem; }
             .experience-badge .badge-text strong { font-size: 0.68rem; }
             .experience-badge .badge-text span { font-size: 0.58rem; }
-            .stats-mini { grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 15px 10px; margin-top: 30px; }
-            .stats-mini-number { font-size: 1.3rem; }
-            .stats-mini-label { font-size: 0.65rem; }
             .company-card { flex-direction: column; text-align: center; padding: 20px 15px; gap: 12px; }
             .company-card-content h4 { font-size: 1rem; }
             .company-card-content p { font-size: 0.78rem; }
@@ -383,7 +372,6 @@
             .cert-badge h5 { font-size: 0.85rem; }
             .cert-badge p { font-size: 0.72rem; }
 
-            /* Feature List HP - 1 kolom, tetap horizontal icon kiri */
             .feature-list-compact {
                 grid-template-columns: 1fr;
                 gap: 8px;
@@ -555,10 +543,10 @@
     <!-- Stats Bar -->
     <div class="container" id="stats">
         <div class="stats-bar" data-aos="fade-up">
-            <div class="stat-item"><span class="stat-number">15+</span><span class="stat-label">Tahun Pengalaman</span></div>
-            <div class="stat-item"><span class="stat-number">8+</span><span class="stat-label">Wilayah di Indonesia</span></div>
-            <div class="stat-item"><span class="stat-number">2</span><span class="stat-label">Sertifikat</span></div>
+            <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Lot Disampling</span></div>
             <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Compliance</span></div>
+            <div class="stat-item"><span class="stat-number">5+</span><span class="stat-label">Tahun Pengalaman</span></div>
+            <div class="stat-item"><span class="stat-number">24h</span><span class="stat-label">Respon Cepat</span></div>
         </div>
     </div>
 
@@ -574,20 +562,6 @@
                         <div class="badge-text">
                             <strong>Tahun Pengalaman</strong>
                             <span>Sampling Nasional</span>
-                        </div>
-                    </div>
-                    <div class="stats-mini">
-                        <div class="stats-mini-item">
-                            <div class="stats-mini-number">15+</div>
-                            <div class="stats-mini-label">Tahun</div>
-                        </div>
-                        <div class="stats-mini-item">
-                            <div class="stats-mini-number">8+</div>
-                            <div class="stats-mini-label">Wilayah</div>
-                        </div>
-                        <div class="stats-mini-item">
-                            <div class="stats-mini-number">2</div>
-                            <div class="stats-mini-label">Sertifikat</div>
                         </div>
                     </div>
                 </div>
@@ -626,7 +600,7 @@
                 </div>
             </div>
 
-            <!-- ✅ FEATURE LIST - FULL WIDTH, ICON KIRI TEXT KANAN -->
+            <!-- ✅ FEATURE LIST - FULL WIDTH -->
             <ul class="feature-list-compact" data-aos="fade-up" data-aos-delay="200">
                 <li>
                     <div class="check-icon"><i class="fa-solid fa-map-location-dot"></i></div>
@@ -668,19 +642,19 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon"><i class="fa-solid fa-flask"></i></div>
                     <h3>Sampling Pupuk</h3>
-                    <p>Pupuk Organik, Pupuk Anorganik dan Pupuk Hayati dengan Lokasi Sampling di Gudang Pabrik, Gudang Pelabuhan, Gudang Transit dan Titik Distribusi seusai SNI 19-0429-1989 dan SNI 19-0428-1998.</p>
+                    <p>Pupuk Urea, NPK, Organik, dan Hayati. Sampling di gudang, pelabuhan, atau pabrik sesuai SNI.</p>
                     <a href="#contact" class="service-link">Detail Layanan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
                     <h3>Sampling Pestisida</h3>
-                    <p>Herbisida, Insectisida, Fungisida dengan Lokasi Sampling di Gudang Pabrik, Gudang Pelabuhan, Gudang Transit dan Titik Distribusi seusai SNI 19-0429-1989 dan SNI 19-0428-1998.</p>
+                    <p>Verifikasi fisik, kemasan, dan pengambilan contoh cair/padat untuk uji residu dan legalitas.</p>
                     <a href="#contact" class="service-link">Detail Layanan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-icon"><i class="fa-solid fa-file-signature"></i></div>
-                    <h3>Dokumentasi Open Camera (DOC) & Dokumen Sampling (BAPC)</h3>
-                    <p>DOC untuk otentikasi photo sesuai lokasi GPS dan waktu pelaksanaan sampling dan Dokumen Sampling merupakan Berita Acara Pengambilan Contoh yang diketahui dan disetujui oleh PPC bersama Pemilik Sample serta para saksi petugas terkait di Lokasi sampling untuk keperluan Regulator.</p>
+                    <h3>Dokumentasi & BAS</h3>
+                    <p>Penyusunan Berita Acara Sampling (BAS) yang valid secara hukum untuk keperluan regulator.</p>
                     <a href="#contact" class="service-link">Detail Layanan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -695,15 +669,15 @@
                 <div class="timeline-line"></div>
                 <div class="sop-step" data-aos="zoom-in">
                     <div class="step-icon-box"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h4>1. Perencanaan</h4><p>Penetapan Produk, Sampling Plan, Metode Sampling, Penyiapan Sarana Sampling.</p>
+                    <h4>1. Perencanaan</h4><p>Menentukan jumlah lot, kode produksi, dan metode acak sampling.</p>
                 </div>
                 <div class="sop-step" data-aos="zoom-in" data-aos-delay="150">
                     <div class="step-icon-box"><i class="fa-solid fa-person-digging"></i></div>
-                    <h4>2. Eksekusi</h4><p>Verifikasi Produk dan Quota, Penerapan Metode Sampling, Menetapkan Unit Sample.</p>
+                    <h4>2. Eksekusi</h4><p>Pengambilan contoh di lokasi dengan APD lengkap & alat steril.</p>
                 </div>
                 <div class="sop-step" data-aos="zoom-in" data-aos-delay="300">
                     <div class="step-icon-box"><i class="fa-solid fa-lock"></i></div>
-                    <h4>3. Sealing</h4><p>Labeling, Pengemasan Ganda, dan Penyegelan Rantai Penjagaan.</p>
+                    <h4>3. Sealing</h4><p>Labeling, pengemasan ganda, dan penyegelan rantai penjagaan.</p>
                 </div>
                 <div class="sop-step" data-aos="zoom-in" data-aos-delay="450">
                     <div class="step-icon-box"><i class="fa-solid fa-truck-fast"></i></div>
