@@ -823,118 +823,239 @@
             window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
         }
     </script>
+        <!-- ✅ Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
     <script>
-        let galleryDataGlobal = []; let filteredData = []; let currentDisplayCount = 8;
-        const ITEMS_PER_LOAD = 4; let currentFilter = 'newest'; let currentYear = 'all';
+        // ============================================================
+        //  ✅ KONFIGURASI FIREBASE — SAMA PERSIS DENGAN admin.html!
+        // ============================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVKTxJy8c-F-ljIe61NJPJHVhp-ufnyME",
+            authDomain: "ppc-certified-859cf.firebaseapp.com",
+            projectId: "ppc-certified-859cf",
+            storageBucket: "ppc-certified-859cf.firebasestorage.app",
+            messagingSenderId: "752025208586",
+            appId: "1:752025208586:web:5dd072c2fe6cbd3b199cf3"
+        };
+
+        // Inisialisasi Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ============================================================
+        //  VARIABEL GLOBAL
+        // ============================================================
+        let galleryDataGlobal = [];
+        let filteredData = [];
+        let currentDisplayCount = 8;
+        const ITEMS_PER_LOAD = 4;
+        let currentFilter = 'newest';
+        let currentYear = 'all';
+
+        // ============================================================
+        //  UTILITY FUNCTIONS
+        // ============================================================
         function formatTanggal(dateStr) {
             if (!dateStr) return '';
             const bulan = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
-            const d = new Date(dateStr); if (isNaN(d.getTime())) return '';
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '';
             return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
         }
+
         function getUniqueYears(data) {
             const years = new Set();
-            data.forEach(item => { if (item.date) { const year = new Date(item.date).getFullYear(); if (!isNaN(year)) years.add(year.toString()); } });
+            data.forEach(item => {
+                if (item.date) {
+                    const year = new Date(item.date).getFullYear();
+                    if (!isNaN(year)) years.add(year.toString());
+                }
+            });
             return Array.from(years).sort((a, b) => b - a);
         }
+
         function sortAndFilterData(data, filter, year) {
             let result = [...data];
-            if (year !== 'all') { result = result.filter(item => { if (!item.date) return false; return new Date(item.date).getFullYear().toString() === year; }); }
-            result.sort((a, b) => { const dateA = a.date ? new Date(a.date).getTime() : 0; const dateB = b.date ? new Date(b.date).getTime() : 0; return filter === 'newest' ? dateB - dateA : dateA - dateB; });
+            if (year !== 'all') {
+                result = result.filter(item => {
+                    if (!item.date) return false;
+                    return new Date(item.date).getFullYear().toString() === year;
+                });
+            }
+            result.sort((a, b) => {
+                const dateA = a.date ? new Date(a.date).getTime() : 0;
+                const dateB = b.date ? new Date(b.date).getTime() : 0;
+                return filter === 'newest' ? dateB - dateA : dateA - dateB;
+            });
             return result;
         }
+
         function renderGalleryCard(item, index) {
             const tanggalFormatted = formatTanggal(item.date);
-            const dateBadge = tanggalFormatted ? `<span class="gallery-date"><i class="fa-regular fa-calendar"></i> ${tanggalFormatted}</span>` : '';
-            return `<div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index % 4) * 80}"><div class="gallery-img-box"><img src="${item.image}" alt="${item.title}" loading="lazy"><div class="scroll-indicator"><i class="fa-solid fa-angles-up-down"></i><span>Geser</span></div><div class="gallery-overlay"><div class="overlay-content"><span class="gallery-tag">${item.tag}</span>${dateBadge}<h3>${item.title}</h3><p><i class="fa-solid fa-location-dot"></i> ${item.location}</p><p class="desc-small">${item.description}</p></div></div></div></div>`;
+            const dateBadge = tanggalFormatted
+                ? `<span class="gallery-date"><i class="fa-regular fa-calendar"></i> ${tanggalFormatted}</span>`
+                : '';
+            return `<div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index % 4) * 80}">
+                <div class="gallery-img-box">
+                    <img src="${item.image}" alt="${item.title}" loading="lazy">
+                    <div class="scroll-indicator"><i class="fa-solid fa-angles-up-down"></i><span>Geser</span></div>
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <span class="gallery-tag">${item.tag}</span>${dateBadge}
+                            <h3>${item.title}</h3>
+                            <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
+                            <p class="desc-small">${item.description}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
         }
+
         function populateYearFilter() {
             const yearSelect = document.getElementById('yearFilter');
             const years = getUniqueYears(galleryDataGlobal);
             yearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
-            years.forEach(year => { const option = document.createElement('option'); option.value = year; option.textContent = year; yearSelect.appendChild(option); });
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            });
             yearSelect.value = currentYear;
         }
+
         function updateFilterInfo() {
             const infoEl = document.getElementById('filterInfo');
-            const totalFiltered = filteredData.length; const totalAll = galleryDataGlobal.length;
+            const totalFiltered = filteredData.length;
+            const totalAll = galleryDataGlobal.length;
             if (currentYear !== 'all' || currentFilter !== 'newest') {
                 let infoText = `Menampilkan <strong>${totalFiltered}</strong> dari ${totalAll} foto`;
                 if (currentYear !== 'all') infoText += ` pada tahun <strong>${currentYear}</strong>`;
                 if (currentFilter === 'oldest') infoText += ' (diurutkan dari <strong>terlama</strong>)';
                 else infoText += ' (diurutkan dari <strong>terbaru</strong>)';
-                infoEl.innerHTML = infoText; infoEl.style.display = 'block';
-            } else { infoEl.style.display = 'none'; }
+                infoEl.innerHTML = infoText;
+                infoEl.style.display = 'block';
+            } else {
+                infoEl.style.display = 'none';
+            }
         }
+
         function renderGallery() {
             const galleryGrid = document.getElementById('galleryGrid');
             const loadMoreWrapper = document.getElementById('loadMoreWrapper');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const galleryCounter = document.getElementById('galleryCounter');
+
             currentDisplayCount = Math.min(8, filteredData.length);
+
             if (filteredData.length === 0) {
-                galleryGrid.innerHTML = `<div class="gallery-empty"><i class="fa-regular fa-image"></i><h3>Tidak Ada Foto</h3><p>Tidak ada foto yang sesuai dengan filter.</p></div>`;
-                loadMoreWrapper.style.display = 'none'; updateFilterInfo(); return;
+                galleryGrid.innerHTML = `<div class="gallery-empty">
+                    <i class="fa-regular fa-image"></i>
+                    <h3>Tidak Ada Foto</h3>
+                    <p>Tidak ada foto yang sesuai dengan filter.</p>
+                </div>`;
+                loadMoreWrapper.style.display = 'none';
+                updateFilterInfo();
+                return;
             }
+
             const displayData = filteredData.slice(0, currentDisplayCount);
             galleryGrid.innerHTML = displayData.map((item, index) => renderGalleryCard(item, index)).join('');
+
             if (filteredData.length > 8) {
                 loadMoreWrapper.style.display = 'block';
-                if (currentDisplayCount >= filteredData.length) { loadMoreBtn.disabled = true; loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>'; }
-                else { loadMoreBtn.disabled = false; const remaining = filteredData.length - currentDisplayCount; loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`; }
+                if (currentDisplayCount >= filteredData.length) {
+                    loadMoreBtn.disabled = true;
+                    loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
+                } else {
+                    loadMoreBtn.disabled = false;
+                    const remaining = filteredData.length - currentDisplayCount;
+                    loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
+                }
                 galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${filteredData.length} foto`;
-            } else { loadMoreWrapper.style.display = 'none'; }
-            updateFilterInfo(); if (typeof AOS !== 'undefined') AOS.refresh();
+            } else {
+                loadMoreWrapper.style.display = 'none';
+            }
+
+            updateFilterInfo();
+            if (typeof AOS !== 'undefined') AOS.refresh();
         }
+
         function applyFilter(filter) {
             currentFilter = filter;
             document.getElementById('btnNewest').classList.toggle('active', filter === 'newest');
             document.getElementById('btnOldest').classList.toggle('active', filter === 'oldest');
-            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear); renderGallery();
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            renderGallery();
         }
+
         function applyYearFilter(year) {
             currentYear = year;
             document.getElementById('yearFilter').classList.toggle('active', year !== 'all');
-            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear); renderGallery();
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            renderGallery();
         }
+
         function loadMoreGallery() {
             const prevCount = currentDisplayCount;
             currentDisplayCount = Math.min(currentDisplayCount + ITEMS_PER_LOAD, filteredData.length);
             const galleryGrid = document.getElementById('galleryGrid');
             const newItems = filteredData.slice(prevCount, currentDisplayCount);
-            newItems.forEach((item, index) => { const div = document.createElement('div'); div.innerHTML = renderGalleryCard(item, prevCount + index); galleryGrid.appendChild(div.firstElementChild); });
-            const loadMoreBtn = document.getElementById('loadMoreBtn'); const galleryCounter = document.getElementById('galleryCounter');
-            if (currentDisplayCount >= filteredData.length) { loadMoreBtn.disabled = true; loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>'; }
-            else { const remaining = filteredData.length - currentDisplayCount; loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`; }
+            newItems.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.innerHTML = renderGalleryCard(item, prevCount + index);
+                galleryGrid.appendChild(div.firstElementChild);
+            });
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const galleryCounter = document.getElementById('galleryCounter');
+            if (currentDisplayCount >= filteredData.length) {
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
+            } else {
+                const remaining = filteredData.length - currentDisplayCount;
+                loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
+            }
             galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${filteredData.length} foto`;
             if (typeof AOS !== 'undefined') AOS.refresh();
-            setTimeout(() => { const newCards = galleryGrid.querySelectorAll('.gallery-card'); if (newCards[prevCount]) newCards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
+            setTimeout(() => {
+                const newCards = galleryGrid.querySelectorAll('.gallery-card');
+                if (newCards[prevCount]) newCards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
         }
-        function loadGallery() {
-            const stored = localStorage.getItem('galleryData');
-            if (stored) { galleryDataGlobal = JSON.parse(stored); }
-            else {
-                galleryDataGlobal = [
-                    { tag: 'Pupuk Anorganik', title: 'Sampling Lot Urea Curah', location: 'Gudang Pelindo, Surabaya', description: 'Pengambilan contoh menggunakan metode tusuk (probe) pada 20 titik berbeda untuk memastikan homogenitas.', image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop', date: '2026-06-15' },
-                    { tag: 'Chain of Custody', title: 'Segel & Labeling Resmi', location: 'Laboratorium PT. XYZ', description: 'Penerapan segel hologram dan tanda tangan basah di atas kemasan sampel untuk menjamin keaslian.', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop', date: '2026-05-20' },
-                    { tag: 'Pestisida Cair', title: 'Verifikasi Insektisida', location: 'Pabrik Cikarang, Bekasi', description: 'Penghomogenan cairan dalam tangki reaktor sebelum pengambilan contoh akhir (final batch).', image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop', date: '2026-04-10' },
-                    { tag: 'Administrasi', title: 'Penandatanganan BAS', location: 'Kantor Regulator', description: 'Validasi data hasil sampling melalui Berita Acara Sampling (BAS) yang disetujui dua belah pihak.', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop', date: '2025-12-05' },
-                    { tag: 'Peralatan', title: 'Preparasi Alat Sampling', location: 'Area Steril', description: 'Pembersihan alat stainless steel dengan alkohol teknis untuk mencegah kontaminasi silang antar lot.', image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop', date: '2025-10-18' },
-                    { tag: 'Pupuk Organik', title: 'Sampling Kompos Granul', location: 'Pabrik Bogor', description: 'Metode kuadran pada tumpukan curah untuk mendapatkan representasi kadar air yang akurat.', image: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop', date: '2025-08-22' }
-                ];
-                localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
-            }
-            let needUpdate = false;
-            galleryDataGlobal = galleryDataGlobal.map((item, index) => {
-                if (!item.date) { needUpdate = true; const month = String((index % 12) + 1).padStart(2, '0'); const day = String((index % 28) + 1).padStart(2, '0'); return { ...item, date: `2024-${month}-${day}` }; }
-                return item;
+
+        // ============================================================
+        //  ✅ FIREBASE: LOAD GALLERY DENGAN REALTIME LISTENER
+        // ============================================================
+        function loadGalleryFromFirebase() {
+            // Realtime listener — gallery di halaman utama otomatis update
+            // saat admin menambah/edit/hapus data dari admin.html
+            db.collection('gallery').onSnapshot((snapshot) => {
+                galleryDataGlobal = [];
+                snapshot.forEach((doc) => {
+                    galleryDataGlobal.push(doc.data());
+                });
+
+                populateYearFilter();
+                filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+                renderGallery();
+            }, (error) => {
+                console.error('Error loading gallery from Firebase:', error);
+                // Fallback: tampilkan pesan error di galeri
+                document.getElementById('galleryGrid').innerHTML = `
+                    <div class="gallery-empty">
+                        <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i>
+                        <h3>Gagal Memuat Data</h3>
+                        <p>Periksa koneksi internet Anda dan refresh halaman.</p>
+                    </div>`;
             });
-            if (needUpdate) localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
-            populateYearFilter();
-            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
-            renderGallery();
         }
-        document.addEventListener('DOMContentLoaded', loadGallery);
+
+        // ============================================================
+        //  INISIALISASI
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', loadGalleryFromFirebase);
     </script>
 
 </body>
