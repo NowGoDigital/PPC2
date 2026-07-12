@@ -66,6 +66,7 @@
         .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; display: none; }
         .alert-error { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; }
         .alert-success { background: #f0fdf4; color: var(--primary-mid); border: 1px solid #bbf7d0; }
+        .alert-info { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
 
         .dashboard { display: none; min-height: 100vh; }
         .dashboard.active { display: block; }
@@ -135,11 +136,7 @@
             border-top: 1px solid var(--gray-200);
         }
 
-        /* ✅ Skeleton loading */
-        .skeleton-card {
-            background: var(--white); border-radius: 15px; overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
+        .skeleton-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
         .skeleton-img { width: 100%; height: 250px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
         .skeleton-body { padding: 20px; }
         .skeleton-line { height: 14px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 7px; margin-bottom: 10px; }
@@ -205,9 +202,7 @@
         .sync-status.synced { background: #d1fae5; color: #065f46; }
         .sync-status.syncing { background: #fef3c7; color: #92400e; }
         .sync-status.error { background: #fef2f2; color: #991b1b; }
-        .sync-status.offline { background: #e5e7eb; color: #4b5563; }
 
-        /* ✅ Toast notification */
         .toast-container {
             position: fixed; top: 20px; right: 20px; z-index: 10000;
             display: flex; flex-direction: column; gap: 10px;
@@ -216,8 +211,7 @@
             padding: 14px 20px; border-radius: 10px; color: var(--white);
             font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             display: flex; align-items: center; gap: 10px;
-            animation: slideIn 0.3s ease-out;
-            max-width: 350px;
+            animation: slideIn 0.3s ease-out; max-width: 350px;
         }
         .toast.success { background: var(--primary-mid); }
         .toast.error { background: var(--danger); }
@@ -225,6 +219,27 @@
         .toast.removing { animation: slideOut 0.3s ease-in forwards; }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+
+        /* ✅ Reset button style */
+        .reset-link {
+            text-align: center; margin-top: 20px; font-size: 0.85rem; color: var(--gray-600);
+        }
+        .reset-link a {
+            color: var(--primary-mid); cursor: pointer; text-decoration: underline;
+            font-weight: 600;
+        }
+        .reset-link a:hover { color: var(--primary-dark); }
+
+        .debug-info {
+            background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px;
+            padding: 12px 16px; margin-top: 15px; font-size: 0.8rem;
+            color: #495057; font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+        .debug-info strong { color: var(--primary-dark); }
+        .debug-info .status-ok { color: #059669; font-weight: bold; }
+        .debug-info .status-fail { color: #dc2626; font-weight: bold; }
+        .debug-info .status-warn { color: #f59e0b; font-weight: bold; }
 
         @media (max-width: 768px) {
             .header { flex-direction: column; text-align: center; }
@@ -241,7 +256,6 @@
 </head>
 <body>
 
-    <!-- ✅ Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- LOGIN PAGE -->
@@ -252,25 +266,42 @@
                 <h1>Admin Panel</h1>
                 <p>PPC Certified - Manajemen Galeri</p>
             </div>
-            <div class="alert alert-error" id="loginError">
-                <i class="fa-solid fa-circle-exclamation"></i> Username atau password salah!
-            </div>
+
+            <div class="alert alert-error" id="loginError"></div>
+            <div class="alert alert-success" id="loginSuccess"></div>
+
             <form id="loginForm">
                 <div class="form-group">
                     <label class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Masukkan username" required>
+                    <input type="text" class="form-control" id="username" placeholder="Masukkan username" required autocomplete="username">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Masukkan password" required>
+                    <input type="password" class="form-control" id="password" placeholder="Masukkan password" required autocomplete="current-password">
                 </div>
                 <button type="submit" class="btn btn-primary" id="loginBtn">
                     <i class="fa-solid fa-right-to-bracket"></i> Login
                 </button>
             </form>
-            <p style="text-align:center; margin-top:20px; font-size:0.85rem; color:var(--gray-600);">
-                <strong>Default:</strong> admin / admin123
-            </p>
+
+            <div class="reset-link">
+                <p style="margin-bottom: 8px;">
+                    <strong>Default:</strong> admin / admin123
+                </p>
+                <a onclick="resetPasswordToDefault()">
+                    <i class="fa-solid fa-rotate-left"></i> Lupa password? Reset ke default
+                </a>
+                <br>
+                <a onclick="toggleDebug()" style="font-size: 0.8rem; color: #999;">
+                    <i class="fa-solid fa-bug"></i> Debug Info
+                </a>
+            </div>
+
+            <!-- ✅ Debug Panel -->
+            <div class="debug-info" id="debugPanel" style="display: none;">
+                <div style="margin-bottom: 8px;"><strong>🔍 Status Koneksi Firebase:</strong></div>
+                <div id="debugContent">Memeriksa...</div>
+            </div>
         </div>
     </div>
 
@@ -313,7 +344,6 @@
             </div>
 
             <div class="gallery-grid" id="galleryGrid">
-                <!-- ✅ Skeleton saat loading -->
                 <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line"></div><div class="skeleton-line medium"></div></div></div>
                 <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line"></div><div class="skeleton-line medium"></div></div></div>
                 <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line"></div><div class="skeleton-line medium"></div></div></div>
@@ -424,536 +454,628 @@
     </div>
 
     <script>
-    // ============================================================
-    //  ✅ FIREBASE CONFIG — GANTI DENGAN MILIK ANDA!
-    // ============================================================
-    const firebaseConfig = {
-        apiKey: "AIzaSyBVKTxJy8c-F-ljIe61NJPJHVhp-ufnyME",
-        authDomain: "ppc-certified-859cf.firebaseapp.com",
-        projectId: "ppc-certified-859cf",
-        storageBucket: "ppc-certified-859cf.firebasestorage.app",
-        messagingSenderId: "752025208586",
-        appId: "1:752025208586:web:5dd072c2fe6cbd3b199cf3"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    // ============================================================
-    //  VARIABEL GLOBAL
-    // ============================================================
-    let galleryData = [];
-    let galleryMap = new Map();
-    let adminCredentials = null;   // ← null = belum pernah dimuat
-    let credentialsLoaded = false;
-    let isAdminAuthenticated = false;
-    let credentialPromise = null;  // ← untuk tracking pre-warm
-
-    // ============================================================
-    //  TOAST NOTIFICATION
-    // ============================================================
-    function showToast(message, type = 'success') {
-        const container = document.getElementById('toastContainer');
-        if (!container) return;
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        const icons = { success: 'fa-circle-check', error: 'fa-circle-xmark', warning: 'fa-triangle-exclamation' };
-        toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.success}"></i> ${message}`;
-        container.appendChild(toast);
-        setTimeout(() => {
-            toast.classList.add('removing');
-            setTimeout(() => toast.remove(), 300);
-        }, 4000);
-    }
-
-    // ============================================================
-    //  UTILITY FUNCTIONS
-    // ============================================================
-    function formatTanggalAdmin(dateStr) {
-        if (!dateStr) return '-';
-        const bulan = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
-        const d = new Date(dateStr);
-        if (isNaN(d.getTime())) return '-';
-        return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
-    }
-
-    function getTodayDate() {
-        const today = new Date();
-        return `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
-    }
-
-    function showSyncStatus(status) {
-        const el = document.getElementById('syncStatus');
-        if (!el) return;
-        el.className = 'sync-status ' + status;
-        const labels = {
-            synced: '<i class="fa-solid fa-cloud-arrow-up"></i> Tersinkron',
-            syncing: '<i class="fa-solid fa-spinner fa-spin"></i> Menyinkronkan...',
-            error: '<i class="fa-solid fa-triangle-exclamation"></i> Gagal Sinkron',
-            offline: '<i class="fa-solid fa-wifi"></i> Offline'
+        // ============================================================
+        //  ✅ FIREBASE CONFIG — GANTI DENGAN MILIK ANDA!
+        // ============================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVKTxJy8c-F-ljIe61NJPJHVhp-ufnyME",
+            authDomain: "ppc-certified-859cf.firebaseapp.com",
+            projectId: "ppc-certified-859cf",
+            storageBucket: "ppc-certified-859cf.firebasestorage.app",
+            messagingSenderId: "752025208586",
+            appId: "1:752025208586:web:5dd072c2fe6cbd3b199cf3"
         };
-        el.innerHTML = labels[status] || labels.synced;
-    }
 
-    // ============================================================
-    //  ✅ LOAD CREDENTIALS — Lebih reliable!
-    //  Fungsi ini BISA dipanggil berkali-kali, tapi hanya fetch
-    //  dari Firestore SEKALI (selanjutnya pakai Promise yang sama)
-    // ============================================================
-    function loadCredentials() {
-        if (credentialPromise) return credentialPromise;
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-        credentialPromise = new Promise(async (resolve, reject) => {
-            // 1. Cek cache sessionStorage dulu
+        // ============================================================
+        //  VARIABEL GLOBAL
+        // ============================================================
+        let galleryData = [];
+        let galleryMap = new Map();
+        let adminCredentials = null;
+        let credentialsLoaded = false;
+        let isAdminAuthenticated = false;
+        let credentialPromise = null;
+        let firebaseConnectionStatus = 'checking';
+
+        // ============================================================
+        //  TOAST NOTIFICATION
+        // ============================================================
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icons = { success: 'fa-circle-check', error: 'fa-circle-xmark', warning: 'fa-triangle-exclamation' };
+            toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.success}"></i> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('removing');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // ============================================================
+        //  UTILITY FUNCTIONS
+        // ============================================================
+        function formatTanggalAdmin(dateStr) {
+            if (!dateStr) return '-';
+            const bulan = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '-';
+            return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+        }
+
+        function getTodayDate() {
+            const today = new Date();
+            return `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+        }
+
+        function showSyncStatus(status) {
+            const el = document.getElementById('syncStatus');
+            if (!el) return;
+            el.className = 'sync-status ' + status;
+            const labels = {
+                synced: '<i class="fa-solid fa-cloud-arrow-up"></i> Tersinkron',
+                syncing: '<i class="fa-solid fa-spinner fa-spin"></i> Menyinkronkan...',
+                error: '<i class="fa-solid fa-triangle-exclamation"></i> Gagal Sinkron'
+            };
+            el.innerHTML = labels[status] || labels.synced;
+        }
+
+        // ============================================================
+        //  ✅ DEBUG PANEL — Untuk troubleshooting
+        // ============================================================
+        function toggleDebug() {
+            const panel = document.getElementById('debugPanel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+            if (panel.style.display === 'block') runDiagnostics();
+        }
+
+        async function runDiagnostics() {
+            const content = document.getElementById('debugContent');
+            content.innerHTML = 'Memeriksa...';
+
+            let html = '';
+
+            // Cek 1: Firebase config
+            const configOk = firebaseConfig.apiKey !== 'GANTI_DENGAN_API_KEY_ANDA';
+            html += `<div>1. Firebase Config: ${configOk ? '<span class="status-ok">✅ Terkonfigurasi</span>' : '<span class="status-fail">❌ Masih default! Ganti firebaseConfig!</span>'}</div>`;
+
+            // Cek 2: Koneksi Firestore
+            try {
+                const testDoc = await db.collection('admin').doc('credentials').get();
+                if (testDoc.exists) {
+                    const data = testDoc.data();
+                    html += `<div>2. Koleksi admin/credentials: <span class="status-ok">✅ Ditemukan</span></div>`;
+                    html += `<div>&nbsp;&nbsp; → username: "<strong>${data.username}</strong>"</div>`;
+                    html += `<div>&nbsp;&nbsp; → password: "<strong>${data.password ? '•'.repeat(data.password.length) + ` (${data.password.length} chars)` : '<span class="status-fail">KOSONG!</span>'}</strong>"</div>`;
+                } else {
+                    html += `<div>2. Koleksi admin/credentials: <span class="status-fail">❌ TIDAK ADA! Buat manual di Firestore Console.</span></div>`;
+                }
+                firebaseConnectionStatus = 'ok';
+            } catch (error) {
+                html += `<div>2. Koneksi Firestore: <span class="status-fail">❌ GAGAL</span></div>`;
+                html += `<div>&nbsp;&nbsp; → Error: <span class="status-fail">${error.message}</span></div>`;
+                html += `<div>&nbsp;&nbsp; → <span class="status-warn">Periksa: firebaseConfig, Rules, atau koneksi internet</span></div>`;
+                firebaseConnectionStatus = 'error';
+            }
+
+            // Cek 3: Cache
             const cached = sessionStorage.getItem('adminCredsCache');
             if (cached) {
                 try {
-                    adminCredentials = JSON.parse(cached);
-                    credentialsLoaded = true;
-                    console.log('✅ Credentials from cache:', adminCredentials.username);
-                    resolve(adminCredentials);
-                    // Tetap lanjut fetch terbaru di background (tidak blocking)
-                } catch(e) { /* ignore parse error */ }
+                    const cachedData = JSON.parse(cached);
+                    html += `<div>3. Cache sessionStorage: <span class="status-ok">Ada</span> (username: "${cachedData.username}")</div>`;
+                } catch(e) {
+                    html += `<div>3. Cache sessionStorage: <span class="status-warn">Rusak</span></div>`;
+                }
+            } else {
+                html += `<div>3. Cache sessionStorage: <span class="status-warn">Tidak ada</span> (akan fetch dari Firestore)</div>`;
             }
 
-            // 2. Fetch dari Firestore
+            // Cek 4: Credentials di memory
+            if (adminCredentials) {
+                html += `<div>4. Memory credentials: <span class="status-ok">username="${adminCredentials.username}"</span></div>`;
+            } else {
+                html += `<div>4. Memory credentials: <span class="status-warn">Belum dimuat</span></div>`;
+            }
+
+            // Cek 5: Gallery count
             try {
-                const doc = await db.collection('admin').doc('credentials').get();
-                if (doc.exists) {
-                    adminCredentials = doc.data();
-                    sessionStorage.setItem('adminCredsCache', JSON.stringify(adminCredentials));
-                    credentialsLoaded = true;
-                    console.log('✅ Credentials from Firestore:', adminCredentials.username);
-                    resolve(adminCredentials);
-                } else {
-                    // Buat default credentials
-                    console.log('📝 Creating default admin credentials...');
-                    const defaults = { username: 'admin', password: 'admin123' };
-                    await db.collection('admin').doc('credentials').set(defaults);
-                    adminCredentials = defaults;
-                    sessionStorage.setItem('adminCredsCache', JSON.stringify(defaults));
-                    credentialsLoaded = true;
-                    resolve(defaults);
-                }
-            } catch (error) {
-                console.error('❌ Firestore error:', error);
+                const gallerySnap = await db.collection('gallery').get();
+                html += `<div>5. Koleksi gallery: <span class="status-ok">${gallerySnap.size} dokumen</span></div>`;
+            } catch(e) {
+                html += `<div>5. Koleksi gallery: <span class="status-fail">Gagal baca</span></div>`;
+            }
+
+            content.innerHTML = html;
+        }
+
+        // ============================================================
+        //  ✅ RESET PASSWORD KE DEFAULT
+        //  Tombol darurat untuk reset password tanpa harus login
+        // ============================================================
+        async function resetPasswordToDefault() {
+            if (!confirm('Reset password ke default?\n\nUsername: admin\nPassword: admin123\n\nIni akan menimpa password yang tersimpan di Firestore.')) return;
+
+            const errorEl = document.getElementById('loginError');
+            const successEl = document.getElementById('loginSuccess');
+            errorEl.style.display = 'none';
+            successEl.style.display = 'none';
+
+            try {
+                const defaults = { username: 'admin', password: 'admin123' };
                 
-                // Jika ada cache, pakai cache (fallback)
-                if (adminCredentials) {
-                    console.log('⚠️ Using cached credentials (Firestore error)');
-                    resolve(adminCredentials);
-                    return;
+                // Cek apakah dokumen ada
+                const docRef = db.collection('admin').doc('credentials');
+                const doc = await docRef.get();
+
+                if (doc.exists) {
+                    await docRef.set(defaults); // overwrite
+                } else {
+                    // Buat koleksi admin jika belum ada
+                    await docRef.set(defaults);
                 }
 
-                // Tidak ada cache DAN Firestore gagal → pakai default
-                console.log('⚠️ Using default credentials (no cache, Firestore failed)');
-                adminCredentials = { username: 'admin', password: 'admin123' };
+                // Update memory & cache
+                adminCredentials = defaults;
                 credentialsLoaded = true;
-                resolve(adminCredentials);
-            }
-        });
+                credentialPromise = null;
+                sessionStorage.setItem('adminCredsCache', JSON.stringify(defaults));
 
-        return credentialPromise;
-    }
+                successEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> 
+                    <strong>Password berhasil direset!</strong><br>
+                    Login dengan: <strong>admin</strong> / <strong>admin123</strong>`;
+                successEl.style.display = 'block';
 
-    // ============================================================
-    //  ✅ LOGIN — Selalu tunggu credentials siap dulu!
-    // ============================================================
-    document.getElementById('loginForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const loginBtn = document.getElementById('loginBtn');
-        const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value;
-        const errorEl = document.getElementById('loginError');
+                // Auto-fill form login
+                document.getElementById('username').value = 'admin';
+                document.getElementById('password').value = 'admin123';
 
-        // Tampilkan loading
-        loginBtn.disabled = true;
-        loginBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memverifikasi...';
-        errorEl.style.display = 'none';
+                setTimeout(() => successEl.style.display = 'none', 8000);
 
-        try {
-            // ✅ SELALU tunggu credentials siap (max 10 detik)
-            const timeoutPromise = new Promise((_, reject) => 
-                setTimeout(() => reject(new Error('timeout')), 10000)
-            );
-
-            await Promise.race([loadCredentials(), timeoutPromise]);
-
-            // ✅ Validasi
-            if (username === adminCredentials.username && password === adminCredentials.password) {
-                // LOGIN BERHASIL!
-                sessionStorage.setItem('adminAuthenticated', 'true');
-                isAdminAuthenticated = true;
-                showDashboard();
-            } else {
-                // PASSWORD SALAH — tampilkan detail yang membantu debugging
-                errorEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> 
-                    Username atau password salah!<br>
-                    <small style="color:#999; margin-top:5px; display:block;">
-                        Anda memasukkan: username="<strong>${username}</strong>" 
-                        | Server expecting: username="<strong>${adminCredentials?.username || '???'}</strong>"
-                    </small>`;
+            } catch (error) {
+                console.error('Reset error:', error);
+                errorEl.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> 
+                    <strong>Gagal reset password!</strong><br>
+                    Error: ${error.message}<br>
+                    <small>Pastikan firebaseConfig sudah benar dan Rules Firestore allow write.</small>`;
                 errorEl.style.display = 'block';
-                setTimeout(() => errorEl.style.display = 'none', 8000);
+                setTimeout(() => errorEl.style.display = 'none', 10000);
             }
-        } catch (error) {
-            // Timeout atau error lain
-            console.error('Login error:', error);
-
-            if (error.message === 'timeout') {
-                errorEl.innerHTML = `<i class="fa-solid fa-clock"></i> 
-                    Koneksi ke database terlalu lama.<br>
-                    <small style="color:#999; margin-top:5px; display:block;">
-                        Periksa: 1) firebaseConfig sudah benar? 
-                        2) Koleksi "admin" sudah dibuat di Firestore? 
-                        3) Rules Firestore sudah allow read?
-                    </small>`;
-            } else {
-                errorEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> 
-                    Gagal terhubung ke database.<br>
-                    <small style="color:#999; margin-top:5px; display:block;">
-                        Error: ${error.message}<br>
-                        Periksa firebaseConfig dan koneksi internet Anda.
-                    </small>`;
-            }
-            errorEl.style.display = 'block';
-            setTimeout(() => errorEl.style.display = 'none', 10000);
         }
 
-        loginBtn.disabled = false;
-        loginBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Login';
-    });
+        // ============================================================
+        //  ✅ LOAD CREDENTIALS
+        // ============================================================
+        function loadCredentials() {
+            if (credentialPromise) return credentialPromise;
 
-    // ============================================================
-    //  DASHBOARD
-    // ============================================================
-    function showDashboard() {
-        document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('dashboard').classList.add('active');
-        startGalleryListener();
-    }
+            credentialPromise = new Promise(async (resolve, reject) => {
+                // 1. Cek cache
+                const cached = sessionStorage.getItem('adminCredsCache');
+                if (cached) {
+                    try {
+                        adminCredentials = JSON.parse(cached);
+                        credentialsLoaded = true;
+                        console.log('✅ Credentials from cache:', adminCredentials.username);
+                    } catch(e) { /* ignore */ }
+                }
 
-    function logout() {
-        if (confirm('Apakah Anda yakin ingin logout?')) {
-            sessionStorage.removeItem('adminAuthenticated');
-            sessionStorage.removeItem('adminCredsCache');
-            isAdminAuthenticated = false;
-            credentialPromise = null;
-            location.reload();
-        }
-    }
-
-    // ============================================================
-    //  FIREBASE REALTIME LISTENER
-    // ============================================================
-    function startGalleryListener() {
-        db.collection('gallery').onSnapshot((snapshot) => {
-            galleryData = [];
-            galleryMap = new Map();
-
-            snapshot.forEach((doc) => {
-                const data = { ...doc.data(), _docId: doc.id };
-                galleryData.push(data);
-                galleryMap.set(doc.id, data);
+                // 2. Fetch dari Firestore
+                try {
+                    const doc = await db.collection('admin').doc('credentials').get();
+                    if (doc.exists) {
+                        adminCredentials = doc.data();
+                        sessionStorage.setItem('adminCredsCache', JSON.stringify(adminCredentials));
+                        credentialsLoaded = true;
+                        console.log('✅ Credentials from Firestore:', adminCredentials.username);
+                        resolve(adminCredentials);
+                    } else {
+                        const defaults = { username: 'admin', password: 'admin123' };
+                        await db.collection('admin').doc('credentials').set(defaults);
+                        adminCredentials = defaults;
+                        sessionStorage.setItem('adminCredsCache', JSON.stringify(defaults));
+                        credentialsLoaded = true;
+                        console.log('📝 Created default credentials');
+                        resolve(defaults);
+                    }
+                } catch (error) {
+                    console.error('❌ Firestore error:', error);
+                    if (adminCredentials) {
+                        console.log('⚠️ Fallback to cache');
+                        resolve(adminCredentials);
+                    } else {
+                        adminCredentials = { username: 'admin', password: 'admin123' };
+                        credentialsLoaded = true;
+                        console.log('⚠️ Fallback to defaults');
+                        resolve(adminCredentials);
+                    }
+                }
             });
 
-            renderGallery();
-            showSyncStatus('synced');
-        }, (error) => {
-            console.error('Firestore listener error:', error);
-            showSyncStatus('error');
-            showToast('Koneksi ke database terputus', 'error');
-        });
-    }
-
-    // ============================================================
-    //  OPTIMISTIC SAVE
-    // ============================================================
-    async function saveGallery() {
-        const editDocId = document.getElementById('editDocId').value;
-        const uploadDate = document.getElementById('uploadDate').value;
-
-        if (!uploadDate) { showToast('Mohon isi tanggal upload!', 'warning'); return; }
-
-        const newData = {
-            tag: document.getElementById('tag').value.trim(),
-            title: document.getElementById('title').value.trim(),
-            location: document.getElementById('location').value.trim(),
-            description: document.getElementById('description').value.trim(),
-            image: document.getElementById('imageUrl').value.trim(),
-            date: uploadDate
-        };
-
-        if (!newData.tag || !newData.title || !newData.image) {
-            showToast('Mohon lengkapi data utama!', 'warning'); return;
+            return credentialPromise;
         }
 
-        closeModal();
-        showSyncStatus('syncing');
+        // ============================================================
+        //  ✅ LOGIN
+        // ============================================================
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const loginBtn = document.getElementById('loginBtn');
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorEl = document.getElementById('loginError');
+            const successEl = document.getElementById('loginSuccess');
 
-        let tempId = null;
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memverifikasi...';
+            errorEl.style.display = 'none';
+            successEl.style.display = 'none';
 
-        if (editDocId) {
-            const existingItem = galleryMap.get(editDocId);
-            if (existingItem) {
-                const idx = galleryData.indexOf(existingItem);
-                const updatedItem = { ...newData, _docId: editDocId };
-                galleryData[idx] = updatedItem;
-                galleryMap.set(editDocId, updatedItem);
-                renderGallery();
+            try {
+                // Force fresh fetch dari Firestore (abaikan cache untuk validasi)
+                credentialPromise = null; // reset promise agar fetch ulang
+                const timeoutPromise = new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('timeout')), 15000)
+                );
+
+                await Promise.race([loadCredentials(), timeoutPromise]);
+
+                // ✅ Bandingkan dengan TRIM untuk menghindari spasi tersembunyi
+                const serverUsername = (adminCredentials.username || '').trim();
+                const serverPassword = (adminCredentials.password || '').trim();
+                const inputUsername = username.trim();
+                const inputPassword = password.trim();
+
+                const usernameMatch = inputUsername === serverUsername;
+                const passwordMatch = inputPassword === serverPassword;
+
+                if (usernameMatch && passwordMatch) {
+                    sessionStorage.setItem('adminAuthenticated', 'true');
+                    isAdminAuthenticated = true;
+                    showDashboard();
+                } else {
+                    // ✅ Pesan error yang SANGAT DETAIL untuk debugging
+                    let detail = '';
+                    if (usernameMatch && !passwordMatch) {
+                        detail = `<br><small style="color:#999; display:block; margin-top:8px;">
+                            ✅ Username benar<br>
+                            ❌ <strong>Password salah!</strong> Password yang tersimpan di server memiliki <strong>${serverPassword.length} karakter</strong>.<br>
+                            💡 Klik <a onclick="resetPasswordToDefault()" style="color:#059669; cursor:pointer; text-decoration:underline;">"Reset ke default"</a> di bawah form untuk mereset.
+                        </small>`;
+                    } else if (!usernameMatch && passwordMatch) {
+                        detail = `<br><small style="color:#999; display:block; margin-top:8px;">
+                            ❌ <strong>Username salah!</strong> Server mengharapkan: "<strong>${serverUsername}</strong>"<br>
+                            ✅ Password benar
+                        </small>`;
+                    } else {
+                        detail = `<br><small style="color:#999; display:block; margin-top:8px;">
+                            ❌ Username salah! Server mengharapkan: "<strong>${serverUsername}</strong>"<br>
+                            ❌ Password salah! Server memiliki <strong>${serverPassword.length} karakter</strong>
+                        </small>`;
+                    }
+
+                    errorEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <strong>Login gagal!</strong>${detail}`;
+                    errorEl.style.display = 'block';
+                    setTimeout(() => errorEl.style.display = 'none', 15000);
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                let msg = '';
+                if (error.message === 'timeout') {
+                    msg = `Koneksi ke database timeout (>15 detik).<br>
+                        <small>Pastikan firebaseConfig benar, Rules Firestore allow read, dan internet stabil.</small>`;
+                } else {
+                    msg = `Gagal terhubung: ${error.message}<br>
+                        <small>Klik "Debug Info" di bawah form untuk cek detail.</small>`;
+                }
+                errorEl.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> <strong>Error koneksi!</strong><br>${msg}`;
+                errorEl.style.display = 'block';
+                setTimeout(() => errorEl.style.display = 'none', 15000);
             }
-            showToast('Data diperbarui!', 'success');
-        } else {
-            tempId = 'temp_' + Date.now();
-            const newItem = { ...newData, _docId: tempId };
-            galleryData.push(newItem);
-            galleryMap.set(tempId, newItem);
-            renderGallery();
-            showToast('Galeri baru ditambahkan!', 'success');
+
+            loginBtn.disabled = false;
+            loginBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Login';
+        });
+
+        // ============================================================
+        //  DASHBOARD
+        // ============================================================
+        function showDashboard() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboard').classList.add('active');
+            startGalleryListener();
         }
 
-        try {
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                sessionStorage.removeItem('adminAuthenticated');
+                sessionStorage.removeItem('adminCredsCache');
+                isAdminAuthenticated = false;
+                credentialPromise = null;
+                location.reload();
+            }
+        }
+
+        // ============================================================
+        //  FIREBASE REALTIME LISTENER
+        // ============================================================
+        function startGalleryListener() {
+            db.collection('gallery').onSnapshot((snapshot) => {
+                galleryData = [];
+                galleryMap = new Map();
+                snapshot.forEach((doc) => {
+                    const data = { ...doc.data(), _docId: doc.id };
+                    galleryData.push(data);
+                    galleryMap.set(doc.id, data);
+                });
+                renderGallery();
+                showSyncStatus('synced');
+            }, (error) => {
+                console.error('Firestore listener error:', error);
+                showSyncStatus('error');
+                showToast('Koneksi ke database terputus', 'error');
+            });
+        }
+
+        // ============================================================
+        //  OPTIMISTIC SAVE
+        // ============================================================
+        async function saveGallery() {
+            const editDocId = document.getElementById('editDocId').value;
+            const uploadDate = document.getElementById('uploadDate').value;
+
+            if (!uploadDate) { showToast('Mohon isi tanggal upload!', 'warning'); return; }
+
+            const newData = {
+                tag: document.getElementById('tag').value.trim(),
+                title: document.getElementById('title').value.trim(),
+                location: document.getElementById('location').value.trim(),
+                description: document.getElementById('description').value.trim(),
+                image: document.getElementById('imageUrl').value.trim(),
+                date: uploadDate
+            };
+
+            if (!newData.tag || !newData.title || !newData.image) {
+                showToast('Mohon lengkapi data utama!', 'warning'); return;
+            }
+
+            closeModal();
+            showSyncStatus('syncing');
+
+            let tempId = null;
+
             if (editDocId) {
-                await db.collection('gallery').doc(editDocId).set(newData);
+                const existingItem = galleryMap.get(editDocId);
+                if (existingItem) {
+                    const idx = galleryData.indexOf(existingItem);
+                    const updatedItem = { ...newData, _docId: editDocId };
+                    galleryData[idx] = updatedItem;
+                    galleryMap.set(editDocId, updatedItem);
+                    renderGallery();
+                }
+                showToast('Data diperbarui!', 'success');
             } else {
-                await db.collection('gallery').add(newData);
-            }
-        } catch (error) {
-            console.error('Error saving gallery:', error);
-            showToast('Gagal sinkron ke server', 'error');
-            showSyncStatus('error');
-
-            if (tempId) {
-                galleryData = galleryData.filter(item => item._docId !== tempId);
-                galleryMap.delete(tempId);
+                tempId = 'temp_' + Date.now();
+                const newItem = { ...newData, _docId: tempId };
+                galleryData.push(newItem);
+                galleryMap.set(tempId, newItem);
                 renderGallery();
+                showToast('Galeri baru ditambahkan!', 'success');
+            }
+
+            try {
+                if (editDocId) {
+                    await db.collection('gallery').doc(editDocId).set(newData);
+                } else {
+                    await db.collection('gallery').add(newData);
+                }
+            } catch (error) {
+                console.error('Error saving:', error);
+                showToast('Gagal sinkron ke server', 'error');
+                showSyncStatus('error');
+                if (tempId) {
+                    galleryData = galleryData.filter(item => item._docId !== tempId);
+                    galleryMap.delete(tempId);
+                    renderGallery();
+                }
             }
         }
-    }
 
-    // ============================================================
-    //  OPTIMISTIC DELETE
-    // ============================================================
-    async function deleteGallery(docId) {
-        if (!confirm('Yakin hapus item ini?')) return;
-
-        const removedItem = galleryMap.get(docId);
-        galleryData = galleryData.filter(item => item._docId !== docId);
-        galleryMap.delete(docId);
-        renderGallery();
-        showToast('Item dihapus!', 'success');
-        showSyncStatus('syncing');
-
-        try {
-            await db.collection('gallery').doc(docId).delete();
-        } catch (error) {
-            console.error('Error deleting gallery:', error);
-            showToast('Gagal menghapus dari server!', 'error');
-            showSyncStatus('error');
-            if (removedItem) {
-                galleryData.push(removedItem);
-                galleryMap.set(docId, removedItem);
-                renderGallery();
+        // ============================================================
+        //  OPTIMISTIC DELETE
+        // ============================================================
+        async function deleteGallery(docId) {
+            if (!confirm('Yakin hapus item ini?')) return;
+            const removedItem = galleryMap.get(docId);
+            galleryData = galleryData.filter(item => item._docId !== docId);
+            galleryMap.delete(docId);
+            renderGallery();
+            showToast('Item dihapus!', 'success');
+            showSyncStatus('syncing');
+            try {
+                await db.collection('gallery').doc(docId).delete();
+            } catch (error) {
+                console.error('Error deleting:', error);
+                showToast('Gagal menghapus dari server!', 'error');
+                showSyncStatus('error');
+                if (removedItem) {
+                    galleryData.push(removedItem);
+                    galleryMap.set(docId, removedItem);
+                    renderGallery();
+                }
             }
         }
-    }
 
-    // ============================================================
-    //  CHANGE PASSWORD
-    // ============================================================
-    async function changePassword() {
-        const oldPw = document.getElementById('oldPassword').value;
-        const newPw = document.getElementById('newPassword').value;
-        const confirmPw = document.getElementById('confirmPassword').value;
+        // ============================================================
+        //  CHANGE PASSWORD
+        // ============================================================
+        async function changePassword() {
+            const oldPw = document.getElementById('oldPassword').value;
+            const newPw = document.getElementById('newPassword').value;
+            const confirmPw = document.getElementById('confirmPassword').value;
 
-        if (!oldPw || !newPw || !confirmPw) { showPasswordError('Mohon lengkapi semua field!'); return; }
-        if (oldPw !== adminCredentials.password) { showPasswordError('Password lama tidak sesuai!'); return; }
-        if (newPw !== confirmPw) { showPasswordError('Konfirmasi password baru tidak cocok!'); return; }
-        if (newPw === oldPw) { showPasswordError('Password baru tidak boleh sama dengan lama!'); return; }
+            if (!oldPw || !newPw || !confirmPw) { showPasswordError('Mohon lengkapi semua field!'); return; }
+            if (oldPw.trim() !== adminCredentials.password.trim()) { showPasswordError('Password lama tidak sesuai!'); return; }
+            if (newPw !== confirmPw) { showPasswordError('Konfirmasi password baru tidak cocok!'); return; }
+            if (newPw === oldPw) { showPasswordError('Password baru tidak boleh sama dengan lama!'); return; }
 
-        adminCredentials.password = newPw;
-        sessionStorage.setItem('adminCredsCache', JSON.stringify(adminCredentials));
-        showPasswordSuccess('Password berhasil diubah!');
+            adminCredentials.password = newPw;
+            sessionStorage.setItem('adminCredsCache', JSON.stringify(adminCredentials));
+            showPasswordSuccess('Password berhasil diubah!');
 
-        try {
-            await db.collection('admin').doc('credentials').update({ password: newPw });
-        } catch (error) {
-            console.error('Error changing password:', error);
-            showToast('Gagal sinkron password ke server', 'error');
-        }
-    }
-
-    // ============================================================
-    //  RENDER GALLERY
-    // ============================================================
-    function renderGallery() {
-        const grid = document.getElementById('galleryGrid');
-        document.getElementById('totalItems').textContent = galleryData.length;
-
-        if (galleryData.length === 0) {
-            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; padding:40px; color:#666;">Belum ada data galeri. Klik "Tambah Galeri Baru" untuk memulai.</p>';
-            return;
+            try {
+                await db.collection('admin').doc('credentials').update({ password: newPw });
+            } catch (error) {
+                console.error('Error changing password:', error);
+                showToast('Gagal sinkron password ke server', 'error');
+            }
         }
 
-        const sortedData = [...galleryData].sort((a, b) => {
-            const dateA = a.date ? new Date(a.date).getTime() : 0;
-            const dateB = b.date ? new Date(b.date).getTime() : 0;
-            return dateB - dateA;
-        });
+        // ============================================================
+        //  RENDER GALLERY
+        // ============================================================
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            document.getElementById('totalItems').textContent = galleryData.length;
 
-        grid.innerHTML = sortedData.map((item) => {
-            const docId = item._docId;
-            const tanggalFormatted = formatTanggalAdmin(item.date);
+            if (galleryData.length === 0) {
+                grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; padding:40px; color:#666;">Belum ada data galeri. Klik "Tambah Galeri Baru" untuk memulai.</p>';
+                return;
+            }
 
-            return `
-                <div class="gallery-item">
-                    <img src="${item.image}" alt="${item.title}" class="gallery-image"
-                         onerror="this.style.background='#f3f4f6';">
-                    <div class="gallery-info">
-                        <span class="gallery-tag">${item.tag}</span>
-                        <span class="gallery-date-badge">
-                            <i class="fa-regular fa-calendar"></i> ${tanggalFormatted}
-                        </span>
-                        <h3>${item.title}</h3>
-                        <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
-                        <p style="font-size:0.85rem; margin-top:5px;">${item.description}</p>
-                        <div class="gallery-actions">
-                            <button class="btn btn-secondary" onclick="editGallery('${docId}')">
-                                <i class="fa-solid fa-pen"></i> Edit
-                            </button>
-                            <button class="btn btn-danger" onclick="deleteGallery('${docId}')">
-                                <i class="fa-solid fa-trash"></i> Hapus
-                            </button>
+            const sortedData = [...galleryData].sort((a, b) => {
+                const dateA = a.date ? new Date(a.date).getTime() : 0;
+                const dateB = b.date ? new Date(b.date).getTime() : 0;
+                return dateB - dateA;
+            });
+
+            grid.innerHTML = sortedData.map((item) => {
+                const docId = item._docId;
+                const tanggalFormatted = formatTanggalAdmin(item.date);
+                return `
+                    <div class="gallery-item">
+                        <img src="${item.image}" alt="${item.title}" class="gallery-image" onerror="this.style.background='#f3f4f6';">
+                        <div class="gallery-info">
+                            <span class="gallery-tag">${item.tag}</span>
+                            <span class="gallery-date-badge"><i class="fa-regular fa-calendar"></i> ${tanggalFormatted}</span>
+                            <h3>${item.title}</h3>
+                            <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
+                            <p style="font-size:0.85rem; margin-top:5px;">${item.description}</p>
+                            <div class="gallery-actions">
+                                <button class="btn btn-secondary" onclick="editGallery('${docId}')"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button class="btn btn-danger" onclick="deleteGallery('${docId}')"><i class="fa-solid fa-trash"></i> Hapus</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-        }).join('');
-    }
-
-    // ============================================================
-    //  MODAL FUNCTIONS
-    // ============================================================
-    function openModal() {
-        document.getElementById('modalForm').classList.add('active');
-        document.getElementById('modalTitle').textContent = 'Tambah Galeri Baru';
-        document.getElementById('galleryForm').reset();
-        document.getElementById('editDocId').value = '';
-        document.getElementById('imagePreview').innerHTML = '<i class="fa-solid fa-image"></i>';
-        document.getElementById('uploadDate').value = getTodayDate();
-    }
-
-    function closeModal() {
-        document.getElementById('modalForm').classList.remove('active');
-    }
-
-    function editGallery(docId) {
-        const item = galleryMap.get(docId);
-        if (!item) return;
-
-        document.getElementById('modalForm').classList.add('active');
-        document.getElementById('modalTitle').textContent = 'Edit Galeri';
-        document.getElementById('editDocId').value = docId;
-        document.getElementById('tag').value = item.tag;
-        document.getElementById('title').value = item.title;
-        document.getElementById('location').value = item.location;
-        document.getElementById('description').value = item.description;
-        document.getElementById('imageUrl').value = item.image;
-        document.getElementById('uploadDate').value = item.date || getTodayDate();
-        document.getElementById('imagePreview').innerHTML = `<img src="${item.image}">`;
-    }
-
-    document.getElementById('imageUrl').addEventListener('input', function() {
-        const url = this.value;
-        const preview = document.getElementById('imagePreview');
-        if (url) {
-            preview.innerHTML = `<img src="${url}" onerror="this.style.display='none'">`;
-        } else {
-            preview.innerHTML = '<i class="fa-solid fa-image"></i>';
+                `;
+            }).join('');
         }
-    });
 
-    // ============================================================
-    //  PASSWORD MODAL FUNCTIONS
-    // ============================================================
-    function openPasswordModal() {
-        document.getElementById('modalPassword').classList.add('active');
-        document.getElementById('passwordForm').reset();
-        hidePasswordAlerts();
-        resetPasswordStrength();
-    }
+        // ============================================================
+        //  MODAL FUNCTIONS
+        // ============================================================
+        function openModal() {
+            document.getElementById('modalForm').classList.add('active');
+            document.getElementById('modalTitle').textContent = 'Tambah Galeri Baru';
+            document.getElementById('galleryForm').reset();
+            document.getElementById('editDocId').value = '';
+            document.getElementById('imagePreview').innerHTML = '<i class="fa-solid fa-image"></i>';
+            document.getElementById('uploadDate').value = getTodayDate();
+        }
 
-    function closePasswordModal() {
-        document.getElementById('modalPassword').classList.remove('active');
-        hidePasswordAlerts();
-    }
+        function closeModal() { document.getElementById('modalForm').classList.remove('active'); }
 
-    function hidePasswordAlerts() {
-        document.getElementById('passwordError').style.display = 'none';
-        document.getElementById('passwordSuccess').style.display = 'none';
-    }
+        function editGallery(docId) {
+            const item = galleryMap.get(docId);
+            if (!item) return;
+            document.getElementById('modalForm').classList.add('active');
+            document.getElementById('modalTitle').textContent = 'Edit Galeri';
+            document.getElementById('editDocId').value = docId;
+            document.getElementById('tag').value = item.tag;
+            document.getElementById('title').value = item.title;
+            document.getElementById('location').value = item.location;
+            document.getElementById('description').value = item.description;
+            document.getElementById('imageUrl').value = item.image;
+            document.getElementById('uploadDate').value = item.date || getTodayDate();
+            document.getElementById('imagePreview').innerHTML = `<img src="${item.image}">`;
+        }
 
-    function showPasswordError(msg) {
-        document.getElementById('passwordErrorText').textContent = msg;
-        document.getElementById('passwordError').style.display = 'block';
-        document.getElementById('passwordSuccess').style.display = 'none';
-        setTimeout(() => document.getElementById('passwordError').style.display = 'none', 5000);
-    }
-
-    function showPasswordSuccess(msg) {
-        document.getElementById('passwordSuccessText').textContent = msg;
-        document.getElementById('passwordSuccess').style.display = 'block';
-        document.getElementById('passwordError').style.display = 'none';
-        setTimeout(() => { document.getElementById('passwordSuccess').style.display = 'none'; closePasswordModal(); }, 2000);
-    }
-
-    function resetPasswordStrength() {
-        document.getElementById('passwordStrengthBar').className = 'password-strength-bar';
-        document.querySelectorAll('.password-requirements li').forEach(li => li.classList.remove('valid'));
-    }
-
-    document.getElementById('newPassword').addEventListener('input', function() {
-        const pw = this.value;
-        const bar = document.getElementById('passwordStrengthBar');
-        const hasLength = pw.length >= 6;
-        const hasUpper = /[A-Z]/.test(pw);
-        const hasLower = /[a-z]/.test(pw);
-        const hasNum = /[0-9]/.test(pw);
-
-        document.getElementById('req-length').classList.toggle('valid', hasLength);
-        document.getElementById('req-uppercase').classList.toggle('valid', hasUpper);
-        document.getElementById('req-lowercase').classList.toggle('valid', hasLower);
-        document.getElementById('req-number').classList.toggle('valid', hasNum);
-
-        let strength = 0;
-        if (hasLength) strength++;
-        if (hasUpper) strength++;
-        if (hasLower) strength++;
-        if (hasNum) strength++;
-
-        bar.className = 'password-strength-bar';
-        if (strength <= 2) bar.classList.add('strength-weak');
-        else if (strength === 3) bar.classList.add('strength-medium');
-        else bar.classList.add('strength-strong');
-    });
-
-    // ============================================================
-    //  ✅ INISIALISASI
-    // ============================================================
-    document.addEventListener('DOMContentLoaded', function() {
-        // 1. Pre-warm credentials di background
-        loadCredentials().then(() => {
-            console.log('✅ Pre-warm selesai');
-        }).catch(err => {
-            console.warn('⚠️ Pre-warm gagal:', err);
+        document.getElementById('imageUrl').addEventListener('input', function() {
+            const url = this.value;
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = url ? `<img src="${url}" onerror="this.style.display='none'">` : '<i class="fa-solid fa-image"></i>';
         });
 
-        // 2. Cek session login
-        if (sessionStorage.getItem('adminAuthenticated') === 'true') {
-            isAdminAuthenticated = true;
-            showDashboard();
+        // ============================================================
+        //  PASSWORD MODAL
+        // ============================================================
+        function openPasswordModal() {
+            document.getElementById('modalPassword').classList.add('active');
+            document.getElementById('passwordForm').reset();
+            hidePasswordAlerts();
+            resetPasswordStrength();
         }
-    });
-</script>
+        function closePasswordModal() { document.getElementById('modalPassword').classList.remove('active'); hidePasswordAlerts(); }
+        function hidePasswordAlerts() {
+            document.getElementById('passwordError').style.display = 'none';
+            document.getElementById('passwordSuccess').style.display = 'none';
+        }
+        function showPasswordError(msg) {
+            document.getElementById('passwordErrorText').textContent = msg;
+            document.getElementById('passwordError').style.display = 'block';
+            document.getElementById('passwordSuccess').style.display = 'none';
+            setTimeout(() => document.getElementById('passwordError').style.display = 'none', 5000);
+        }
+        function showPasswordSuccess(msg) {
+            document.getElementById('passwordSuccessText').textContent = msg;
+            document.getElementById('passwordSuccess').style.display = 'block';
+            document.getElementById('passwordError').style.display = 'none';
+            setTimeout(() => { document.getElementById('passwordSuccess').style.display = 'none'; closePasswordModal(); }, 2000);
+        }
+        function resetPasswordStrength() {
+            document.getElementById('passwordStrengthBar').className = 'password-strength-bar';
+            document.querySelectorAll('.password-requirements li').forEach(li => li.classList.remove('valid'));
+        }
+
+        document.getElementById('newPassword').addEventListener('input', function() {
+            const pw = this.value;
+            const bar = document.getElementById('passwordStrengthBar');
+            const checks = {
+                'req-length': pw.length >= 6,
+                'req-uppercase': /[A-Z]/.test(pw),
+                'req-lowercase': /[a-z]/.test(pw),
+                'req-number': /[0-9]/.test(pw)
+            };
+            Object.entries(checks).forEach(([id, valid]) => {
+                document.getElementById(id).classList.toggle('valid', valid);
+            });
+            const strength = Object.values(checks).filter(Boolean).length;
+            bar.className = 'password-strength-bar';
+            if (strength <= 2) bar.classList.add('strength-weak');
+            else if (strength === 3) bar.classList.add('strength-medium');
+            else bar.classList.add('strength-strong');
+        });
+
+        // ============================================================
+        //  INISIALISASI
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCredentials().then(() => {
+                console.log('✅ Pre-warm selesai');
+            }).catch(err => {
+                console.warn('⚠️ Pre-warm gagal:', err);
+            });
+
+            if (sessionStorage.getItem('adminAuthenticated') === 'true') {
+                isAdminAuthenticated = true;
+                showDashboard();
+            }
+        });
+    </script>
 </body>
 </html>
