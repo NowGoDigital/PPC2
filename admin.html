@@ -855,25 +855,35 @@
         });
 
         // ============================================================
-        //  ✅ STATISTICS — Load & Render
+        //  ✅ STATISTICS — Load & Render (DIPERBAIKI)
         // ============================================================
         async function loadStatistics() {
             try {
+                console.log('📊 Memuat statistik...');
+                
                 // Fetch summary harian
                 const summaryDoc = await db.collection('analyticsSummary').doc('daily').get();
                 let dailyData = {};
 
                 if (summaryDoc.exists) {
                     dailyData = summaryDoc.data();
+                    console.log('✅ Data summary ditemukan:', Object.keys(dailyData).length, 'hari');
+                } else {
+                    console.log('⚠️ Dokumen analyticsSummary/daily belum ada');
                 }
 
                 const today = getTodayDate();
-                const todayCount = dailyData[today] || 0;
+                const todayCount = parseInt(dailyData[today]) || 0;
 
-                // Total visitors
+                // ✅ Total visitors - Hitung SEMUA hari
                 let totalVisitors = 0;
-                const dates = Object.keys(dailyData).sort();
-                dates.forEach(d => { totalVisitors += dailyData[d]; });
+                const allDates = Object.keys(dailyData);
+                allDates.forEach(date => {
+                    const count = parseInt(dailyData[date]) || 0;
+                    totalVisitors += count;
+                });
+
+                console.log('📈 Total pengunjung:', totalVisitors, 'dari', allDates.length, 'hari');
 
                 // 7 hari terakhir
                 const last7Days = [];
@@ -881,30 +891,33 @@
                     const d = new Date();
                     d.setDate(d.getDate() - i);
                     const dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+                    const count = parseInt(dailyData[dateStr]) || 0;
                     last7Days.push({
                         date: dateStr,
-                        count: dailyData[dateStr] || 0
+                        count: count
                     });
                 }
 
                 const weekTotal = last7Days.reduce((sum, d) => sum + d.count, 0);
-                const avgPerDay = dates.length > 0 ? Math.round(totalVisitors / Math.max(dates.length, 1)) : 0;
+                const avgPerDay = allDates.length > 0 ? (totalVisitors / allDates.length).toFixed(1) : 0;
 
                 // Update stat cards
-                document.getElementById('statTotal').textContent = totalVisitors.toLocaleString();
-                document.getElementById('statToday').textContent = todayCount.toLocaleString();
-                document.getElementById('statWeek').textContent = weekTotal.toLocaleString();
-                document.getElementById('statAvg').textContent = avgPerDay.toLocaleString();
+                document.getElementById('statTotal').textContent = totalVisitors.toLocaleString('id-ID');
+                document.getElementById('statToday').textContent = todayCount.toLocaleString('id-ID');
+                document.getElementById('statWeek').textContent = weekTotal.toLocaleString('id-ID');
+                document.getElementById('statAvg').textContent = avgPerDay;
 
                 // Render chart
                 renderChart(last7Days);
 
                 // Load recent visitors
-                loadRecentVisitors();
+                await loadRecentVisitors();
+
+                console.log('✅ Statistik berhasil dimuat');
 
             } catch (error) {
-                console.error('Error loading stats:', error);
-                showToast('Gagal memuat statistik', 'error');
+                console.error('❌ Error loading stats:', error);
+                showToast('Gagal memuat statistik: ' + error.message, 'error');
             }
         }
 
@@ -965,8 +978,10 @@
                         </tr>
                     `;
                 });
+                
+                console.log('✅ Tabel visitor dimuat:', snapshot.size, 'data');
             } catch (error) {
-                console.error('Error loading recent visitors:', error);
+                console.error('❌ Error loading recent visitors:', error);
                 tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#999;">Gagal memuat data.</td></tr>';
             }
         }
