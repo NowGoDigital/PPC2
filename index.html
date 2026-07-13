@@ -1063,28 +1063,16 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
+<!-- ✅ Firebase Analytics Tracking - MENGGUNAKAN INSTANCE YANG SUDAH ADA -->
 <script>
     // ============================================================
-    //  ✅ FIREBASE CONFIG — SAMA DENGAN admin.html!
+    //  ✅ ANALYTICS TRACKING - Menggunakan Firebase yang sudah di-init
+    //  PENTING: Jangan inisialisasi ulang, pakai instance dari gallery
     // ============================================================
-    const firebaseConfig = {
-        apiKey: "AIzaSyBVKTxJy8c-F-ljIe61NJPJHVhp-ufnyME",
-        authDomain: "ppc-certified-859cf.firebaseapp.com",
-        projectId: "ppc-certified-859cf",
-        storageBucket: "ppc-certified-859cf.firebasestorage.app",
-        messagingSenderId: "752025208586",
-        appId: "1:752025208586:web:5dd072c2fe6cbd3b199cf3"
-    };
-
-    // Cek apakah Firebase sudah di-inisialisasi (hindari double init)
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
+    
+    // Gunakan db yang sudah ada dari blok gallery di atas
     const analyticsDb = firebase.firestore();
 
-    // ============================================================
-    //  ✅ ANALYTICS — Track setiap kunjungan
-    // ============================================================
     function trackVisitor() {
         // Cegah tracking berulang dalam 1 sesi browser
         if (sessionStorage.getItem('visitorTracked')) return;
@@ -1105,6 +1093,8 @@
         else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
         else if (ua.includes('Edg')) browser = 'Edge';
 
+        console.log('📊 Tracking visitor...', { device, browser, date: today });
+
         // 1. Simpan detail kunjungan
         analyticsDb.collection('analytics').add({
             timestamp: now.toISOString(),
@@ -1112,22 +1102,26 @@
             device: device,
             browser: browser,
             date: today
-        }).catch(err => console.warn('Analytics write error:', err));
+        })
+        .then(() => console.log('✅ Visitor data saved'))
+        .catch(err => console.error('❌ Analytics write error:', err));
 
         // 2. Update ringkasan harian (increment counter)
         const summaryRef = analyticsDb.collection('analyticsSummary').doc('daily');
-        summaryRef.get().then(doc => {
-            if (doc.exists) {
-                const data = doc.data();
-                const currentCount = data[today] || 0;
-                summaryRef.update({ [today]: currentCount + 1 });
-            } else {
-                summaryRef.set({ [today]: 1 });
-            }
-        }).catch(err => console.warn('Summary write error:', err));
+        summaryRef.get()
+            .then(doc => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    const currentCount = data[today] || 0;
+                    return summaryRef.update({ [today]: currentCount + 1 });
+                } else {
+                    return summaryRef.set({ [today]: 1 });
+                }
+            })
+            .then(() => console.log('✅ Daily summary updated'))
+            .catch(err => console.error('❌ Summary write error:', err));
 
         sessionStorage.setItem('visitorTracked', 'true');
-        console.log('✅ Visitor tracked');
     }
 
     // Track saat halaman dibuka
