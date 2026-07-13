@@ -1058,6 +1058,83 @@
         document.addEventListener('DOMContentLoaded', loadGalleryFromFirebase);
     </script>
 
+
+    <!-- Firebase SDK untuk Analytics Tracking -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+    // ============================================================
+    //  ✅ FIREBASE CONFIG — SAMA DENGAN admin.html!
+    // ============================================================
+    const firebaseConfig = {
+        apiKey: "GANTI_DENGAN_API_KEY_ANDA",
+        authDomain: "GANTI_DENGAN_AUTH_DOMAIN_ANDA",
+        projectId: "GANTI_DENGAN_PROJECT_ID_ANDA",
+        storageBucket: "GANTI_DENGAN_STORAGE_BUCKET_ANDA",
+        messagingSenderId: "GANTI_DENGAN_MESSAGING_SENDER_ID_ANDA",
+        appId: "GANTI_DENGAN_APP_ID_ANDA"
+    };
+
+    // Cek apakah Firebase sudah di-inisialisasi (hindari double init)
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    const analyticsDb = firebase.firestore();
+
+    // ============================================================
+    //  ✅ ANALYTICS — Track setiap kunjungan
+    // ============================================================
+    function trackVisitor() {
+        // Cegah tracking berulang dalam 1 sesi browser
+        if (sessionStorage.getItem('visitorTracked')) return;
+
+        const now = new Date();
+        const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+
+        // Detect device
+        const ua = navigator.userAgent;
+        let device = 'Desktop';
+        if (/Mobi|Android/i.test(ua)) device = 'Mobile';
+        else if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
+
+        // Detect browser
+        let browser = 'Lainnya';
+        if (ua.includes('Chrome') && !ua.includes('Edg')) browser = 'Chrome';
+        else if (ua.includes('Firefox')) browser = 'Firefox';
+        else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
+        else if (ua.includes('Edg')) browser = 'Edge';
+
+        // 1. Simpan detail kunjungan
+        analyticsDb.collection('analytics').add({
+            timestamp: now.toISOString(),
+            page: 'index.html',
+            device: device,
+            browser: browser,
+            date: today
+        }).catch(err => console.warn('Analytics write error:', err));
+
+        // 2. Update ringkasan harian (increment counter)
+        const summaryRef = analyticsDb.collection('analyticsSummary').doc('daily');
+        summaryRef.get().then(doc => {
+            if (doc.exists) {
+                const data = doc.data();
+                const currentCount = data[today] || 0;
+                summaryRef.update({ [today]: currentCount + 1 });
+            } else {
+                summaryRef.set({ [today]: 1 });
+            }
+        }).catch(err => console.warn('Summary write error:', err));
+
+        sessionStorage.setItem('visitorTracked', 'true');
+        console.log('✅ Visitor tracked');
+    }
+
+    // Track saat halaman dibuka
+    document.addEventListener('DOMContentLoaded', trackVisitor);
+</script>
+
+    
 </body>
 </html>
 
