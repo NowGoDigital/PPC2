@@ -36,16 +36,18 @@
         .section-title span { color: var(--primary-mid); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; display: block; margin-bottom: 15px; }
         .section-title h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--primary-dark); }
 
-        /* Khusus section Profil - judul lebih kecil */
-        .about-content .section-title h2 {
-            font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-            line-height: 1.3;
-            margin-bottom: 0;
-        }
-        .about-content .section-title {
-            margin-bottom: 20px !important;
-        }
+        /* ✅ TAMBAHKAN INI - khusus section Profil */
+.about-content .section-title h2 {
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+    line-height: 1.3;
+    margin-bottom: 0;
+}
 
+.about-content .section-title {
+    margin-bottom: 20px !important;
+}
+
+        
         .btn-premium {
             display: inline-block; padding: 18px 45px; background: var(--accent-gold);
             color: var(--primary-dark); font-weight: 700; border-radius: 50px;
@@ -122,11 +124,12 @@
         .company-card-content strong { color: var(--accent-gold); }
 
         .dual-cert-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
-        .cert-badge { background: var(--white); border: 2px solid var(--accent-gold); border-radius: 12px; padding: 20px 12px 15px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .cert-badge { background: var(--white); border: 2px solid var(--accent-gold); border-radius: 12px; padding: 15px 12px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
         .cert-badge::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent-gold), var(--primary-mid)); }
         .cert-badge::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent 40%, rgba(251,191,36,0.1) 50%, transparent 60%); transform: translateX(-100%); transition: transform 0.6s; }
         .cert-badge:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(6,78,59,0.18); border-color: var(--primary-mid); }
         .cert-badge:hover::after { transform: translateX(100%); }
+        .cert-badge-icon { width: 42px; height: 42px; background: var(--primary-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: var(--accent-gold); font-size: 1.1rem; }
         .cert-badge h5 { font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 4px; font-family: 'Playfair Display', serif; line-height: 1.3; }
         .cert-badge p { font-size: 0.7rem; color: #666; line-height: 1.3; margin-bottom: 6px; }
         .cert-badge .cert-status { display: inline-block; padding: 2px 10px; background: #d1fae5; color: var(--primary-mid); border-radius: 50px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3px; }
@@ -381,7 +384,7 @@
             .company-card-content h4 { font-size: 1rem; }
             .company-card-content p { font-size: 0.78rem; }
             .dual-cert-wrapper { grid-template-columns: 1fr; gap: 10px; }
-            .cert-badge { padding: 18px 14px 14px; }
+            .cert-badge { padding: 14px; }
             .cert-badge h5 { font-size: 0.85rem; }
             .cert-badge p { font-size: 0.72rem; }
 
@@ -475,6 +478,7 @@
             .contact-info { padding: 25px 15px; }
             .contact-form { padding: 25px 15px; }
             .company-card-icon { width: 45px; height: 45px; font-size: 1.2rem; }
+            .cert-badge-icon { width: 40px; height: 40px; font-size: 1rem; }
             .experience-badge { padding: 8px 12px; gap: 7px; max-width: 145px; bottom: -12px; right: 0px; }
             .experience-badge h3 { font-size: 1.2rem; }
             .experience-badge .badge-text strong { font-size: 0.62rem; }
@@ -492,6 +496,297 @@
 
         body::-webkit-scrollbar { width: 0; display: none; }
         body { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* ========================================
+   GOOGLE MAPS EMBED - CONTACT SECTION
+   ======================================== */
+.maps-wrapper {
+    margin-top: 25px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(6, 78, 59, 0.12);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+    padding: 3px;
+}
+.maps-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 35px rgba(6, 78, 59, 0.22);
+}
+.maps-inner {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    background: #f3f4f6;
+}
+.maps-inner iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+.maps-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 10px 18px;
+    background: rgba(6, 78, 59, 0.08);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #064e3b;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.maps-label:hover {
+    background: #059669;
+    color: #ffffff;
+    transform: scale(1.03);
+}
+.maps-label i {
+    color: #dc2626;
+    transition: color 0.3s ease;
+}
+.maps-label:hover i {
+    color: #ffffff;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    .maps-wrapper {
+        margin-top: 20px;
+        padding: 2px;
+    }
+    .maps-inner {
+        padding-bottom: 75%; /* Lebih tinggi di mobile (4:3) */
+    }
+    .maps-label {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .maps-inner {
+        padding-bottom: 100%; /* Square di HP kecil (1:1) */
+    }
+}
+    
+    
+ /* ========================================
+   DOWNLOAD PDF CARD - CONTACT SECTION
+   ======================================== */
+.download-pdf-card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.download-pdf-link {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+    border-radius: 16px;
+    text-decoration: none;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(6, 78, 59, 0.25);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+}
+.download-pdf-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(6, 78, 59, 0.35);
+    border-color: var(--accent-gold);
+}
+.download-pdf-link:active {
+    transform: translateY(-1px);
+}
+
+/* Shine effect saat hover */
+.download-pdf-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+.download-pdf-link:hover::before {
+    left: 100%;
+}
+
+/* Badge PDF di pojok kanan atas */
+.pdf-badge {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+/* Icon lingkaran */
+.pdf-icon-wrapper {
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease;
+    z-index: 1;
+}
+.download-pdf-link:hover .pdf-icon-wrapper {
+    transform: scale(1.1) rotate(-5deg);
+}
+.pdf-icon-wrapper i {
+    font-size: 1.8rem;
+    color: #e53e3e;
+}
+
+/* Text content */
+.pdf-content {
+    flex: 1;
+    z-index: 1;
+    min-width: 0;
+}
+.pdf-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.pdf-subtitle {
+    font-size: 0.82rem;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.pdf-subtitle span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.pdf-subtitle i {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+/* Arrow icon di kanan */
+.pdf-arrow {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+.download-pdf-link:hover .pdf-arrow {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    transform: translateX(4px);
+}
+
+/* Pulse animation untuk icon download */
+@keyframes pulseDownload {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+}
+.download-pdf-link:hover .pdf-arrow i {
+    animation: pulseDownload 1s ease-in-out infinite;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .download-pdf-link {
+        padding: 18px 20px;
+        gap: 14px;
+    }
+    .pdf-icon-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+    .pdf-icon-wrapper i {
+        font-size: 1.5rem;
+    }
+    .pdf-title {
+        font-size: 1rem;
+    }
+    .pdf-subtitle {
+        font-size: 0.75rem;
+        gap: 8px;
+    }
+    .pdf-arrow {
+        width: 32px;
+        height: 32px;
+    }
+    .pdf-badge {
+        font-size: 0.6rem;
+        padding: 3px 8px;
+        top: 8px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .download-pdf-link {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        padding: 20px 16px;
+    }
+    .pdf-content {
+        flex: 1 1 100%;
+        order: 2;
+        text-align: center;
+    }
+    .pdf-arrow {
+        display: none;
+    }
+}   
+    
+    
     </style>
 </head>
 <body>
@@ -557,7 +852,7 @@
         <div class="stats-bar" data-aos="fade-up">
             <div class="stat-item"><span class="stat-number">15+</span><span class="stat-label">Tahun Pengalaman</span></div>
             <div class="stat-item"><span class="stat-number">8+</span><span class="stat-label">Wilayah di Indonesia</span></div>
-            <div class="stat-item"><span class="stat-number">2</span><span class="stat-label">Sertifikat Kompetensi</span></div>
+            <div class="stat-item"><span class="stat-number">2</span><span class="stat-label">Sertifikat</span></div>
             <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Compliance</span></div>
         </div>
     </div>
@@ -586,30 +881,31 @@
                     <p style="margin-bottom: 22px; color: #374151; text-align: justify; font-size: 0.95rem;">
                         Sampling bukan sekadar mengambil barang — ini adalah <strong>fondasi hukum dari kualitas produk agribisnis</strong>. Sebagai Petugas Pengambil Contoh (PPC) yang tersertifikasi oleh <strong>BNSP</strong> dan LSP yang diakreditasi <strong>KAN</strong>, setiap prosedur pengambilan contoh pupuk dan pestisida dijamin mengacu pada Standar Nasional Indonesia (SNI) yang berlaku, sehingga diperoleh hasil sampling yang representatif.
                     </p>
-
-                    <!-- ✅ PERUBAHAN 1: Logo BMJ menggantikan icon building -->
                     <div class="company-card">
-                        <div class="company-card-icon" style="background: var(--white); padding: 4px;">
-                            <img src="BMJ.jpg" alt="Logo CV Bina Mahabbah Jaya Mataram" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                        <div class="company-card-icon">
+                            <i class="fa-solid fa-building"></i>
                         </div>
                         <div class="company-card-content">
                             <h4>CV Bina Mahabbah Jaya Mataram</h4>
                             <p>Jasa Pengambilan Contoh <strong>Sarana Produksi Pertanian</strong>: Pupuk Organik, Anorganik, Hayati, serta Pestisida (Herbisida, Insektisida, Fungisida).</p>
-                        </div>
+                        </div>                         
                     </div>
 
                     <p style="margin-bottom: 22px; color: #374151; text-align: justify; font-size: 0.95rem;">
-                        Saya, <strong>P. Sudjudi BSC, SP</strong> selaku PPC dari CV. Bina Mahabbah Jaya Mataram memiliki 2 sertifikat kompetensi sebagai PPC:
-                    </p>
+                        Saya, <strong>P. Sudjudi BSC, SP</strong> selaku PPC dari CV. Bina Mahabbah Jaya Mataram memiliki 2 sertifikat kompetensi sebagai PPC</p>
+                     
 
-                    <!-- ✅ PERUBAHAN 2: Icon dihilangkan dari kedua cert-badge -->
+
+                    
                     <div class="dual-cert-wrapper">
                         <div class="cert-badge">
+                            <div class="cert-badge-icon"><i class="fa-solid fa-certificate"></i></div>
                             <h5>BNSP - LSP Pertanian Organik</h5>
                             <p>Badan Nasional Sertifikasi Profesi</p>
                             <span class="cert-status">✓ AKTIF</span>
                         </div>
                         <div class="cert-badge">
+                            <div class="cert-badge-icon"><i class="fa-solid fa-award"></i></div>
                             <h5>KAN - LSP PPMB Kemendag</h5>
                             <p>Balai Sertifikasi Kemendag RI</p>
                             <span class="cert-status">✓ AKTIF</span>
@@ -618,7 +914,7 @@
                 </div>
             </div>
 
-            <!-- FEATURE LIST - FULL WIDTH -->
+            <!-- ✅ FEATURE LIST - COMPACT -->
             <ul class="feature-list-compact" data-aos="fade-up" data-aos-delay="200">
                 <li>
                     <div class="check-icon"><i class="fa-solid fa-map-location-dot"></i></div>
@@ -660,19 +956,19 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon"><i class="fa-solid fa-flask"></i></div>
                     <h3>Sampling Pupuk</h3>
-                    <p>Pengambilan contoh Pupuk Urea, NPK, Organik, dan Hayati sesuai SNI 19-0429-1989 dan SNI 19-0428-1998. Sampling di Gudang Pabrik, Pelabuhan, Transit, atau Distribusi.</p>
+                    <p>Pupuk Organik, Pupuk Anorganik dan Pupuk Hayati dengan Lokasi Sampling di Gudang Pabrik, Gudang Pelabuhan, Gudang Transit dan di Titik Distrikbusi sesuai SNI 19-0429-1989 dan SNI 19-0428-1998.</p>
                     <a href="#contact" class="service-link">Detail Layanan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
                     <h3>Sampling Pestisida</h3>
-                    <p>Verifikasi fisik, kemasan, dan pengambilan contoh Pestisida Cair/Padat sesuai SNI 01-2806-2006 untuk uji residu dan legalitas di Gudang, Pabrik, atau Toko.</p>
+                    <p>Herbisida, Insectisida, Fungisida dengan Lokasi Sampling di Gudang Pabrik, Gudang Pelabuhan, Gudang Transit dan di Titik Distrikbusi sesuai SNI 19-0429-1989 dan SNI 19-0428-1998.</p>
                     <a href="#contact" class="service-link">Detail Layanan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-icon"><i class="fa-solid fa-file-signature"></i></div>
                     <h3>Dokumentasi Open Camera (DOC) & Dokumen Sampling (BAPC)</h3>
-                    <p>Penyusunan Berita Acara Pengambilan Contoh (BAPC) yang valid secara hukum, dilengkapi dokumentasi Open Camera dengan timestamp & koordinat GPS.</p>
+                    <p>DOC untuk otentikasi photo sesuai lokasi GPS dan waktu pelaksanaan sampling dan Dokumen Sampling merupakan Berita Acara Pengambilan Contoh yang diketahui dan disetujui oleh PPC bersama Pemilik Sample serta para saksi petugas terkait di lokasi sampling untuk keperluan Regulator.</p>
                     <a href="#contact" class="service-link">Detail Layanan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -736,10 +1032,59 @@
             <div class="contact-wrapper" data-aos="fade-up">
                 <div class="contact-info">
                     <h3 style="font-size: 2rem; margin-bottom: 20px;">Data Kontak</h3>
-                    <p style="margin-bottom: 40px; opacity: 0.8;">Isi formulir di samping untuk terhubung langsung dengan kami via WhatsApp.</p>
-                    <div style="margin-bottom: 20px;"><i class="fa-solid fa-phone" style="color: var(--accent-gold); margin-right: 15px;"></i> +62 812-3456-7890</div>
-                    <div style="margin-bottom: 20px;"><i class="fa-solid fa-envelope" style="color: var(--accent-gold); margin-right: 15px;"></i> ppc.expert@email.com</div>
+                    <p style="margin-bottom: 40px; opacity: 0.8;">Isi formulir di samping atau di bawah untuk terhubung langsung dengan kami via WhatsApp.</p>
+                    
+                    
+                    <!-- 📄 Download PDF Brosur -->
+<div class="download-pdf-card">
+    <a href="https://drive.google.com/uc?export=download&id=187Sl3yBP17kRqrr-DybVSAyO9wnO9BVd" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="download-pdf-link"
+       download>
+        
+        <!-- Badge PDF -->
+        <span class="pdf-badge">PDF</span>
+        
+        <!-- Icon PDF dalam lingkaran -->
+        <div class="pdf-icon-wrapper">
+            <i class="fa-solid fa-file-pdf"></i>
+        </div>
+        
+        <!-- Text Content -->
+        <div class="pdf-content">
+            <div class="pdf-title">
+                Contoh Surat Permohonan
+                <i class="fa-solid fa-sparkles" style="color: var(--accent-gold); font-size: 0.6rem;"></i>
+            </div>
+            
+        </div>
+        
+        <!-- Arrow Icon -->
+        <div class="pdf-arrow">
+            <i class="fa-solid fa-arrow-down"></i>
+        </div>
+    </a>
+</div>                    
+                    
+                    
+                    <div style="margin-bottom: 20px;"><i class="fa-solid fa-envelope" style="color: var(--accent-gold); margin-right: 15px;"></i> ppcbinamahabbah@gmail.com</div>
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-location-dot" style="color: var(--accent-gold); margin-right: 15px;"></i> Mataram Lombok - NTB</div>
+                
+                <!-- 🗺️ Google Maps Embed -->
+    <div class="maps-wrapper">
+        <div class="maps-inner">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!4v1783920576702!6m8!1m7!1sA9O17Pib7jHuwWPoVQ-iiQ!2m2!1d-8.573283294574992!2d116.1093033592509!3f64.050934!4f0!5f0.7820865974627469"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi PPC Certified - Mataram, Lombok">
+            </iframe>
+        </div>
+    </div>
+    
+                    
                 </div>
                 <div class="contact-form">
                     <form id="whatsappForm" onsubmit="kirimKeWhatsApp(event)">
@@ -772,8 +1117,8 @@
                     </div>
                 </div>
                 <div class="footer-col"><h4>Navigasi</h4><ul class="footer-links"><li><a href="#home"><i class="fa-solid fa-chevron-right"></i> Beranda</a></li><li><a href="#about"><i class="fa-solid fa-chevron-right"></i> Profil Ahli</a></li><li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Layanan Sampling</a></li><li><a href="#sop"><i class="fa-solid fa-chevron-right"></i> SOP Kerja</a></li></ul></div>
-                <div class="footer-col"><h4>Layanan</h4><ul class="footer-links"><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pupuk</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pestisida</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Uji Laboratorium</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Konsultasi Regulasi</a></li></ul></div>
-                <div class="footer-col"><h4>Hubungi Kami</h4><ul class="footer-contact"><li><i class="fa-solid fa-location-dot"></i><span>Jl. Agribisnis No. 88, Mataram, Lombok - NTB</span></li><li><i class="fa-solid fa-phone"></i><span>+62 8175761165</span></li><li><i class="fa-solid fa-envelope"></i><span>info@agrisample.id</span></li></ul></div>
+                <div class="footer-col"><h4>Layanan</h4><ul class="footer-links"><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pupuk</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pestisida</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Konsultasi Regulasi</a></li></ul></div>
+                <div class="footer-col"><h4>Hubungi Kami</h4><ul class="footer-contact"><li><i class="fa-solid fa-location-dot"></i><span>Jl. Hos Cokroaminoto No.68 Mataram, Lombok - NTB</span></li><li><i class="fa-solid fa-phone"></i><span>+62 8175761165</span></li><li><i class="fa-solid fa-envelope"></i><span>ppcbinamahabbah@gmail.com</span></li></ul></div>
             </div>
             <div class="copyright"><p>&copy; 2026 DIGITALPro. All Rights Reserved.</p></div>
         </div>
@@ -818,184 +1163,390 @@
             window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
         }
     </script>
+        <!-- ✅ Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
     <script>
-        let galleryDataGlobal = []; let filteredData = []; let currentDisplayCount = 8;
-        const ITEMS_PER_LOAD = 4; let currentFilter = 'newest'; let currentYear = 'all';
+        // ============================================================
+        //  ✅ KONFIGURASI FIREBASE — SAMA PERSIS DENGAN admin.html!
+        // ============================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVKTxJy8c-F-ljIe61NJPJHVhp-ufnyME",
+            authDomain: "ppc-certified-859cf.firebaseapp.com",
+            projectId: "ppc-certified-859cf",
+            storageBucket: "ppc-certified-859cf.firebasestorage.app",
+            messagingSenderId: "752025208586",
+            appId: "1:752025208586:web:5dd072c2fe6cbd3b199cf3"
+        };
+
+        // Inisialisasi Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ============================================================
+        //  VARIABEL GLOBAL
+        // ============================================================
+        let galleryDataGlobal = [];
+        let filteredData = [];
+        let currentDisplayCount = 8;
+        const ITEMS_PER_LOAD = 4;
+        let currentFilter = 'newest';
+        let currentYear = 'all';
+
+        // ============================================================
+        //  UTILITY FUNCTIONS
+        // ============================================================
         function formatTanggal(dateStr) {
             if (!dateStr) return '';
             const bulan = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
-            const d = new Date(dateStr); if (isNaN(d.getTime())) return '';
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '';
             return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
         }
+
         function getUniqueYears(data) {
             const years = new Set();
-            data.forEach(item => { if (item.date) { const year = new Date(item.date).getFullYear(); if (!isNaN(year)) years.add(year.toString()); } });
+            data.forEach(item => {
+                if (item.date) {
+                    const year = new Date(item.date).getFullYear();
+                    if (!isNaN(year)) years.add(year.toString());
+                }
+            });
             return Array.from(years).sort((a, b) => b - a);
         }
+
         function sortAndFilterData(data, filter, year) {
             let result = [...data];
-            if (year !== 'all') { result = result.filter(item => { if (!item.date) return false; return new Date(item.date).getFullYear().toString() === year; }); }
-            result.sort((a, b) => { const dateA = a.date ? new Date(a.date).getTime() : 0; const dateB = b.date ? new Date(b.date).getTime() : 0; return filter === 'newest' ? dateB - dateA : dateA - dateB; });
+            if (year !== 'all') {
+                result = result.filter(item => {
+                    if (!item.date) return false;
+                    return new Date(item.date).getFullYear().toString() === year;
+                });
+            }
+            result.sort((a, b) => {
+                const dateA = a.date ? new Date(a.date).getTime() : 0;
+                const dateB = b.date ? new Date(b.date).getTime() : 0;
+                return filter === 'newest' ? dateB - dateA : dateA - dateB;
+            });
             return result;
         }
+
         function renderGalleryCard(item, index) {
             const tanggalFormatted = formatTanggal(item.date);
-            const dateBadge = tanggalFormatted ? `<span class="gallery-date"><i class="fa-regular fa-calendar"></i> ${tanggalFormatted}</span>` : '';
-            return `<div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index % 4) * 80}"><div class="gallery-img-box"><img src="${item.image}" alt="${item.title}" loading="lazy"><div class="scroll-indicator"><i class="fa-solid fa-angles-up-down"></i><span>Geser</span></div><div class="gallery-overlay"><div class="overlay-content"><span class="gallery-tag">${item.tag}</span>${dateBadge}<h3>${item.title}</h3><p><i class="fa-solid fa-location-dot"></i> ${item.location}</p><p class="desc-small">${item.description}</p></div></div></div></div>`;
+            const dateBadge = tanggalFormatted
+                ? `<span class="gallery-date"><i class="fa-regular fa-calendar"></i> ${tanggalFormatted}</span>`
+                : '';
+            return `<div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index % 4) * 80}">
+                <div class="gallery-img-box">
+                    <img src="${item.image}" alt="${item.title}" loading="lazy">
+                    <div class="scroll-indicator"><i class="fa-solid fa-angles-up-down"></i><span>Geser</span></div>
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <span class="gallery-tag">${item.tag}</span>${dateBadge}
+                            <h3>${item.title}</h3>
+                            <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
+                            <p class="desc-small">${item.description}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
         }
+
         function populateYearFilter() {
             const yearSelect = document.getElementById('yearFilter');
             const years = getUniqueYears(galleryDataGlobal);
             yearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
-            years.forEach(year => { const option = document.createElement('option'); option.value = year; option.textContent = year; yearSelect.appendChild(option); });
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            });
             yearSelect.value = currentYear;
         }
+
         function updateFilterInfo() {
             const infoEl = document.getElementById('filterInfo');
-            const totalFiltered = filteredData.length; const totalAll = galleryDataGlobal.length;
+            const totalFiltered = filteredData.length;
+            const totalAll = galleryDataGlobal.length;
             if (currentYear !== 'all' || currentFilter !== 'newest') {
                 let infoText = `Menampilkan <strong>${totalFiltered}</strong> dari ${totalAll} foto`;
                 if (currentYear !== 'all') infoText += ` pada tahun <strong>${currentYear}</strong>`;
                 if (currentFilter === 'oldest') infoText += ' (diurutkan dari <strong>terlama</strong>)';
                 else infoText += ' (diurutkan dari <strong>terbaru</strong>)';
-                infoEl.innerHTML = infoText; infoEl.style.display = 'block';
-            } else { infoEl.style.display = 'none'; }
+                infoEl.innerHTML = infoText;
+                infoEl.style.display = 'block';
+            } else {
+                infoEl.style.display = 'none';
+            }
         }
+
         function renderGallery() {
             const galleryGrid = document.getElementById('galleryGrid');
             const loadMoreWrapper = document.getElementById('loadMoreWrapper');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const galleryCounter = document.getElementById('galleryCounter');
+
             currentDisplayCount = Math.min(8, filteredData.length);
+
             if (filteredData.length === 0) {
-                galleryGrid.innerHTML = `<div class="gallery-empty"><i class="fa-regular fa-image"></i><h3>Tidak Ada Foto</h3><p>Tidak ada foto yang sesuai dengan filter.</p></div>`;
-                loadMoreWrapper.style.display = 'none'; updateFilterInfo(); return;
+                galleryGrid.innerHTML = `<div class="gallery-empty">
+                    <i class="fa-regular fa-image"></i>
+                    <h3>Tidak Ada Foto</h3>
+                    <p>Tidak ada foto yang sesuai dengan filter.</p>
+                </div>`;
+                loadMoreWrapper.style.display = 'none';
+                updateFilterInfo();
+                return;
             }
+
             const displayData = filteredData.slice(0, currentDisplayCount);
             galleryGrid.innerHTML = displayData.map((item, index) => renderGalleryCard(item, index)).join('');
+
             if (filteredData.length > 8) {
                 loadMoreWrapper.style.display = 'block';
-                if (currentDisplayCount >= filteredData.length) { loadMoreBtn.disabled = true; loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>'; }
-                else { loadMoreBtn.disabled = false; const remaining = filteredData.length - currentDisplayCount; loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`; }
+                if (currentDisplayCount >= filteredData.length) {
+                    loadMoreBtn.disabled = true;
+                    loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
+                } else {
+                    loadMoreBtn.disabled = false;
+                    const remaining = filteredData.length - currentDisplayCount;
+                    loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
+                }
                 galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${filteredData.length} foto`;
-            } else { loadMoreWrapper.style.display = 'none'; }
-            updateFilterInfo(); if (typeof AOS !== 'undefined') AOS.refresh();
+            } else {
+                loadMoreWrapper.style.display = 'none';
+            }
+
+            updateFilterInfo();
+            if (typeof AOS !== 'undefined') AOS.refresh();
         }
+
         function applyFilter(filter) {
             currentFilter = filter;
             document.getElementById('btnNewest').classList.toggle('active', filter === 'newest');
             document.getElementById('btnOldest').classList.toggle('active', filter === 'oldest');
-            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear); renderGallery();
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            renderGallery();
         }
+
         function applyYearFilter(year) {
             currentYear = year;
             document.getElementById('yearFilter').classList.toggle('active', year !== 'all');
-            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear); renderGallery();
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            renderGallery();
         }
+
         function loadMoreGallery() {
             const prevCount = currentDisplayCount;
             currentDisplayCount = Math.min(currentDisplayCount + ITEMS_PER_LOAD, filteredData.length);
             const galleryGrid = document.getElementById('galleryGrid');
             const newItems = filteredData.slice(prevCount, currentDisplayCount);
-            newItems.forEach((item, index) => { const div = document.createElement('div'); div.innerHTML = renderGalleryCard(item, prevCount + index); galleryGrid.appendChild(div.firstElementChild); });
-            const loadMoreBtn = document.getElementById('loadMoreBtn'); const galleryCounter = document.getElementById('galleryCounter');
-            if (currentDisplayCount >= filteredData.length) { loadMoreBtn.disabled = true; loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>'; }
-            else { const remaining = filteredData.length - currentDisplayCount; loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`; }
+            newItems.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.innerHTML = renderGalleryCard(item, prevCount + index);
+                galleryGrid.appendChild(div.firstElementChild);
+            });
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const galleryCounter = document.getElementById('galleryCounter');
+            if (currentDisplayCount >= filteredData.length) {
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
+            } else {
+                const remaining = filteredData.length - currentDisplayCount;
+                loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
+            }
             galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${filteredData.length} foto`;
             if (typeof AOS !== 'undefined') AOS.refresh();
-            setTimeout(() => { const newCards = galleryGrid.querySelectorAll('.gallery-card'); if (newCards[prevCount]) newCards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
+            setTimeout(() => {
+                const newCards = galleryGrid.querySelectorAll('.gallery-card');
+                if (newCards[prevCount]) newCards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
         }
 
-        // ✅ Bridge function untuk Firebase
-        window.reloadGalleryFromFirebase = function(data) {
-            galleryDataGlobal = data;
-            populateYearFilter();
-            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
-            renderGallery();
-        };
+        // ============================================================
+        //  ✅ FIREBASE: LOAD GALLERY DENGAN REALTIME LISTENER
+        // ============================================================
+        function loadGalleryFromFirebase() {
+            // Realtime listener — gallery di halaman utama otomatis update
+            // saat admin menambah/edit/hapus data dari admin.html
+            db.collection('gallery').onSnapshot((snapshot) => {
+                galleryDataGlobal = [];
+                snapshot.forEach((doc) => {
+                    galleryDataGlobal.push(doc.data());
+                });
 
-        function loadGallery() {
-            const stored = localStorage.getItem('galleryData');
-            if (stored) { galleryDataGlobal = JSON.parse(stored); }
-            else {
-                galleryDataGlobal = [
-                    { tag: 'Pupuk Anorganik', title: 'Sampling Lot Urea Curah', location: 'Gudang Pelindo, Surabaya', description: 'Pengambilan contoh menggunakan metode tusuk (probe) pada 20 titik berbeda untuk memastikan homogenitas.', image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop', date: '2026-06-15' },
-                    { tag: 'Chain of Custody', title: 'Segel & Labeling Resmi', location: 'Laboratorium PT. XYZ', description: 'Penerapan segel hologram dan tanda tangan basah di atas kemasan sampel untuk menjamin keaslian.', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop', date: '2026-05-20' },
-                    { tag: 'Pestisida Cair', title: 'Verifikasi Insektisida', location: 'Pabrik Cikarang, Bekasi', description: 'Penghomogenan cairan dalam tangki reaktor sebelum pengambilan contoh akhir (final batch).', image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop', date: '2026-04-10' },
-                    { tag: 'Administrasi', title: 'Penandatanganan BAS', location: 'Kantor Regulator', description: 'Validasi data hasil sampling melalui Berita Acara Sampling (BAS) yang disetujui dua belah pihak.', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop', date: '2025-12-05' },
-                    { tag: 'Peralatan', title: 'Preparasi Alat Sampling', location: 'Area Steril', description: 'Pembersihan alat stainless steel dengan alkohol teknis untuk mencegah kontaminasi silang antar lot.', image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop', date: '2025-10-18' },
-                    { tag: 'Pupuk Organik', title: 'Sampling Kompos Granul', location: 'Pabrik Bogor', description: 'Metode kuadran pada tumpukan curah untuk mendapatkan representasi kadar air yang akurat.', image: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop', date: '2025-08-22' }
-                ];
-                localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
-            }
-            let needUpdate = false;
-            galleryDataGlobal = galleryDataGlobal.map((item, index) => {
-                if (!item.date) { needUpdate = true; const month = String((index % 12) + 1).padStart(2, '0'); const day = String((index % 28) + 1).padStart(2, '0'); return { ...item, date: `2024-${month}-${day}` }; }
-                return item;
+                populateYearFilter();
+                filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+                renderGallery();
+            }, (error) => {
+                console.error('Error loading gallery from Firebase:', error);
+                // Fallback: tampilkan pesan error di galeri
+                document.getElementById('galleryGrid').innerHTML = `
+                    <div class="gallery-empty">
+                        <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i>
+                        <h3>Gagal Memuat Data</h3>
+                        <p>Periksa koneksi internet Anda dan refresh halaman.</p>
+                    </div>`;
             });
-            if (needUpdate) localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
-            populateYearFilter();
-            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
-            renderGallery();
         }
-        document.addEventListener('DOMContentLoaded', loadGallery);
+
+        // ============================================================
+        //  INISIALISASI
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', loadGalleryFromFirebase);
     </script>
 
-    <!-- Firebase SDK untuk load gallery dari server -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-      import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-      // ⚠️ GANTI DENGAN CONFIG FIREBASE ANDA
-      const firebaseConfig = {
-        apiKey: "GANTI_DENGAN_API_KEY_ANDA",
-        authDomain: "GANTI.firebaseapp.com",
-        projectId: "GANTI",
-        storageBucket: "GANTI.appspot.com",
-        messagingSenderId: "GANTI",
-        appId: "GANTI"
-      };
+   
+<!-- ✅ Firebase Analytics Tracking - MENGGUNAKAN INSTANCE YANG SUDAH ADA -->
+<script>
+    // ============================================================
+    //  ✅ ANALYTICS TRACKING - Menggunakan Firebase yang sudah di-init
+    //  PENTING: Jangan inisialisasi ulang, pakai instance dari gallery
+    // ============================================================
+    
+    // Gunakan db yang sudah ada dari blok gallery di atas
+    const analyticsDb = firebase.firestore();
 
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
+    function trackVisitor() {
+        // Cegah tracking berulang dalam 1 sesi browser
+        if (sessionStorage.getItem('visitorTracked')) return;
 
-      async function loadFromFirebase() {
-        try {
-          const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
-          const snapshot = await getDocs(q);
-          const data = [];
-          snapshot.forEach(doc => {
-            const item = doc.data();
-            data.push({
-              id: doc.id,
-              tag: item.tag || '',
-              title: item.title || '',
-              location: item.location || '',
-              description: item.description || '',
-              image: item.image || '',
-              date: item.date || ''
-            });
-          });
+        const now = new Date();
+        const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
-          if (data.length > 0) {
-            localStorage.setItem('galleryData', JSON.stringify(data));
-            localStorage.setItem('gallerySource', 'firebase');
+        // Detect device
+        const ua = navigator.userAgent;
+        let device = 'Desktop';
+        if (/Mobi|Android/i.test(ua)) device = 'Mobile';
+        else if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
 
-            if (typeof window.reloadGalleryFromFirebase === 'function') {
-              window.reloadGalleryFromFirebase(data);
-            }
-            console.log(`✅ Loaded ${data.length} photos from Firebase`);
-          } else {
-            console.log('ℹ️ No photos in Firebase yet');
-          }
-        } catch (error) {
-          console.warn('⚠️ Firebase error, using cached data:', error.message);
+        // Detect browser
+        let browser = 'Lainnya';
+        if (ua.includes('Chrome') && !ua.includes('Edg')) browser = 'Chrome';
+        else if (ua.includes('Firefox')) browser = 'Firefox';
+        else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
+        else if (ua.includes('Edg')) browser = 'Edge';
+
+        console.log('📊 Tracking visitor...', { device, browser, date: today });
+
+        // 1. Simpan detail kunjungan
+        analyticsDb.collection('analytics').add({
+            timestamp: now.toISOString(),
+            page: 'index.html',
+            device: device,
+            browser: browser,
+            date: today
+        })
+        .then(() => console.log('✅ Visitor data saved'))
+        .catch(err => console.error('❌ Analytics write error:', err));
+
+        // 2. Update ringkasan harian (increment counter)
+        const summaryRef = analyticsDb.collection('analyticsSummary').doc('daily');
+        summaryRef.get()
+            .then(doc => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    const currentCount = data[today] || 0;
+                    return summaryRef.update({ [today]: currentCount + 1 });
+                } else {
+                    return summaryRef.set({ [today]: 1 });
+                }
+            })
+            .then(() => console.log('✅ Daily summary updated'))
+            .catch(err => console.error('❌ Summary write error:', err));
+
+        sessionStorage.setItem('visitorTracked', 'true');
+    }
+
+    // Track saat halaman dibuka
+    document.addEventListener('DOMContentLoaded', trackVisitor);
+</script>
+
+<!-- 🔒 Proteksi Konten - Level 1 -->
+<script>
+(function() {
+    // 1. Disable Klik Kanan
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        showToastCustom('🔒 Konten dilindungi. Klik kanan dinonaktifkan.');
+        return false;
+    });
+
+    // 2. Disable Shortcut Keyboard
+    document.addEventListener('keydown', function(e) {
+        // Ctrl+U (View Source)
+        if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+        // Ctrl+S (Save)
+        if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
+        // Ctrl+C (Copy)
+        if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+        // Ctrl+Shift+I / F12 (DevTools)
+        if ((e.ctrlKey && e.shiftKey && e.key === 'I') || e.key === 'F12') { 
+            e.preventDefault(); 
+            showToastCustom('🔒 Developer Tools dinonaktifkan.');
+            return false; 
         }
-      }
+        // Ctrl+Shift+J (Console)
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
+        // Ctrl+P (Print)
+        if (e.ctrlKey && e.key === 'p') { e.preventDefault(); return false; }
+    });
 
-      document.addEventListener('DOMContentLoaded', loadFromFirebase);
-    </script>
+    // 3. Disable Text Selection (tapi tetap bisa klik tombol/link)
+    document.addEventListener('selectstart', function(e) {
+        if (!['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+            e.preventDefault();
+            return false;
+        }
+    });
 
+    // 4. Disable Drag Gambar
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // Custom Toast Notification
+    function showToastCustom(message) {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed; top: 20px; right: 20px; z-index: 99999;
+            background: linear-gradient(135deg, #064e3b, #059669);
+            color: white; padding: 14px 20px; border-radius: 10px;
+            font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            animation: slideInToast 0.3s ease-out;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.3s';
+            setTimeout(() => toast.remove(), 300);
+        }, 2500);
+    }
+
+    // Tambahkan CSS animasi
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInToast {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+        input, textarea { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
+    `;
+    document.head.appendChild(style);
+
+    console.log('%c🔒 Proteksi Konten Aktif', 'color: #059669; font-size: 14px; font-weight: bold;');
+})();
+</script>
+
+
+    
 </body>
 </html>
 
