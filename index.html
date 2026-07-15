@@ -496,6 +496,297 @@
 
         body::-webkit-scrollbar { width: 0; display: none; }
         body { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* ========================================
+   GOOGLE MAPS EMBED - CONTACT SECTION
+   ======================================== */
+.maps-wrapper {
+    margin-top: 25px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(6, 78, 59, 0.12);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+    padding: 3px;
+}
+.maps-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 35px rgba(6, 78, 59, 0.22);
+}
+.maps-inner {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    background: #f3f4f6;
+}
+.maps-inner iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+.maps-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 10px 18px;
+    background: rgba(6, 78, 59, 0.08);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #064e3b;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.maps-label:hover {
+    background: #059669;
+    color: #ffffff;
+    transform: scale(1.03);
+}
+.maps-label i {
+    color: #dc2626;
+    transition: color 0.3s ease;
+}
+.maps-label:hover i {
+    color: #ffffff;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    .maps-wrapper {
+        margin-top: 20px;
+        padding: 2px;
+    }
+    .maps-inner {
+        padding-bottom: 75%; /* Lebih tinggi di mobile (4:3) */
+    }
+    .maps-label {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .maps-inner {
+        padding-bottom: 100%; /* Square di HP kecil (1:1) */
+    }
+}
+    
+    
+ /* ========================================
+   DOWNLOAD PDF CARD - CONTACT SECTION
+   ======================================== */
+.download-pdf-card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.download-pdf-link {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+    border-radius: 16px;
+    text-decoration: none;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(6, 78, 59, 0.25);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+}
+.download-pdf-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(6, 78, 59, 0.35);
+    border-color: var(--accent-gold);
+}
+.download-pdf-link:active {
+    transform: translateY(-1px);
+}
+
+/* Shine effect saat hover */
+.download-pdf-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+.download-pdf-link:hover::before {
+    left: 100%;
+}
+
+/* Badge PDF di pojok kanan atas */
+.pdf-badge {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+/* Icon lingkaran */
+.pdf-icon-wrapper {
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease;
+    z-index: 1;
+}
+.download-pdf-link:hover .pdf-icon-wrapper {
+    transform: scale(1.1) rotate(-5deg);
+}
+.pdf-icon-wrapper i {
+    font-size: 1.8rem;
+    color: #e53e3e;
+}
+
+/* Text content */
+.pdf-content {
+    flex: 1;
+    z-index: 1;
+    min-width: 0;
+}
+.pdf-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.pdf-subtitle {
+    font-size: 0.82rem;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.pdf-subtitle span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.pdf-subtitle i {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+/* Arrow icon di kanan */
+.pdf-arrow {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+.download-pdf-link:hover .pdf-arrow {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    transform: translateX(4px);
+}
+
+/* Pulse animation untuk icon download */
+@keyframes pulseDownload {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+}
+.download-pdf-link:hover .pdf-arrow i {
+    animation: pulseDownload 1s ease-in-out infinite;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .download-pdf-link {
+        padding: 18px 20px;
+        gap: 14px;
+    }
+    .pdf-icon-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+    .pdf-icon-wrapper i {
+        font-size: 1.5rem;
+    }
+    .pdf-title {
+        font-size: 1rem;
+    }
+    .pdf-subtitle {
+        font-size: 0.75rem;
+        gap: 8px;
+    }
+    .pdf-arrow {
+        width: 32px;
+        height: 32px;
+    }
+    .pdf-badge {
+        font-size: 0.6rem;
+        padding: 3px 8px;
+        top: 8px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .download-pdf-link {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        padding: 20px 16px;
+    }
+    .pdf-content {
+        flex: 1 1 100%;
+        order: 2;
+        text-align: center;
+    }
+    .pdf-arrow {
+        display: none;
+    }
+}   
+    
+    
     </style>
 </head>
 <body>
@@ -741,10 +1032,59 @@
             <div class="contact-wrapper" data-aos="fade-up">
                 <div class="contact-info">
                     <h3 style="font-size: 2rem; margin-bottom: 20px;">Data Kontak</h3>
-                    <p style="margin-bottom: 40px; opacity: 0.8;">Isi formulir di samping untuk terhubung langsung dengan kami via WhatsApp.</p>
-                    <div style="margin-bottom: 20px;"><i class="fa-solid fa-phone" style="color: var(--accent-gold); margin-right: 15px;"></i> +62 812-3456-7890</div>
-                    <div style="margin-bottom: 20px;"><i class="fa-solid fa-envelope" style="color: var(--accent-gold); margin-right: 15px;"></i> ppc.expert@email.com</div>
+                    <p style="margin-bottom: 40px; opacity: 0.8;">Isi formulir di samping atau di bawah untuk terhubung langsung dengan kami via WhatsApp.</p>
+                    
+                    
+                    <!-- 📄 Download PDF Brosur -->
+<div class="download-pdf-card">
+    <a href="https://drive.google.com/uc?export=download&id=187Sl3yBP17kRqrr-DybVSAyO9wnO9BVd" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="download-pdf-link"
+       download>
+        
+        <!-- Badge PDF -->
+        <span class="pdf-badge">PDF</span>
+        
+        <!-- Icon PDF dalam lingkaran -->
+        <div class="pdf-icon-wrapper">
+            <i class="fa-solid fa-file-pdf"></i>
+        </div>
+        
+        <!-- Text Content -->
+        <div class="pdf-content">
+            <div class="pdf-title">
+                Contoh Surat Permohonan
+                <i class="fa-solid fa-sparkles" style="color: var(--accent-gold); font-size: 0.6rem;"></i>
+            </div>
+            
+        </div>
+        
+        <!-- Arrow Icon -->
+        <div class="pdf-arrow">
+            <i class="fa-solid fa-arrow-down"></i>
+        </div>
+    </a>
+</div>                    
+                    
+                    
+                    <div style="margin-bottom: 20px;"><i class="fa-solid fa-envelope" style="color: var(--accent-gold); margin-right: 15px;"></i> ppcbinamahabbah@gmail.com</div>
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-location-dot" style="color: var(--accent-gold); margin-right: 15px;"></i> Mataram Lombok - NTB</div>
+                
+                <!-- 🗺️ Google Maps Embed -->
+    <div class="maps-wrapper">
+        <div class="maps-inner">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!4v1783920576702!6m8!1m7!1sA9O17Pib7jHuwWPoVQ-iiQ!2m2!1d-8.573283294574992!2d116.1093033592509!3f64.050934!4f0!5f0.7820865974627469"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi PPC Certified - Mataram, Lombok">
+            </iframe>
+        </div>
+    </div>
+    
+                    
                 </div>
                 <div class="contact-form">
                     <form id="whatsappForm" onsubmit="kirimKeWhatsApp(event)">
@@ -778,7 +1118,7 @@
                 </div>
                 <div class="footer-col"><h4>Navigasi</h4><ul class="footer-links"><li><a href="#home"><i class="fa-solid fa-chevron-right"></i> Beranda</a></li><li><a href="#about"><i class="fa-solid fa-chevron-right"></i> Profil Ahli</a></li><li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Layanan Sampling</a></li><li><a href="#sop"><i class="fa-solid fa-chevron-right"></i> SOP Kerja</a></li></ul></div>
                 <div class="footer-col"><h4>Layanan</h4><ul class="footer-links"><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pupuk</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pestisida</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Konsultasi Regulasi</a></li></ul></div>
-                <div class="footer-col"><h4>Hubungi Kami</h4><ul class="footer-contact"><li><i class="fa-solid fa-location-dot"></i><span>Jl. Agribisnis No. 88, Mataram, Lombok - NTB</span></li><li><i class="fa-solid fa-phone"></i><span>+62 8175761165</span></li><li><i class="fa-solid fa-envelope"></i><span>info@agrisample.id</span></li></ul></div>
+                <div class="footer-col"><h4>Hubungi Kami</h4><ul class="footer-contact"><li><i class="fa-solid fa-location-dot"></i><span>Jl. Hos Cokroaminoto No.68 Mataram, Lombok - NTB</span></li><li><i class="fa-solid fa-phone"></i><span>+62 8175761165</span></li><li><i class="fa-solid fa-envelope"></i><span>ppcbinamahabbah@gmail.com</span></li></ul></div>
             </div>
             <div class="copyright"><p>&copy; 2026 DIGITALPro. All Rights Reserved.</p></div>
         </div>
@@ -1124,6 +1464,87 @@
     // Track saat halaman dibuka
     document.addEventListener('DOMContentLoaded', trackVisitor);
 </script>
+
+<!-- 🔒 Proteksi Konten - Level 1 -->
+<script>
+(function() {
+    // 1. Disable Klik Kanan
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        showToastCustom('🔒 Konten dilindungi. Klik kanan dinonaktifkan.');
+        return false;
+    });
+
+    // 2. Disable Shortcut Keyboard
+    document.addEventListener('keydown', function(e) {
+        // Ctrl+U (View Source)
+        if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+        // Ctrl+S (Save)
+        if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
+        // Ctrl+C (Copy)
+        if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+        // Ctrl+Shift+I / F12 (DevTools)
+        if ((e.ctrlKey && e.shiftKey && e.key === 'I') || e.key === 'F12') { 
+            e.preventDefault(); 
+            showToastCustom('🔒 Developer Tools dinonaktifkan.');
+            return false; 
+        }
+        // Ctrl+Shift+J (Console)
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
+        // Ctrl+P (Print)
+        if (e.ctrlKey && e.key === 'p') { e.preventDefault(); return false; }
+    });
+
+    // 3. Disable Text Selection (tapi tetap bisa klik tombol/link)
+    document.addEventListener('selectstart', function(e) {
+        if (!['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 4. Disable Drag Gambar
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // Custom Toast Notification
+    function showToastCustom(message) {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed; top: 20px; right: 20px; z-index: 99999;
+            background: linear-gradient(135deg, #064e3b, #059669);
+            color: white; padding: 14px 20px; border-radius: 10px;
+            font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            animation: slideInToast 0.3s ease-out;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.3s';
+            setTimeout(() => toast.remove(), 300);
+        }, 2500);
+    }
+
+    // Tambahkan CSS animasi
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInToast {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+        input, textarea { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
+    `;
+    document.head.appendChild(style);
+
+    console.log('%c🔒 Proteksi Konten Aktif', 'color: #059669; font-size: 14px; font-weight: bold;');
+})();
+</script>
+
 
     
 </body>
