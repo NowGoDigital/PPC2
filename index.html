@@ -49,12 +49,14 @@
 
         
         .btn-premium {
-            display: inline-block; padding: 18px 45px; background: var(--accent-gold);
-            color: var(--primary-dark); font-weight: 700; border-radius: 50px;
-            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4); position: relative;
-            overflow: hidden; z-index: 1; border: none; cursor: pointer;
-            width: 100%; text-align: center; font-family: inherit; font-size: 1rem; max-width: 100%;
-        }
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; white-space: nowrap;
+    padding: 18px 45px; background: var(--accent-gold);
+    color: var(--primary-dark); font-weight: 700; border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4); position: relative;
+    overflow: hidden; z-index: 1; border: none; cursor: pointer;
+    width: 100%; text-align: center; font-family: inherit; font-size: 1rem; max-width: 100%;
+}
         .btn-premium:hover { transform: translateY(-3px); background: var(--white); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
         /* --- HEADER --- */
@@ -1036,7 +1038,7 @@
                     <!-- 📄 Download PDF Brosur -->
 <div class="download-pdf-card">
     <a href="https://drive.google.com/uc?export=download&id=187Sl3yBP17kRqrr-DybVSAyO9wnO9BVd" 
-       target="_blank" 
+       target="_ <i class="fa-solid fa-file-pdf"blank" 
        rel="noopener noreferrer"
        class="download-pdf-link"
        download>
