@@ -284,6 +284,33 @@
             box-shadow: 0 0 0 3px rgba(251,191,36,0.1);
         }
 
+        /* ✅ INPUT GROUP WITH ICON */
+        .input-group {
+            position: relative;
+        }
+        .input-group .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-mid);
+            font-size: 0.95rem;
+            z-index: 2;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+        .input-group .form-control {
+            padding-left: 45px;
+        }
+        .input-group:focus-within .input-icon {
+            color: var(--accent-gold);
+        }
+        /* Untuk textarea - icon di atas */
+        .input-group.textarea-group .input-icon {
+            top: 15px;
+            transform: none;
+        }
+
         /* --- FOOTER --- */
         footer { background: #022c22; color: rgba(255,255,255,0.7); padding: 80px 0 30px; font-size: 0.95rem; overflow: hidden; width: 100%; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 60px; width: 100%; }
@@ -446,6 +473,8 @@
             .contact-form { padding: 30px 20px; }
             .form-control { padding: 12px; font-size: 0.9rem; }
             .form-label { font-size: 0.85rem; }
+            .input-group .form-control { padding-left: 40px; }
+            .input-group .input-icon { left: 12px; font-size: 0.85rem; }
             .contact-form form > div[style*="grid-template-columns"] { display: block !important; grid-template-columns: 1fr !important; }
             .contact-form form > div[style*="grid-template-columns"] > .form-group { margin-bottom: 20px; }
             footer { padding: 50px 0 20px; width: 100%; }
@@ -487,6 +516,8 @@
             .section-title h2 { font-size: 1.3rem; }
             .contact-info { padding: 25px 15px; }
             .contact-form { padding: 25px 15px; }
+            .input-group .form-control { padding-left: 38px; }
+            .input-group .input-icon { left: 10px; font-size: 0.8rem; }
             .company-card-icon { width: 45px; height: 45px; font-size: 1.2rem; }
             .cert-badge-icon { width: 40px; height: 40px; font-size: 1rem; }
             .experience-badge { padding: 8px 12px; gap: 7px; max-width: 145px; bottom: -12px; right: 0px; }
@@ -817,7 +848,6 @@
         <div class="container">
             <div class="hero-wrapper">
                 <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
-                    <!-- ✅ HERO BADGES - DENGAN KAN CERTIFIED DI TENGAH -->
                     <div class="hero-badges">
                         <div class="badge"><i class="fa-solid fa-certificate"></i> BNSP Certified</div>
                         <div class="badge"><i class="fa-solid fa-award"></i> KAN Certified</div>
@@ -862,7 +892,6 @@
     <section id="about" class="section-padding">
         <div class="container">
             <div class="about-grid">
-                <!-- KOLOM KIRI -->
                 <div class="about-img-wrapper" data-aos="fade-right">
                     <img src="PPC.jpg" alt="Professional PPC" class="about-img-main">
                     <div class="experience-badge">
@@ -873,7 +902,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- KOLOM KANAN -->
                 <div class="about-content" data-aos="fade-left">
                     <div class="section-title" style="text-align: left; margin-bottom: 25px;">
                         <span>Profil Ahli</span>
@@ -1057,7 +1085,7 @@
     <div class="maps-wrapper">
         <div class="maps-inner">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3945.2870107721387!2d116.12981237501353!3d-8.56837709147573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMzQnMDYuMiJTIDExNsKwMDcnNTYuNiJF!5e0!3m2!1sid!2sid!4v1784361176260!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!4v1783920576702!6m8!1m7!1sA9O17Pib7jHuwWPoVQ-iiQ!2m2!1d-8.573283294574992!2d116.1093033592509!3f64.050934!4f0!5f0.7820865974627469"
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
@@ -1068,23 +1096,61 @@
                     
                 </div>
                 <div class="contact-form">
+                    <!-- ✅ FORM DENGAN ICON DI SETIAP FIELD -->
                     <form id="whatsappForm" onsubmit="kirimKeWhatsApp(event)">
-                        <div class="form-group"><label class="form-label">Nama Lengkap</label><input type="text" id="nama" class="form-control" placeholder="Masukkan nama lengkap Anda" required></div>
-                        <div class="form-group"><label class="form-label">Nama Perusahaan</label><input type="text" id="perusahaan" class="form-control" placeholder="PT / CV / UD ..." required></div>
-                        <div class="form-group"><label class="form-label">Alamat Lengkap Perusahaan</label><textarea id="alamat" class="form-control" rows="2" placeholder="Kota, Kecamatan, Jalan..." required></textarea></div>
-                        <!-- ✅ FIELD DROPDOWN: Jenis Layanan -->
+                        <!-- Nama Lengkap -->
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-user input-icon"></i>
+                                <input type="text" id="nama" class="form-control" placeholder="Masukkan nama lengkap Anda" required>
+                            </div>
+                        </div>
+                        <!-- Nama Perusahaan -->
+                        <div class="form-group">
+                            <label class="form-label">Nama Perusahaan</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-building input-icon"></i>
+                                <input type="text" id="perusahaan" class="form-control" placeholder="PT / CV / UD ..." required>
+                            </div>
+                        </div>
+                        <!-- Alamat Lengkap -->
+                        <div class="form-group">
+                            <label class="form-label">Alamat Lengkap Perusahaan</label>
+                            <div class="input-group textarea-group">
+                                <i class="fa-solid fa-location-dot input-icon"></i>
+                                <textarea id="alamat" class="form-control" rows="2" placeholder="Kota, Kecamatan, Jalan..." required></textarea>
+                            </div>
+                        </div>
+                        <!-- Jenis Layanan -->
                         <div class="form-group">
                             <label class="form-label">Jenis Layanan</label>
-                            <select id="jenisLayanan" class="form-control" required>
-                                <option value="" disabled selected>-- Pilih Jenis Layanan --</option>
-                                <option value="Sampling Pupuk Organik">Sampling Pupuk Organik</option>
-                                <option value="Sampling Pupuk An Organik">Sampling Pupuk An Organik</option>
-                                <option value="Sampling Pestisida">Sampling Pestisida</option>
-                            </select>
+                            <div class="input-group">
+                                <i class="fa-solid fa-list-check input-icon"></i>
+                                <select id="jenisLayanan" class="form-control" required>
+                                    <option value="" disabled selected>-- Pilih Jenis Layanan --</option>
+                                    <option value="Sampling Pupuk Organik">Sampling Pupuk Organik</option>
+                                    <option value="Sampling Pupuk An Organik">Sampling Pupuk An Organik</option>
+                                    <option value="Sampling Pestisida">Sampling Pestisida</option>
+                                </select>
+                            </div>
                         </div>
+                        <!-- Email & No. HP (Grid 2 kolom) -->
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div class="form-group"><label class="form-label">Email</label><input type="email" id="email" class="form-control" placeholder="email@perusahaan.com" required></div>
-                            <div class="form-group"><label class="form-label">No. HP / WhatsApp</label><input type="tel" id="hp" class="form-control" placeholder="0812..." required></div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <div class="input-group">
+                                    <i class="fa-solid fa-envelope input-icon"></i>
+                                    <input type="email" id="email" class="form-control" placeholder="email@perusahaan.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">No. HP / WhatsApp</label>
+                                <div class="input-group">
+                                    <i class="fa-solid fa-mobile-screen input-icon"></i>
+                                    <input type="tel" id="hp" class="form-control" placeholder="0812..." required>
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn-premium"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> Kirim ke WhatsApp</button>
                     </form>
@@ -1109,7 +1175,7 @@
                 </div>
                 <div class="footer-col"><h4>Navigasi</h4><ul class="footer-links"><li><a href="#home"><i class="fa-solid fa-chevron-right"></i> Beranda</a></li><li><a href="#about"><i class="fa-solid fa-chevron-right"></i> Profil Ahli</a></li><li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Layanan Sampling</a></li><li><a href="#sop"><i class="fa-solid fa-chevron-right"></i> SOP Kerja</a></li></ul></div>
                 <div class="footer-col"><h4>Layanan</h4><ul class="footer-links"><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pupuk</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pestisida</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Konsultasi Regulasi</a></li></ul></div>
-                <div class="footer-col"><h4>Hubungi Kami</h4><ul class="footer-contact"><li><i class="fa-solid fa-location-dot"></i><span>Jln Diponegoro No 30 Sayang Sayang - Mataram, Lombok - NTB</span></li><li><i class="fa-solid fa-phone"></i><span>+62 8175761165</span></li><li><i class="fa-solid fa-envelope"></i><span>ppcbinamahabbah@gmail.com</span></li></ul></div>
+                <div class="footer-col"><h4>Hubungi Kami</h4><ul class="footer-contact"><li><i class="fa-solid fa-location-dot"></i><span>Jl. Hos Cokroaminoto No.68 Mataram, Lombok - NTB</span></li><li><i class="fa-solid fa-phone"></i><span>+62 8175761165</span></li><li><i class="fa-solid fa-envelope"></i><span>ppcbinamahabbah@gmail.com</span></li></ul></div>
             </div>
             <div class="copyright"><p>&copy; 2026 DIGITALPro. All Rights Reserved.</p></div>
         </div>
@@ -1143,7 +1209,6 @@
             });
         });
 
-        // ✅ FUNGSI WHATSAPP - DENGAN JENIS LAYANAN
         function kirimKeWhatsApp(e) {
             e.preventDefault();
             const nama = document.getElementById('nama').value;
@@ -1158,7 +1223,6 @@
         }
     </script>
 
-    <!-- ✅ Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
@@ -1374,7 +1438,6 @@
         document.addEventListener('DOMContentLoaded', loadGalleryFromFirebase);
     </script>
 
-    <!-- ✅ Firebase Analytics Tracking -->
     <script>
     const analyticsDb = firebase.firestore();
 
@@ -1427,7 +1490,7 @@
     document.addEventListener('DOMContentLoaded', trackVisitor);
 </script>
 
-<!-- 🔒 Proteksi Konten - Level 1 -->
+<!-- 🔒 Proteksi Konten -->
 <script>
 (function() {
     document.addEventListener('contextmenu', function(e) {
