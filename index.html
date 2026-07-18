@@ -36,27 +36,25 @@
         .section-title span { color: var(--primary-mid); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; display: block; margin-bottom: 15px; }
         .section-title h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--primary-dark); }
 
-        /* ✅ TAMBAHKAN INI - khusus section Profil */
-.about-content .section-title h2 {
-    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-    line-height: 1.3;
-    margin-bottom: 0;
-}
+        .about-content .section-title h2 {
+            font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+            line-height: 1.3;
+            margin-bottom: 0;
+        }
 
-.about-content .section-title {
-    margin-bottom: 20px !important;
-}
+        .about-content .section-title {
+            margin-bottom: 20px !important;
+        }
 
-        
         .btn-premium {
-    display: inline-flex; align-items: center; justify-content: center;
-    gap: 8px; white-space: nowrap;
-    padding: 18px 45px; background: var(--accent-gold);
-    color: var(--primary-dark); font-weight: 700; border-radius: 50px;
-    box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4); position: relative;
-    overflow: hidden; z-index: 1; border: none; cursor: pointer;
-    width: 100%; text-align: center; font-family: inherit; font-size: 1rem; max-width: 100%;
-}
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px; white-space: nowrap;
+            padding: 18px 45px; background: var(--accent-gold);
+            color: var(--primary-dark); font-weight: 700; border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4); position: relative;
+            overflow: hidden; z-index: 1; border: none; cursor: pointer;
+            width: 100%; text-align: center; font-family: inherit; font-size: 1rem; max-width: 100%;
+        }
         .btn-premium:hover { transform: translateY(-3px); background: var(--white); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
         /* --- HEADER --- */
@@ -83,7 +81,7 @@
         .hero-text h1 span { color: var(--primary-mid); position: relative; display: inline-block; }
         .hero-text h1 span::after { content: ''; position: absolute; bottom: 5px; left: 0; width: 100%; height: 15px; background: var(--accent-gold); opacity: 0.3; z-index: -1; transform: skewX(-10deg); }
         .hero-text p { font-size: 1.2rem; color: #374151; margin-bottom: 40px; max-width: 90%; font-weight: 500; word-wrap: break-word; }
-        .hero-badges { display: flex; gap: 15px; margin-bottom: 35px; flex-wrap: wrap; }
+        .hero-badges { display: flex; gap: 15px; margin-bottom: 35px; flex-wrap: wrap; justify-content: flex-start; }
         .badge { background: rgba(255,255,255,0.5); border: 1px solid var(--primary-dark); color: var(--primary-dark); padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 8px; backdrop-filter: blur(5px); max-width: 100%; }
         .hero-image-container { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 100%; }
         .blob-bg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%); opacity: 0.15; border-radius: 50%; z-index: 0; animation: morph 8s ease-in-out infinite; }
@@ -136,9 +134,6 @@
         .cert-badge p { font-size: 0.7rem; color: #666; line-height: 1.3; margin-bottom: 6px; }
         .cert-badge .cert-status { display: inline-block; padding: 2px 10px; background: #d1fae5; color: var(--primary-mid); border-radius: 50px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3px; }
 
-        /* ============================================ */
-        /* === FEATURE LIST - COMPACT PADDING =========== */
-        /* ============================================ */
         .feature-list-compact {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -276,7 +271,6 @@
         .form-control:focus { outline: none; border-color: var(--accent-gold); background: #fff; box-shadow: 0 0 0 3px rgba(251,191,36,0.1); }
         textarea.form-control { resize: vertical; min-height: 100px; }
 
-        /* ✅ SELECT DROPDOWN STYLING */
         select.form-control {
             cursor: pointer;
             appearance: auto;
@@ -329,7 +323,7 @@
             .hero-wrapper { grid-template-columns: 1fr; text-align: center; gap: 30px; }
             .hero-text h1 { font-size: 2.5rem; }
             .hero-text p { max-width: 100%; font-size: 1.05rem; }
-            .hero-badges { justify-content: center; }
+            .hero-badges { justify-content: center; gap: 10px; }
             .btn-group { justify-content: center; display: flex; }
             .hero-image-container { margin-top: 30px; }
             .hero-img-frame { max-width: 350px; margin: 0 auto; }
@@ -535,7 +529,7 @@
     overflow: hidden;
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    padding-bottom: 56.25%;
     background: #f3f4f6;
 }
 .maps-inner iframe {
@@ -578,14 +572,13 @@
     color: #ffffff;
 }
 
-/* Responsive untuk mobile */
 @media (max-width: 768px) {
     .maps-wrapper {
         margin-top: 20px;
         padding: 2px;
     }
     .maps-inner {
-        padding-bottom: 75%; /* Lebih tinggi di mobile (4:3) */
+        padding-bottom: 75%;
     }
     .maps-label {
         font-size: 0.8rem;
@@ -595,10 +588,9 @@
 
 @media (max-width: 480px) {
     .maps-inner {
-        padding-bottom: 100%; /* Square di HP kecil (1:1) */
+        padding-bottom: 100%;
     }
 }
-    
     
  /* ========================================
    DOWNLOAD PDF CARD - CONTACT SECTION
@@ -633,7 +625,6 @@
     transform: translateY(-1px);
 }
 
-/* Shine effect saat hover */
 .download-pdf-link::before {
     content: '';
     position: absolute;
@@ -653,7 +644,6 @@
     left: 100%;
 }
 
-/* Badge PDF di pojok kanan atas */
 .pdf-badge {
     position: absolute;
     top: 10px;
@@ -670,7 +660,6 @@
     z-index: 2;
 }
 
-/* Icon lingkaran */
 .pdf-icon-wrapper {
     flex-shrink: 0;
     width: 58px;
@@ -692,7 +681,6 @@
     color: #e53e3e;
 }
 
-/* Text content */
 .pdf-content {
     flex: 1;
     z-index: 1;
@@ -725,7 +713,6 @@
     opacity: 0.8;
 }
 
-/* Arrow icon di kanan */
 .pdf-arrow {
     flex-shrink: 0;
     width: 36px;
@@ -744,7 +731,6 @@
     transform: translateX(4px);
 }
 
-/* Pulse animation untuk icon download */
 @keyframes pulseDownload {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(3px); }
@@ -753,7 +739,6 @@
     animation: pulseDownload 1s ease-in-out infinite;
 }
 
-/* Responsive Mobile */
 @media (max-width: 768px) {
     .download-pdf-link {
         padding: 18px 20px;
@@ -800,9 +785,7 @@
     .pdf-arrow {
         display: none;
     }
-}   
-    
-    
+}
     </style>
 </head>
 <body>
@@ -834,8 +817,10 @@
         <div class="container">
             <div class="hero-wrapper">
                 <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+                    <!-- ✅ HERO BADGES - DENGAN KAN CERTIFIED DI TENGAH -->
                     <div class="hero-badges">
                         <div class="badge"><i class="fa-solid fa-certificate"></i> BNSP Certified</div>
+                        <div class="badge"><i class="fa-solid fa-award"></i> KAN Certified</div>
                         <div class="badge"><i class="fa-solid fa-scale-balanced"></i> Standar SNI</div>
                     </div>
                     <h1>Integritas Data <br><span>Sampling Agribisnis</span></h1>
@@ -909,10 +894,7 @@
 
                     <p style="margin-bottom: 22px; color: #374151; text-align: justify; font-size: 0.95rem;">
                         Saya, <strong>P. Sudjudi BSC, SP</strong> selaku PPC dari CV. Bina Mahabbah Jaya Mataram memiliki 2 sertifikat kompetensi sebagai PPC</p>
-                     
 
-
-                    
                     <div class="dual-cert-wrapper">
                         <div class="cert-badge">
                             <h5>BNSP - LSP Pertanian Organik</h5>
@@ -928,7 +910,6 @@
                 </div>
             </div>
 
-            <!-- ✅ FEATURE LIST - COMPACT -->
             <ul class="feature-list-compact" data-aos="fade-up" data-aos-delay="200">
                 <li>
                     <div class="check-icon"><i class="fa-solid fa-map-location-dot"></i></div>
@@ -1048,44 +1029,31 @@
                     <h3 style="font-size: 2rem; margin-bottom: 20px;">Data Kontak</h3>
                     <p style="margin-bottom: 40px; opacity: 0.8;">Isi formulir di samping atau di bawah untuk terhubung langsung dengan kami via WhatsApp.</p>
                     
-                    
-                    <!-- 📄 Download PDF Brosur -->
-<div class="download-pdf-card">
+                    <div class="download-pdf-card">
     <a href="https://drive.google.com/uc?export=download&id=187Sl3yBP17kRqrr-DybVSAyO9wnO9BVd" 
        target="_blank" 
        rel="noopener noreferrer"
        class="download-pdf-link"
        download>
-        
-        <!-- Badge PDF -->
         <span class="pdf-badge">PDF</span>
-        
-        <!-- Icon PDF dalam lingkaran -->
         <div class="pdf-icon-wrapper">
             <i class="fa-solid fa-file-pdf"></i>
         </div>
-        
-        <!-- Text Content -->
         <div class="pdf-content">
             <div class="pdf-title">
                 Contoh Surat Permohonan
                 <i class="fa-solid fa-sparkles" style="color: var(--accent-gold); font-size: 0.6rem;"></i>
             </div>
-            
         </div>
-        
-        <!-- Arrow Icon -->
         <div class="pdf-arrow">
             <i class="fa-solid fa-arrow-down"></i>
         </div>
     </a>
 </div>                    
                     
-                    
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-envelope" style="color: var(--accent-gold); margin-right: 15px;"></i> ppcbinamahabbah@gmail.com</div>
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-location-dot" style="color: var(--accent-gold); margin-right: 15px;"></i> Mataram Lombok - NTB</div>
                 
-                <!-- 🗺️ Google Maps Embed -->
     <div class="maps-wrapper">
         <div class="maps-inner">
             <iframe 
@@ -1097,7 +1065,6 @@
             </iframe>
         </div>
     </div>
-    
                     
                 </div>
                 <div class="contact-form">
@@ -1105,7 +1072,7 @@
                         <div class="form-group"><label class="form-label">Nama Lengkap</label><input type="text" id="nama" class="form-control" placeholder="Masukkan nama lengkap Anda" required></div>
                         <div class="form-group"><label class="form-label">Nama Perusahaan</label><input type="text" id="perusahaan" class="form-control" placeholder="PT / CV / UD ..." required></div>
                         <div class="form-group"><label class="form-label">Alamat Lengkap Perusahaan</label><textarea id="alamat" class="form-control" rows="2" placeholder="Kota, Kecamatan, Jalan..." required></textarea></div>
-                        <!-- ✅ FIELD BARU: Jenis Layanan (Dropdown) -->
+                        <!-- ✅ FIELD DROPDOWN: Jenis Layanan -->
                         <div class="form-group">
                             <label class="form-label">Jenis Layanan</label>
                             <select id="jenisLayanan" class="form-control" required>
@@ -1190,14 +1157,12 @@
             window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
         }
     </script>
-        <!-- ✅ Firebase SDK -->
+
+    <!-- ✅ Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <script>
-        // ============================================================
-        //  ✅ KONFIGURASI FIREBASE — SAMA PERSIS DENGAN admin.html!
-        // ============================================================
         const firebaseConfig = {
             apiKey: "AIzaSyBVKTxJy8c-F-ljIe61NJPJHVhp-ufnyME",
             authDomain: "ppc-certified-859cf.firebaseapp.com",
@@ -1207,13 +1172,9 @@
             appId: "1:752025208586:web:5dd072c2fe6cbd3b199cf3"
         };
 
-        // Inisialisasi Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // ============================================================
-        //  VARIABEL GLOBAL
-        // ============================================================
         let galleryDataGlobal = [];
         let filteredData = [];
         let currentDisplayCount = 8;
@@ -1221,9 +1182,6 @@
         let currentFilter = 'newest';
         let currentYear = 'all';
 
-        // ============================================================
-        //  UTILITY FUNCTIONS
-        // ============================================================
         function formatTanggal(dateStr) {
             if (!dateStr) return '';
             const bulan = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
@@ -1392,12 +1350,7 @@
             }, 100);
         }
 
-        // ============================================================
-        //  ✅ FIREBASE: LOAD GALLERY DENGAN REALTIME LISTENER
-        // ============================================================
         function loadGalleryFromFirebase() {
-            // Realtime listener — gallery di halaman utama otomatis update
-            // saat admin menambah/edit/hapus data dari admin.html
             db.collection('gallery').onSnapshot((snapshot) => {
                 galleryDataGlobal = [];
                 snapshot.forEach((doc) => {
@@ -1409,7 +1362,6 @@
                 renderGallery();
             }, (error) => {
                 console.error('Error loading gallery from Firebase:', error);
-                // Fallback: tampilkan pesan error di galeri
                 document.getElementById('galleryGrid').innerHTML = `
                     <div class="gallery-empty">
                         <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i>
@@ -1419,38 +1371,24 @@
             });
         }
 
-        // ============================================================
-        //  INISIALISASI
-        // ============================================================
         document.addEventListener('DOMContentLoaded', loadGalleryFromFirebase);
     </script>
 
-
-   
-<!-- ✅ Firebase Analytics Tracking - MENGGUNAKAN INSTANCE YANG SUDAH ADA -->
-<script>
-    // ============================================================
-    //  ✅ ANALYTICS TRACKING - Menggunakan Firebase yang sudah di-init
-    //  PENTING: Jangan inisialisasi ulang, pakai instance dari gallery
-    // ============================================================
-    
-    // Gunakan db yang sudah ada dari blok gallery di atas
+    <!-- ✅ Firebase Analytics Tracking -->
+    <script>
     const analyticsDb = firebase.firestore();
 
     function trackVisitor() {
-        // Cegah tracking berulang dalam 1 sesi browser
         if (sessionStorage.getItem('visitorTracked')) return;
 
         const now = new Date();
         const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
-        // Detect device
         const ua = navigator.userAgent;
         let device = 'Desktop';
         if (/Mobi|Android/i.test(ua)) device = 'Mobile';
         else if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
 
-        // Detect browser
         let browser = 'Lainnya';
         if (ua.includes('Chrome') && !ua.includes('Edg')) browser = 'Chrome';
         else if (ua.includes('Firefox')) browser = 'Firefox';
@@ -1459,7 +1397,6 @@
 
         console.log('📊 Tracking visitor...', { device, browser, date: today });
 
-        // 1. Simpan detail kunjungan
         analyticsDb.collection('analytics').add({
             timestamp: now.toISOString(),
             page: 'index.html',
@@ -1470,7 +1407,6 @@
         .then(() => console.log('✅ Visitor data saved'))
         .catch(err => console.error('❌ Analytics write error:', err));
 
-        // 2. Update ringkasan harian (increment counter)
         const summaryRef = analyticsDb.collection('analyticsSummary').doc('daily');
         summaryRef.get()
             .then(doc => {
@@ -1488,41 +1424,31 @@
         sessionStorage.setItem('visitorTracked', 'true');
     }
 
-    // Track saat halaman dibuka
     document.addEventListener('DOMContentLoaded', trackVisitor);
 </script>
 
 <!-- 🔒 Proteksi Konten - Level 1 -->
 <script>
 (function() {
-    // 1. Disable Klik Kanan
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
         showToastCustom('🔒 Konten dilindungi. Klik kanan dinonaktifkan.');
         return false;
     });
 
-    // 2. Disable Shortcut Keyboard
     document.addEventListener('keydown', function(e) {
-        // Ctrl+U (View Source)
         if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
-        // Ctrl+S (Save)
         if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
-        // Ctrl+C (Copy)
         if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
-        // Ctrl+Shift+I / F12 (DevTools)
         if ((e.ctrlKey && e.shiftKey && e.key === 'I') || e.key === 'F12') { 
             e.preventDefault(); 
             showToastCustom('🔒 Developer Tools dinonaktifkan.');
             return false; 
         }
-        // Ctrl+Shift+J (Console)
         if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
-        // Ctrl+P (Print)
         if (e.ctrlKey && e.key === 'p') { e.preventDefault(); return false; }
     });
 
-    // 3. Disable Text Selection (tapi tetap bisa klik tombol/link)
     document.addEventListener('selectstart', function(e) {
         if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
             e.preventDefault();
@@ -1530,13 +1456,11 @@
         }
     });
 
-    // 4. Disable Drag Gambar
     document.addEventListener('dragstart', function(e) {
         e.preventDefault();
         return false;
     });
 
-    // Custom Toast Notification
     function showToastCustom(message) {
         const toast = document.createElement('div');
         toast.style.cssText = `
@@ -1556,7 +1480,6 @@
         }, 2500);
     }
 
-    // Tambahkan CSS animasi
     const style = document.createElement('style');
     style.textContent = `
         @keyframes slideInToast {
@@ -1572,7 +1495,5 @@
 })();
 </script>
 
-
-    
 </body>
 </html>
