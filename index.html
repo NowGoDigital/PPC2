@@ -1526,51 +1526,94 @@
     <script>
     const analyticsDb = firebase.firestore();
 
-    function trackVisitor() {
-        if (sessionStorage.getItem('visitorTracked')) return;
+    function // ============================
+//  ANALYTICS - Visitor Tracking with Location
+// ============================
+async function trackVisitor() {
+    if (sessionStorage.getItem('visitorTracked')) return;
 
-        const now = new Date();
-        const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+    const now = new Date();
+    const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
-        const ua = navigator.userAgent;
-        let device = 'Desktop';
-        if (/Mobi|Android/i.test(ua)) device = 'Mobile';
-        else if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
+    const ua = navigator.userAgent;
+    let device = 'Desktop';
+    if (/Mobi|Android/i.test(ua)) device = 'Mobile';
+    else if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
 
-        let browser = 'Lainnya';
-        if (ua.includes('Chrome') && !ua.includes('Edg')) browser = 'Chrome';
-        else if (ua.includes('Firefox')) browser = 'Firefox';
-        else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
-        else if (ua.includes('Edg')) browser = 'Edge';
+    let browser = 'Lainnya';
+    if (ua.includes('Chrome') && !ua.includes('Edg')) browser = 'Chrome';
+    else if (ua.includes('Firefox')) browser = 'Firefox';
+    else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
+    else if (ua.includes('Edg')) browser = 'Edge';
 
-        console.log('📊 Tracking visitor...', { device, browser, date: today });
+    // ===== DETEKSI LOKASI VIA IP API =====
+    let city = 'Tidak Diketahui';
+    let region = '';
+    let country = 'Tidak Diketahui';
+    let countryCode = '';
+    let ip = '';
+    let timezone = '';
 
-        analyticsDb.collection('analytics').add({
-            timestamp: now.toISOString(),
-            page: 'index.html',
-            device: device,
-            browser: browser,
-            date: today
-        })
-        .then(() => console.log('✅ Visitor data saved'))
-        .catch(err => console.error('❌ Analytics write error:', err));
-
-        const summaryRef = analyticsDb.collection('analyticsSummary').doc('daily');
-        summaryRef.get()
-            .then(doc => {
-                if (doc.exists) {
-                    const data = doc.data();
-                    const currentCount = data[today] || 0;
-                    return summaryRef.update({ [today]: currentCount + 1 });
-                } else {
-                    return summaryRef.set({ [today]: 1 });
-                }
-            })
-            .then(() => console.log('✅ Daily summary updated'))
-            .catch(err => console.error('❌ Summary write error:', err));
-
-        sessionStorage.setItem('visitorTracked', 'true');
+    try {
+        const response = await fetch('http://ip-api.com/json/?fields=status,message,country,countryCode,regionName,city,timezone,query', {
+            signal: AbortSignal.timeout(5000) // Timeout 5 detik
+        });
+        const geo = await response.json();
+        
+        if (geo.status === 'success') {
+            city = geo.city || 'Tidak Diketahui';
+            region = geo.regionName || '';
+            country = geo.country || 'Tidak Diketahui';
+            countryCode = geo.countryCode || '';
+            ip = geo.query || '';
+            timezone = geo.timezone || '';
+        }
+    } catch (err) {
+        console.log('Geolocation fallback:', err.message);
+        // Jika gagal, tetap lanjutkan tanpa lokasi
     }
+
+    // ===== SIMPAN KE FIREBASE =====
+    db.collection('analytics').add({
+        timestamp: now.toISOString(),
+        page: 'index.html',
+        device: device,
+        browser: browser,
+        date: today,
+        // Data lokasi baru
+        city: city,
+        region: region,
+        country: country,
+        countryCode: countryCode,
+        ip: ip,
+        timezone: timezone
+    }).catch(err => console.log('Analytics error:', err));
+
+    // Update daily summary
+    const summaryRef = db.collection('analyticsSummary').doc('daily');
+    summaryRef.get().then(doc => {
+        if (doc.exists) {
+            const data = doc.data();
+            return summaryRef.update({ [today]: (data[today] || 0) + 1 });
+        } else {
+            return summaryRef.set({ [today]: 1 });
+        }
+    }).catch(err => console.log('Summary error:', err));
+
+    // Update lokasi summary (untuk chart di admin)
+    const locRef = db.collection('analyticsSummary').doc('locations');
+    locRef.get().then(doc => {
+        if (doc.exists) {
+            const data = doc.data();
+            const key = `${city}, ${country}`;
+            return locRef.update({ [key]: (data[key] || 0) + 1 });
+        } else {
+            return locRef.set({ [`${city}, ${country}`]: 1 });
+        }
+    }).catch(err => console.log('Location summary error:', err));
+
+    sessionStorage.setItem('visitorTracked', 'true');
+}
 
     document.addEventListener('DOMContentLoaded', trackVisitor);
 </script>
