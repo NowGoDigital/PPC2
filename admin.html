@@ -438,6 +438,107 @@
         </div>
     </div>
 
+<!-- SECTION LOKASI PENGUNJUNG -->
+<div class="admin-section" style="margin-top: 30px;">
+    <h3 style="font-family: 'Playfair Display', serif; color: #064e3b; margin-bottom: 20px;">
+        <i class="fa-solid fa-earth-asia" style="color: #fbbf24;"></i> 
+        Lokasi Pengunjung
+    </h3>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <!-- Top Kota -->
+        <div style="background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+            <h4 style="color: #064e3b; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-city" style="color: #059669;"></i>
+                Top Kota
+            </h4>
+            <div id="topCitiesList" style="font-size: 0.9rem;">
+                <p style="color: #9ca3af; text-align: center; padding: 20px;">Memuat data...</p>
+            </div>
+        </div>
+
+        <!-- Top Negara -->
+        <div style="background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+            <h4 style="color: #064e3b; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-globe" style="color: #059669;"></i>
+                Top Negara
+            </h4>
+            <div id="topCountriesList" style="font-size: 0.9rem;">
+                <p style="color: #9ca3af; text-align: center; padding: 20px;">Memuat data...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daftar Pengunjung Terbaru dengan Lokasi -->
+    <div style="background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-top: 20px;">
+        <h4 style="color: #064e3b; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-users" style="color: #059669;"></i>
+            Pengunjung Terbaru (dengan Lokasi)
+        </h4>
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                <thead>
+                    <tr style="background: #f9fafb;">
+                        <th style="padding: 12px; text-align: left; color: #064e3b; border-bottom: 2px solid #e5e7eb;">Waktu</th>
+                        <th style="padding: 12px; text-align: left; color: #064e3b; border-bottom: 2px solid #e5e7eb;">Lokasi</th>
+                        <th style="padding: 12px; text-align: left; color: #064e3b; border-bottom: 2px solid #e5e7eb;">Negara</th>
+                        <th style="padding: 12px; text-align: left; color: #064e3b; border-bottom: 2px solid #e5e7eb;">Device</th>
+                        <th style="padding: 12px; text-align: left; color: #064e3b; border-bottom: 2px solid #e5e7eb;">Browser</th>
+                    </tr>
+                </thead>
+                <tbody id="recentVisitorsTable">
+                    <tr>
+                        <td colspan="5" style="padding: 20px; text-align: center; color: #9ca3af;">Memuat data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+.location-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all 0.3s;
+}
+.location-bar:hover {
+    background: #ecfdf5;
+    transform: translateX(3px);
+}
+.location-bar-name {
+    font-weight: 600;
+    color: #064e3b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.location-bar-count {
+    background: #064e3b;
+    color: #fbbf24;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.flag-emoji {
+    font-size: 1.1rem;
+}
+@media (max-width: 768px) {
+    .admin-section > div:first-of-type {
+        grid-template-columns: 1fr !important;
+    }
+}
+</style>
+
+
+
+    
     <!-- MODAL GALLERY -->
     <div class="modal" id="modalForm">
         <div class="modal-content">
@@ -1013,5 +1114,167 @@
             });
         };
     </script>
+
+    // ===== LOAD LOCATION DATA =====
+function loadLocationData() {
+    // 1. Load Top Cities & Countries dari summary
+    const locRef = firebase.firestore().collection('analyticsSummary').doc('locations');
+    locRef.get().then(doc => {
+        if (doc.exists) {
+            const data = doc.data();
+            const sorted = Object.entries(data)
+                .map(([name, count]) => ({ name, count }))
+                .sort((a, b) => b.count - a.count);
+
+            // Pisah kota dan negara
+            const cities = sorted.filter(x => x.name.includes(','));
+            const countries = {};
+            sorted.forEach(item => {
+                const parts = item.name.split(', ');
+                if (parts.length > 1) {
+                    const country = parts[parts.length - 1];
+                    countries[country] = (countries[country] || 0) + item.count;
+                }
+            });
+            const countryList = Object.entries(countries)
+                .map(([name, count]) => ({ name, count }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 8);
+
+            // Render Top Cities
+            const topCitiesEl = document.getElementById('topCitiesList');
+            if (cities.length === 0) {
+                topCitiesEl.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 20px;">Belum ada data lokasi</p>';
+            } else {
+                topCitiesEl.innerHTML = cities.slice(0, 8).map(c => {
+                    const [city, country] = c.name.split(', ');
+                    const flag = getFlagEmoji(country);
+                    return `
+                        <div class="location-bar">
+                            <div class="location-bar-name">
+                                <span class="flag-emoji">${flag}</span>
+                                <div>
+                                    <div>${city}</div>
+                                    <div style="font-size: 0.75rem; color: #9ca3af; font-weight: 400;">${country}</div>
+                                </div>
+                            </div>
+                            <span class="location-bar-count">${c.count} visit</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Render Top Countries
+            const topCountriesEl = document.getElementById('topCountriesList');
+            if (countryList.length === 0) {
+                topCountriesEl.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 20px;">Belum ada data negara</p>';
+            } else {
+                topCountriesEl.innerHTML = countryList.map(c => `
+                    <div class="location-bar">
+                        <div class="location-bar-name">
+                            <span class="flag-emoji">${getFlagEmoji(c.name)}</span>
+                            ${c.name}
+                        </div>
+                        <span class="location-bar-count">${c.count} visit</span>
+                    </div>
+                `).join('');
+            }
+        } else {
+            document.getElementById('topCitiesList').innerHTML = '<p style="color: #9ca3af; text-align: center;">Belum ada data</p>';
+            document.getElementById('topCountriesList').innerHTML = '<p style="color: #9ca3af; text-align: center;">Belum ada data</p>';
+        }
+    }).catch(err => console.log('Location load error:', err));
+
+    // 2. Load Recent Visitors dari collection analytics
+    firebase.firestore().collection('analytics')
+        .orderBy('timestamp', 'desc')
+        .limit(15)
+        .get()
+        .then(snapshot => {
+            const tbody = document.getElementById('recentVisitorsTable');
+            if (snapshot.empty) {
+                tbody.innerHTML = '<tr><td colspan="5" style="padding: 20px; text-align: center; color: #9ca3af;">Belum ada pengunjung</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = snapshot.docs.map(doc => {
+                const d = doc.data();
+                const time = new Date(d.timestamp).toLocaleString('id-ID', {
+                    day: '2-digit', month: 'short', year: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
+                });
+                const city = d.city || '-';
+                const country = d.country || '-';
+                const flag = getFlagEmoji(d.countryCode || country);
+                const deviceIcon = d.device === 'Mobile' ? '📱' : d.device === 'Tablet' ? '📱' : '💻';
+                
+                return `
+                    <tr style="border-bottom: 1px solid #f3f4f6;">
+                        <td style="padding: 12px; color: #6b7280;">${time}</td>
+                        <td style="padding: 12px;">
+                            <div style="font-weight: 600; color: #064e3b;">${city}</div>
+                            ${d.region ? `<div style="font-size: 0.75rem; color: #9ca3af;">${d.region}</div>` : ''}
+                        </td>
+                        <td style="padding: 12px;">
+                            <span class="flag-emoji">${flag}</span> ${country}
+                        </td>
+                        <td style="padding: 12px;">${deviceIcon} ${d.device || '-'}</td>
+                        <td style="padding: 12px; color: #6b7280;">${d.browser || '-'}</td>
+                    </tr>
+                `;
+            }).join('');
+        }).catch(err => {
+            console.log('Recent visitors error:', err);
+            document.getElementById('recentVisitorsTable').innerHTML = 
+                '<tr><td colspan="5" style="padding: 20px; text-align: center; color: #ef4444;">Gagal memuat data</td></tr>';
+        });
+}
+
+// Helper: Convert Country Code to Flag Emoji
+function getFlagEmoji(countryOrCode) {
+    if (!countryOrCode) return '🌍';
+    
+    const codeMap = {
+        'ID': '🇮🇩', 'Indonesia': '🇮🇩',
+        'US': '🇺🇸', 'United States': '🇺🇸', 'USA': '🇺🇸',
+        'SG': '🇸🇬', 'Singapore': '🇸🇬',
+        'MY': '🇲🇾', 'Malaysia': '🇲🇾',
+        'AU': '🇦🇺', 'Australia': '🇦🇺',
+        'JP': '🇯🇵', 'Japan': '🇯🇵',
+        'CN': '🇨🇳', 'China': '🇨🇳',
+        'KR': '🇰🇷', 'South Korea': '🇰🇷',
+        'GB': '🇬🇧', 'United Kingdom': '🇬🇧',
+        'DE': '🇩🇪', 'Germany': '🇩🇪',
+        'FR': '🇫🇷', 'France': '🇫🇷',
+        'IN': '🇮🇳', 'India': '🇮🇳',
+        'TH': '🇹🇭', 'Thailand': '🇹🇭',
+        'PH': '🇵🇭', 'Philippines': '🇵🇭',
+        'VN': '🇻🇳', 'Vietnam': '🇻🇳',
+        'NL': '🇳🇱', 'Netherlands': '🇳🇱',
+        'SA': '🇸🇦', 'Saudi Arabia': '🇸🇦',
+        'AE': '🇦🇪', 'United Arab Emirates': '🇦🇪',
+        'BN': '🇧🇳', 'Brunei': '🇧🇳',
+        'TL': '🇹🇱', 'Timor-Leste': '🇹🇱'
+    };
+    
+    if (codeMap[countryOrCode]) return codeMap[countryOrCode];
+    
+    // Convert 2-letter country code to flag emoji
+    if (countryOrCode.length === 2 && /^[A-Z]{2}$/.test(countryOrCode)) {
+        return String.fromCodePoint(...[...countryOrCode.toUpperCase()].map(c => 127397 + c.charCodeAt()));
+    }
+    
+    return '🌍';
+}
+
+// Panggil fungsi saat admin page load
+if (typeof firebase !== 'undefined' && firebase.firestore) {
+    loadLocationData();
+}
+
+
+
+
+    
 </body>
 </html>
