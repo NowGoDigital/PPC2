@@ -1189,6 +1189,201 @@
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
+    
+    /* ===== BLOG SECTION ===== */
+.blog-section {
+    padding: 100px 0;
+    background: #f9fafb;
+    position: relative;
+    overflow: hidden;
+}
+.blog-section::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(5,150,105,0.04) 0%, transparent 70%);
+    border-radius: 50%;
+}
+.blog-section .section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.blog-grid-home {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+.blog-card-home {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+.blog-card-home:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(6,78,59,0.15);
+    border-color: #fbbf24;
+}
+.blog-card-home-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.blog-card-home:hover .blog-card-home-img {
+    transform: scale(1.05);
+}
+.blog-card-home-img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+.blog-card-home-cat {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #064e3b;
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.blog-card-home-body {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.blog-card-home-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.blog-card-home-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    font-weight: 500;
+}
+.blog-card-home-meta i {
+    color: #059669;
+    font-size: 0.75rem;
+}
+.blog-card-home-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #064e3b;
+    line-height: 1.35;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+.blog-card-home:hover .blog-card-home-body h3 {
+    color: #059669;
+}
+.blog-card-home-excerpt {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.6;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+.blog-card-home-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid #f3f4f6;
+}
+.blog-card-home-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.blog-card-home-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #064e3b, #059669);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fbbf24;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+.blog-card-home-author-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #064e3b;
+}
+.blog-card-home-read {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #059669;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: gap 0.3s;
+}
+.blog-card-home:hover .blog-card-home-read {
+    gap: 8px;
+}
+.blog-view-all {
+    text-align: center;
+}
+.blog-empty-home {
+    text-align: center;
+    padding: 60px 20px;
+    grid-column: 1 / -1;
+}
+.blog-empty-home i {
+    font-size: 3rem;
+    color: #d1d5db;
+    margin-bottom: 15px;
+}
+.blog-empty-home h3 {
+    color: #064e3b;
+    margin-bottom: 8px;
+    font-family: 'Playfair Display', serif;
+}
+.blog-empty-home p {
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+@media (max-width: 992px) {
+    .blog-grid-home { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+    .blog-section { padding: 70px 0; }
+}
+@media (max-width: 576px) {
+    .blog-grid-home { grid-template-columns: 1fr; gap: 20px; }
+    .blog-section { padding: 50px 0; }
+    .blog-card-home-img { height: 200px; }
+    .blog-card-home-body { padding: 20px; }
+    .blog-card-home-body h3 { font-size: 1.1rem; }
+}
+    
+    
+    
+    
     </style>
 </head>
 <body>
@@ -1433,27 +1628,27 @@
         </div>
     </section>
 
-    <!-- BLOG SECTION (HOME) -->
-    <section class="blog-section" id="blog">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <span>Blog & Artikel</span>
-                <h2>Wawasan Terbaru Seputar <br>Sampling Agribisnis</h2>
-            </div>
-            <div class="blog-grid-home" id="blogGridHome">
-                <div class="blog-empty-home">
-                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 2.5rem; color: #059669;"></i>
-                    <h3 style="margin-top: 15px;">Memuat artikel...</h3>
-                    <p>Harap tunggu sebentar.</p>
-                </div>
-            </div>
-            <div class="blog-view-all" data-aos="fade-up">
-                <a href="blog.html" class="btn-premium">
-                    <i class="fa-solid fa-newspaper"></i> Lihat Semua Artikel
-                </a>
+    <!-- BLOG SECTION -->
+<section class="blog-section" id="blog">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <span>Blog & Artikel</span>
+            <h2>Wawasan Terbaru Seputar <br>Sampling Agribisnis</h2>
+        </div>
+        <div class="blog-grid-home" id="blogGridHome">
+            <div class="blog-empty-home">
+                <i class="fa-solid fa-spinner fa-spin" style="color: #059669;"></i>
+                <h3 style="margin-top: 15px;">Memuat artikel...</h3>
+                <p>Harap tunggu sebentar.</p>
             </div>
         </div>
-    </section>
+        <div class="blog-view-all" data-aos="fade-up">
+            <a href="blog.html" class="btn-premium">
+                <i class="fa-solid fa-newspaper"></i> Lihat Semua Artikel
+            </a>
+        </div>
+    </div>
+</section>
 
     <!-- Contact Section -->
     <section class="contact-section section-padding" id="contact">
@@ -2069,5 +2264,126 @@
     });
 </script>
 
+// ===== LOAD BLOG PREVIEW FOR HOMEPAGE =====
+(function() {
+    function loadBlogPreview() {
+        const grid = document.getElementById('blogGridHome');
+        if (!grid) return;
+
+        if (typeof firebase === 'undefined' || !firebase.firestore) {
+            grid.innerHTML = `
+                <div class="blog-empty-home">
+                    <i class="fa-regular fa-newspaper"></i>
+                    <h3>Blog Segera Hadir</h3>
+                    <p>Artikel-artikel menarik seputar sampling agribisnis akan segera dipublikasikan.</p>
+                </div>`;
+            return;
+        }
+
+        const db = firebase.firestore();
+        const bulanShort = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+
+        function stripHtml(html) {
+            const tmp = document.createElement('div');
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || '';
+        }
+
+        function getExcerpt(content, maxLen) {
+            maxLen = maxLen || 130;
+            const text = stripHtml(content);
+            return text.length > maxLen ? text.substring(0, maxLen).trim() + '...' : text;
+        }
+
+        function getInitials(name) {
+            if (!name) return 'PPC';
+            return name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().substring(0, 2);
+        }
+
+        function formatShortDate(dateStr) {
+            if (!dateStr) return '';
+            var d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '';
+            return d.getDate() + ' ' + bulanShort[d.getMonth()] + ' ' + d.getFullYear();
+        }
+
+        db.collection('blog').get().then(function(snapshot) {
+            var posts = [];
+            snapshot.forEach(function(doc) {
+                var data = doc.data();
+                if (data.published !== false) {
+                    posts.push({ id: doc.id, data: data });
+                }
+            });
+
+            posts.sort(function(a, b) {
+                var dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+                var dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+                return dateB - dateA;
+            });
+
+            var latest = posts.slice(0, 3);
+
+            if (latest.length === 0) {
+                grid.innerHTML = `
+                    <div class="blog-empty-home">
+                        <i class="fa-regular fa-newspaper"></i>
+                        <h3>Belum Ada Artikel</h3>
+                        <p>Artikel akan segera dipublikasikan. Nantikan update terbaru!</p>
+                    </div>`;
+                return;
+            }
+
+            grid.innerHTML = latest.map(function(post, index) {
+                var d = post.data;
+                var excerpt = d.excerpt || getExcerpt(d.content, 130);
+                var initials = getInitials(d.author || 'PPC');
+                var dateFormatted = formatShortDate(d.date);
+
+                return '<div class="blog-card-home" data-aos="fade-up" data-aos-delay="' + (index * 100) + '" onclick="window.location.href=\'blog.html?post=' + post.id + '\'">' +
+                    '<div class="blog-card-home-img-wrapper">' +
+                        '<img src="' + (d.image || 'https://via.placeholder.com/600x400/064e3b/fbbf24?text=Blog+PPC') + '" alt="' + d.title + '" class="blog-card-home-img" loading="lazy">' +
+                        '<span class="blog-card-home-cat">' + (d.category || 'Artikel') + '</span>' +
+                    '</div>' +
+                    '<div class="blog-card-home-body">' +
+                        '<div class="blog-card-home-meta">' +
+                            '<span><i class="fa-regular fa-calendar"></i> ' + dateFormatted + '</span>' +
+                            '<span><i class="fa-regular fa-user"></i> ' + (d.author || 'PPC Certified') + '</span>' +
+                        '</div>' +
+                        '<h3>' + d.title + '</h3>' +
+                        '<p class="blog-card-home-excerpt">' + excerpt + '</p>' +
+                        '<div class="blog-card-home-footer">' +
+                            '<div class="blog-card-home-author">' +
+                                '<div class="blog-card-home-avatar">' + initials + '</div>' +
+                                '<span class="blog-card-home-author-name">' + (d.author || 'PPC Certified') + '</span>' +
+                            '</div>' +
+                            '<span class="blog-card-home-read">Baca <i class="fa-solid fa-arrow-right"></i></span>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+
+            if (typeof AOS !== 'undefined') AOS.refresh();
+        }).catch(function(error) {
+            console.error('Error loading blog preview:', error);
+            grid.innerHTML = `
+                <div class="blog-empty-home">
+                    <i class="fa-regular fa-newspaper"></i>
+                    <h3>Blog Segera Hadir</h3>
+                    <p>Artikel-artikel menarik seputar sampling agribisnis akan segera dipublikasikan.</p>
+                </div>`;
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(loadBlogPreview, 500);
+        });
+    } else {
+        setTimeout(loadBlogPreview, 500);
+    }
+})();
+
+    
 </body>
 </html>
