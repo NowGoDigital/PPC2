@@ -1,1 +1,1590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Blog & Artikel - PPC Certified | Sampling Agribisnis</title>
+    <meta name="description" content="Artikel, tips, dan wawasan seputar sampling pupuk, pestisida, standar SNI, dan regulasi agribisnis Indonesia dari PPC bersertifikat BNSP & KAN.">
 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #064e3b;
+            --primary-mid: #059669;
+            --accent-gold: #fbbf24;
+            --white: #ffffff;
+            --hero-gradient: linear-gradient(135deg, #ffffff 0%, #ecfdf5 40%, #064e3b 100%);
+            --shadow-soft: 0 20px 40px -10px rgba(6, 78, 59, 0.15);
+        }
+
+        html { overflow-x: hidden; width: 100%; position: relative; }
+        body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
+        .page-wrapper { width: 100%; max-width: 100vw; overflow-x: hidden; position: relative; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: #1f2937; background-color: #f9fafb; line-height: 1.7; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; width: 100%; box-sizing: border-box; }
+        .section-padding { padding: 100px 0; }
+        section { width: 100%; overflow: hidden; position: relative; }
+        .section-title { margin-bottom: 70px; position: relative; text-align: center; }
+        .section-title span { color: var(--primary-mid); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; display: block; margin-bottom: 15px; }
+        .section-title h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--primary-dark); }
+
+        .btn-premium {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px; white-space: nowrap;
+            padding: 18px 45px; background: var(--accent-gold);
+            color: var(--primary-dark); font-weight: 700; border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4); position: relative;
+            overflow: hidden; z-index: 1; border: none; cursor: pointer;
+            width: auto; text-align: center; font-family: inherit; font-size: 1rem; max-width: 100%;
+        }
+        .btn-premium:hover { transform: translateY(-3px); background: var(--white); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+
+        /* --- HEADER --- */
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: var(--primary-dark); border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.4s; }
+        header.scrolled { background: rgba(6, 78, 59, 0.98); box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        nav { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 20px 40px; height: 80px; box-sizing: border-box; }
+        header.scrolled nav { padding: 15px 40px; height: 70px; }
+        .logo-container { display: flex; flex-direction: column; line-height: 1.2; text-align: left; margin-left: 0; max-width: 70%; overflow: hidden; }
+        .logo-main { font-size: 1.6rem; font-weight: 700; color: var(--white); font-family: 'Playfair Display', serif; letter-spacing: -0.5px; white-space: nowrap; }
+        .logo-main span { color: var(--accent-gold); }
+        .logo-desc { font-size: 0.75rem; color: rgba(255,255,255,0.8); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; letter-spacing: 0.5px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .nav-links { display: flex; gap: 30px; align-items: center; margin-right: 0; }
+        .nav-links a { color: rgba(255,255,255,0.8); font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--accent-gold); }
+        .nav-links a.active-link { color: var(--accent-gold); font-weight: 700; }
+        .cta-menu { padding: 10px 28px; background: var(--accent-gold); color: var(--primary-dark) !important; border-radius: 50px; font-weight: 700 !important; }
+        .admin-login-btn { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7) !important; transition: all 0.3s ease; font-size: 1rem; border: 1px solid rgba(255,255,255,0.15); }
+        .admin-login-btn:hover { background: var(--accent-gold); color: var(--primary-dark) !important; transform: translateY(-2px); border-color: var(--accent-gold); }
+        .menu-toggle { display: none; color: var(--white); font-size: 1.5rem; cursor: pointer; flex-shrink: 0; min-width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); }
+
+        /* --- BLOG HERO --- */
+        .blog-hero {
+            min-height: 55vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 120px;
+            padding-bottom: 80px;
+            background: var(--hero-gradient);
+            overflow: hidden;
+        }
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(251,191,36,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: morph 10s ease-in-out infinite;
+        }
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .blog-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.5);
+            border: 1px solid var(--primary-dark);
+            color: var(--primary-dark);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            backdrop-filter: blur(5px);
+        }
+        .blog-hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+        .blog-hero h1 span {
+            color: var(--primary-mid);
+            position: relative;
+            display: inline-block;
+        }
+        .blog-hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: var(--accent-gold);
+            opacity: 0.3;
+            z-index: -1;
+            transform: skewX(-10deg);
+        }
+        .blog-hero p {
+            font-size: 1.15rem;
+            color: #374151;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        /* Search Bar */
+        .blog-search-bar {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            max-width: 550px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(6,78,59,0.12);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .blog-search-bar:focus-within {
+            border-color: var(--accent-gold);
+        }
+        .blog-search-bar input {
+            flex: 1;
+            padding: 16px 24px;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--primary-dark);
+            outline: none;
+        }
+        .blog-search-bar input::placeholder { color: #9ca3af; }
+        .blog-search-bar button {
+            padding: 16px 28px;
+            background: var(--primary-dark);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            font-weight: 600;
+        }
+        .blog-search-bar button:hover { background: var(--primary-mid); }
+
+        @keyframes morph { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* --- CATEGORY FILTER --- */
+        .blog-filter-section {
+            background: var(--white);
+            padding: 20px 0;
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: top 0.3s;
+        }
+        header.scrolled ~ .blog-filter-section { top: 70px; }
+        .blog-filter-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+        .blog-filter-btn {
+            padding: 10px 22px;
+            border: 2px solid var(--primary-dark);
+            background: transparent;
+            color: var(--primary-dark);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .blog-filter-btn:hover { background: rgba(6,78,59,0.05); transform: translateY(-2px); }
+        .blog-filter-btn.active { background: var(--primary-dark); color: var(--white); box-shadow: 0 5px 15px rgba(6,78,59,0.25); }
+        .blog-filter-btn.active i { color: var(--accent-gold); }
+        .blog-filter-btn .count {
+            background: rgba(6,78,59,0.1);
+            color: var(--primary-dark);
+            padding: 2px 8px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .blog-filter-btn.active .count { background: rgba(255,255,255,0.2); color: var(--white); }
+
+        /* --- FEATURED POST --- */
+        .featured-section { padding: 60px 0 20px; }
+        .featured-card {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 0;
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(6,78,59,0.08);
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+        .featured-card:hover { transform: translateY(-5px); }
+        .featured-img {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .featured-card:hover .featured-img { transform: scale(1.03); }
+        .featured-img-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .featured-badge-wrapper {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 3;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .featured-label {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .featured-category-tag {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .featured-content {
+            padding: 45px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .featured-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .featured-meta-item i { color: var(--primary-mid); font-size: 0.8rem; }
+        .featured-content h2 {
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            color: var(--primary-dark);
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+        .featured-content h2:hover { color: var(--primary-mid); }
+        .featured-excerpt {
+            font-size: 1rem;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .featured-read-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-mid);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .featured-read-btn:hover { color: var(--primary-dark); gap: 12px; }
+
+        /* --- BLOG GRID --- */
+        .blog-grid-section { padding: 60px 0 100px; }
+        .blog-grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .blog-grid-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+        .blog-result-count {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .blog-result-count strong { color: var(--primary-dark); }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .blog-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(6,78,59,0.15);
+            border-color: var(--accent-gold);
+        }
+        .blog-card-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+        .blog-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .blog-card:hover .blog-card-img { transform: scale(1.08); }
+        .blog-card-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .blog-card-read-time {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.6);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            backdrop-filter: blur(5px);
+        }
+        .blog-card-body {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .blog-card-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.78rem;
+            color: #9ca3af;
+            font-weight: 500;
+        }
+        .blog-card-meta-item i { color: var(--primary-mid); font-size: 0.72rem; }
+        .blog-card-body h3 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            line-height: 1.35;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .blog-card:hover .blog-card-body h3 { color: var(--primary-mid); }
+        .blog-card-excerpt {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.65;
+            margin-bottom: 20px;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .blog-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid #f3f4f6;
+        }
+        .blog-card-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .blog-card-author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-mid));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .blog-card-author-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        .blog-card-read-more {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-mid);
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .blog-card:hover .blog-card-read-more { gap: 8px; }
+
+        /* --- LOAD MORE --- */
+        .load-more-wrapper { text-align: center; margin-top: 50px; }
+        .btn-load-more {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 40px; background: transparent;
+            color: var(--primary-dark); border: 2px solid var(--primary-dark);
+            border-radius: 50px; font-weight: 700; font-size: 0.95rem;
+            cursor: pointer; transition: all 0.3s ease; font-family: inherit;
+        }
+        .btn-load-more:hover { background: var(--primary-dark); color: var(--white); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(6,78,59,0.25); }
+        .btn-load-more:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .blog-counter { display: block; text-align: center; margin-top: 15px; color: #666; font-size: 0.85rem; font-weight: 500; }
+
+        /* --- EMPTY STATE --- */
+        .blog-empty {
+            text-align: center;
+            padding: 80px 20px;
+            grid-column: 1 / -1;
+        }
+        .blog-empty i { font-size: 4rem; color: #d1d5db; margin-bottom: 20px; }
+        .blog-empty h3 { color: var(--primary-dark); margin-bottom: 10px; font-size: 1.4rem; }
+        .blog-empty p { color: #6b7280; max-width: 400px; margin: 0 auto; }
+
+        /* --- BLOG DETAIL MODAL --- */
+        .blog-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+        .blog-modal.active { display: flex; }
+        .blog-modal-content {
+            background: var(--white);
+            border-radius: 25px;
+            max-width: 850px;
+            width: 100%;
+            margin: 40px auto;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            animation: modalSlideUp 0.4s ease-out;
+        }
+        @keyframes modalSlideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .blog-modal-header-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        .blog-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 5;
+            backdrop-filter: blur(5px);
+        }
+        .blog-modal-close:hover { background: var(--danger, #dc2626); transform: rotate(90deg); }
+        .blog-modal-img-wrapper { position: relative; }
+        .blog-modal-body {
+            padding: 45px 50px;
+        }
+        .blog-modal-body .modal-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .modal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .modal-meta-item i { color: var(--primary-mid); }
+        .modal-category-badge {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .blog-modal-body h1 {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            color: var(--primary-dark);
+            line-height: 1.25;
+            margin-bottom: 25px;
+        }
+        .blog-modal-body .article-content {
+            font-size: 1.05rem;
+            color: #374151;
+            line-height: 1.85;
+        }
+        .blog-modal-body .article-content p {
+            margin-bottom: 18px;
+        }
+        .blog-modal-body .article-content h2 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin: 30px 0 15px;
+        }
+        .blog-modal-body .article-content h3 {
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            margin: 25px 0 12px;
+        }
+        .blog-modal-body .article-content ul,
+        .blog-modal-body .article-content ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        .blog-modal-body .article-content li {
+            margin-bottom: 8px;
+            list-style: disc;
+        }
+        .blog-modal-body .article-content ol li { list-style: decimal; }
+        .blog-modal-body .article-content blockquote {
+            border-left: 4px solid var(--accent-gold);
+            padding: 15px 20px;
+            margin: 20px 0;
+            background: #f0fdf4;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            color: var(--primary-dark);
+        }
+        .blog-modal-body .article-content strong { color: var(--primary-dark); }
+        .blog-modal-body .article-content img {
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .blog-modal-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .blog-modal-tag {
+            background: #f3f4f6;
+            color: #4b5563;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .blog-modal-tag:hover { background: var(--primary-dark); color: var(--white); }
+
+        .blog-modal-share {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .blog-modal-share span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .share-btn:hover { transform: translateY(-3px); }
+        .share-btn.wa { background: #25D366; }
+        .share-btn.fb { background: #1877F2; }
+        .share-btn.tw { background: #1DA1F2; }
+        .share-btn.copy { background: var(--primary-dark); }
+
+        /* --- CTA SECTION --- */
+        .blog-cta-section {
+            background: var(--primary-dark);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .blog-cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .blog-cta-section h2 {
+            color: var(--white);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        .blog-cta-section p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+        .blog-cta-section .btn-premium { position: relative; z-index: 2; }
+
+        /* --- FOOTER --- */
+        footer { background: #022c22; color: rgba(255,255,255,0.7); padding: 80px 0 30px; font-size: 0.95rem; overflow: hidden; width: 100%; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 60px; width: 100%; }
+        .footer-col { min-width: 0; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }
+        .footer-col h4 { color: var(--white); font-size: 1.2rem; margin-bottom: 25px; font-family: 'Playfair Display', serif; }
+        .footer-about p { margin-bottom: 25px; line-height: 1.8; word-wrap: break-word; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: rgba(255,255,255,0.7); transition: 0.3s; display: flex; align-items: center; word-wrap: break-word; }
+        .footer-links a:hover { color: var(--accent-gold); padding-left: 5px; }
+        .footer-links i { margin-right: 10px; font-size: 0.8rem; color: var(--accent-gold); flex-shrink: 0; }
+        .footer-contact li { display: flex; gap: 15px; margin-bottom: 20px; align-items: flex-start; word-wrap: break-word; }
+        .footer-contact i { color: var(--accent-gold); margin-top: 5px; flex-shrink: 0; }
+        .footer-contact span { word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .social-btn { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
+        .social-btn:hover { background: var(--accent-gold); color: var(--primary-dark); transform: translateY(-3px); border-color: var(--accent-gold); }
+        .copyright { text-align: center; font-size: 0.85rem; word-wrap: break-word; }
+
+        /* ============================ */
+        /* ===== RESPONSIVE TABLET ==== */
+        /* ============================ */
+        @media (max-width: 992px) {
+            nav { padding: 15px 20px; height: 70px; }
+            header.scrolled nav { padding: 12px 20px; height: 60px; }
+            .logo-container { max-width: 60%; }
+            .logo-main { font-size: 1.3rem; }
+            .logo-desc { font-size: 0.65rem; }
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--primary-dark); flex-direction: column; padding: 25px 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); gap: 10px; z-index: 999; border-top: 1px solid rgba(255,255,255,0.1); box-sizing: border-box; }
+            header.scrolled .nav-links { top: 60px; }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a { display: block; padding: 12px 15px; font-size: 1rem; border-radius: 8px; }
+            .nav-links a:hover { background: rgba(255,255,255,0.05); }
+            .cta-menu { padding: 12px 24px !important; display: inline-block !important; width: auto !important; margin: 5px auto !important; font-size: 0.9rem !important; }
+            .admin-login-btn { width: 44px !important; height: 44px !important; margin: 5px auto !important; font-size: 1rem !important; }
+            .menu-toggle { display: flex; }
+
+            .blog-hero { min-height: auto; padding-top: 110px; padding-bottom: 60px; }
+            .blog-hero h1 { font-size: 2rem; }
+            .blog-hero p { font-size: 1rem; }
+            .blog-filter-section { top: 70px; }
+            header.scrolled ~ .blog-filter-section { top: 60px; }
+
+            .featured-card { grid-template-columns: 1fr; }
+            .featured-img { min-height: 250px; }
+            .featured-content { padding: 30px 25px; }
+
+            .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+
+            .blog-modal-body { padding: 30px 25px; }
+            .blog-modal-header-img { height: 280px; }
+
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+            .section-padding { padding: 60px 0; }
+        }
+
+        /* ============================ */
+        /* ===== RESPONSIVE MOBILE ==== */
+        /* ============================ */
+        @media (max-width: 576px) {
+            .container { padding: 0 15px; max-width: 100%; width: 100%; box-sizing: border-box; }
+            nav { padding: 10px 15px; height: 65px; }
+            header.scrolled nav { padding: 8px 15px; height: 58px; }
+            .logo-container { max-width: 60%; }
+            .logo-main { font-size: 1.15rem; }
+            .logo-desc { font-size: 0.6rem; display: block !important; }
+            .nav-links { top: 65px; padding: 20px 15px; width: 100%; left: 0; right: 0; box-sizing: border-box; }
+            header.scrolled .nav-links { top: 58px; }
+            .menu-toggle { min-width: 40px; height: 40px; font-size: 1.3rem; }
+
+            .blog-hero { padding-top: 95px; padding-bottom: 50px; }
+            .blog-hero h1 { font-size: 1.7rem; }
+            .blog-hero p { font-size: 0.92rem; margin-bottom: 25px; }
+            .blog-hero-badge { font-size: 0.72rem; padding: 6px 14px; }
+            .blog-search-bar { border-radius: 15px; flex-direction: column; }
+            .blog-search-bar input { padding: 14px 18px; width: 100%; }
+            .blog-search-bar button { width: 100%; justify-content: center; padding: 14px; border-radius: 0 0 13px 13px; }
+
+            .blog-filter-section { top: 65px; padding: 15px 0; }
+            header.scrolled ~ .blog-filter-section { top: 58px; }
+            .blog-filter-bar { gap: 8px; }
+            .blog-filter-btn { padding: 8px 14px; font-size: 0.78rem; }
+
+            .featured-card { border-radius: 18px; }
+            .featured-img { min-height: 200px; }
+            .featured-content { padding: 22px 18px; }
+            .featured-content h2 { font-size: 1.3rem; }
+            .featured-excerpt { font-size: 0.9rem; }
+            .featured-badge-wrapper { top: 12px; left: 12px; }
+            .featured-label, .featured-category-tag { font-size: 0.68rem; padding: 4px 10px; }
+
+            .blog-grid { grid-template-columns: 1fr; gap: 20px; }
+            .blog-card-img-wrapper { height: 200px; }
+            .blog-card-body { padding: 20px; }
+            .blog-card-body h3 { font-size: 1.1rem; }
+            .blog-grid-header h2 { font-size: 1.4rem; }
+
+            .blog-modal-content { border-radius: 18px; margin: 20px auto; }
+            .blog-modal-header-img { height: 220px; }
+            .blog-modal-body { padding: 25px 18px; }
+            .blog-modal-body h1 { font-size: 1.4rem; }
+            .blog-modal-body .article-content { font-size: 0.95rem; }
+
+            .blog-cta-section { padding: 60px 0; }
+            .blog-cta-section h2 { font-size: 1.5rem; }
+            .blog-cta-section p { font-size: 0.95rem; }
+
+            footer { padding: 50px 0 20px; }
+            .footer-grid { grid-template-columns: 1fr !important; gap: 25px; margin-bottom: 40px; padding-bottom: 40px; }
+            .footer-col h4 { font-size: 1.1rem; margin-bottom: 15px; }
+            .copyright { font-size: 0.8rem; }
+        }
+
+        @media (max-width: 380px) {
+            .container { padding: 0 12px; }
+            nav { padding: 8px 12px; height: 60px; }
+            .logo-main { font-size: 1rem; }
+            .blog-hero h1 { font-size: 1.5rem; }
+            .blog-filter-btn { padding: 7px 12px; font-size: 0.72rem; }
+        }
+
+        body::-webkit-scrollbar { width: 0; display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Toast */
+        .toast-notification {
+            position: fixed; top: 20px; right: 20px; z-index: 99999;
+            background: linear-gradient(135deg, #064e3b, #059669);
+            color: white; padding: 14px 20px; border-radius: 10px;
+            font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            animation: slideInToast 0.3s ease-out;
+        }
+        @keyframes slideInToast {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Header -->
+    <header id="navbar">
+        <nav>
+            <a href="index.html" class="logo-container">
+                <div class="logo-main">PPC <span>Certified</span></div>
+                <div class="logo-desc">Jasa Sampling Sarana Produk Pertanian</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="index.html#about">Profil</a></li>
+                <li><a href="index.html#services">Layanan</a></li>
+                <li><a href="index.html#sop">SOP Kerja</a></li>
+                <li><a href="index.html#gallery">Galeri</a></li>
+                <li><a href="blog.html" class="active-link">Blog</a></li>
+                <li><a href="admin.html" target="_blank" class="admin-login-btn" title="Login Admin"><i class="fa-solid fa-lock"></i></a></li>
+                <li><a href="index.html#contact" class="cta-menu">Hubungi Saya</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content" data-aos="fade-up">
+                <div class="blog-hero-badge"><i class="fa-solid fa-pen-nib"></i> Blog & Artikel</div>
+                <h1>Wawasan & Pengetahuan<br><span>Dunia Sampling Agribisnis</span></h1>
+                <p>Artikel terkini seputar standar sampling, regulasi pupuk & pestisida, panduan SNI, serta tips dari praktik lapangan PPC bersertifikat BNSP & KAN.</p>
+                <div class="blog-search-bar">
+                    <input type="text" id="blogSearchInput" placeholder="Cari artikel... (contoh: SNI pupuk, sampling pestisida)" oninput="handleSearch(this.value)">
+                    <button onclick="handleSearch(document.getElementById('blogSearchInput').value)"><i class="fa-solid fa-magnifying-glass"></i> Cari</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <div class="blog-filter-section">
+        <div class="container">
+            <div class="blog-filter-bar" id="blogFilterBar">
+                <button class="blog-filter-btn active" data-category="all" onclick="filterByCategory('all')">
+                    <i class="fa-solid fa-layer-group"></i> Semua
+                    <span class="count" id="countAll">0</span>
+                </button>
+                <button class="blog-filter-btn" data-category="Sampling Pupuk" onclick="filterByCategory('Sampling Pupuk')">
+                    <i class="fa-solid fa-flask"></i> Sampling Pupuk
+                    <span class="count" id="countPupuk">0</span>
+                </button>
+                <button class="blog-filter-btn" data-category="Sampling Pestisida" onclick="filterByCategory('Sampling Pestisida')">
+                    <i class="fa-solid fa-spray-can-sparkles"></i> Sampling Pestisida
+                    <span class="count" id="countPestisida">0</span>
+                </button>
+                <button class="blog-filter-btn" data-category="Standar & Regulasi" onclick="filterByCategory('Standar & Regulasi')">
+                    <i class="fa-solid fa-scale-balanced"></i> Standar & Regulasi
+                    <span class="count" id="countRegulasi">0</span>
+                </button>
+                <button class="blog-filter-btn" data-category="Tips & Panduan" onclick="filterByCategory('Tips & Panduan')">
+                    <i class="fa-solid fa-lightbulb"></i> Tips & Panduan
+                    <span class="count" id="countTips">0</span>
+                </button>
+                <button class="blog-filter-btn" data-category="Berita & Kegiatan" onclick="filterByCategory('Berita & Kegiatan')">
+                    <i class="fa-solid fa-newspaper"></i> Berita & Kegiatan
+                    <span class="count" id="countBerita">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Post -->
+    <section class="featured-section" id="featuredSection">
+        <div class="container">
+            <div id="featuredPost"></div>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-grid-section">
+        <div class="container">
+            <div class="blog-grid-header" data-aos="fade-up">
+                <h2 id="blogGridTitle">Semua Artikel</h2>
+                <span class="blog-result-count" id="blogResultCount"></span>
+            </div>
+            <div class="blog-grid" id="blogGrid">
+                <div class="blog-empty">
+                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 2.5rem; color: var(--primary-mid);"></i>
+                    <h3 style="margin-top: 15px;">Memuat artikel...</h3>
+                    <p>Harap tunggu sebentar.</p>
+                </div>
+            </div>
+            <div class="load-more-wrapper" id="blogLoadMore" style="display:none;">
+                <button class="btn-load-more" id="blogLoadMoreBtn" onclick="loadMorePosts()">
+                    <i class="fa-solid fa-arrow-down"></i> <span>Tampilkan Lebih Banyak</span>
+                </button>
+                <span class="blog-counter" id="blogCounter"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="blog-cta-section">
+        <div class="container" data-aos="fade-up">
+            <h2>Butuh Jasa Sampling Profesional?</h2>
+            <p>Konsultasikan kebutuhan sampling pupuk & pestisida Anda dengan PPC bersertifikat BNSP & KAN. Gratis konsultasi awal!</p>
+            <a href="index.html#contact" class="btn-premium"><i class="fa-brands fa-whatsapp"></i> Jadwalkan Sampling Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <a href="index.html" class="logo-container" style="margin-bottom: 20px; display: inline-block;">
+                        <div class="logo-main">PPC <span style="color:var(--accent-gold)">Certified</span></div>
+                    </a>
+                    <p>Mitra terpercaya untuk jasa sampling pupuk dan pestisida bersertifikat BNSP. Kami menjamin integritas data dan kepatuhan terhadap standar nasional Indonesia.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigasi</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Beranda</a></li>
+                        <li><a href="index.html#about"><i class="fa-solid fa-chevron-right"></i> Profil Ahli</a></li>
+                        <li><a href="index.html#services"><i class="fa-solid fa-chevron-right"></i> Layanan Sampling</a></li>
+                        <li><a href="blog.html"><i class="fa-solid fa-chevron-right"></i> Blog & Artikel</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Kategori Blog</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="filterByCategory('Sampling Pupuk'); return false;"><i class="fa-solid fa-chevron-right"></i> Sampling Pupuk</a></li>
+                        <li><a href="#" onclick="filterByCategory('Sampling Pestisida'); return false;"><i class="fa-solid fa-chevron-right"></i> Sampling Pestisida</a></li>
+                        <li><a href="#" onclick="filterByCategory('Standar & Regulasi'); return false;"><i class="fa-solid fa-chevron-right"></i> Standar & Regulasi</a></li>
+                        <li><a href="#" onclick="filterByCategory('Tips & Panduan'); return false;"><i class="fa-solid fa-chevron-right"></i> Tips & Panduan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hubungi Kami</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fa-solid fa-location-dot"></i><span>Jln Diponegoro No 30 Sayang Sayang, Cakranegara, NTB</span></li>
+                        <li><i class="fa-solid fa-phone"></i><span>+62 8175761165</span></li>
+                        <li><i class="fa-solid fa-envelope"></i><span>ppcbinamahabbah@gmail.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2026 DIGITALPro. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Blog Detail Modal -->
+<div class="blog-modal" id="blogModal">
+    <div class="blog-modal-content">
+        <div class="blog-modal-img-wrapper">
+            <button class="blog-modal-close" onclick="closeBlogModal()"><i class="fa-solid fa-xmark"></i></button>
+            <img src="" alt="" class="blog-modal-header-img" id="modalImage">
+        </div>
+        <div class="blog-modal-body">
+            <div class="modal-meta" id="modalMeta"></div>
+            <h1 id="modalTitle"></h1>
+            <div class="article-content" id="modalContent"></div>
+            <div class="blog-modal-tags" id="modalTags"></div>
+            <div class="blog-modal-share" id="modalShare">
+                <span><i class="fa-solid fa-share-nodes"></i> Bagikan:</span>
+                <button class="share-btn wa" onclick="shareWA()" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+                <button class="share-btn fb" onclick="shareFB()" title="Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                <button class="share-btn tw" onclick="shareTwitter()" title="Twitter"><i class="fa-brands fa-x-twitter"></i></button>
+                <button class="share-btn copy" onclick="copyLink()" title="Salin Link"><i class="fa-solid fa-link"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Firebase & Scripts -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    // Firebase Init
+    const firebaseConfig = {
+        apiKey: "AIzaSyBVKTxJy8c-F-ljIe61NJPJHVhp-ufnyME",
+        authDomain: "ppc-certified-859cf.firebaseapp.com",
+        projectId: "ppc-certified-859cf",
+        storageBucket: "ppc-certified-859cf.firebasestorage.app",
+        messagingSenderId: "752025208586",
+        appId: "1:752025208586:web:5dd072c2fe6cbd3b199cf3"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // AOS Init
+    AOS.init({ duration: 800, once: true });
+
+    // Navbar scroll
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+
+    // Mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = menuToggle.querySelector('i');
+        if (navLinks.classList.contains('active')) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+        else { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars');
+        });
+    });
+
+    // ============================
+    //  BLOG DATA & STATE
+    // ============================
+    let allPosts = [];
+    let filteredPosts = [];
+    let currentCategory = 'all';
+    let currentSearch = '';
+    let displayCount = 6;
+    const ITEMS_PER_LOAD = 3;
+    let currentModalPost = null;
+
+    const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+
+    function formatTanggal(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return '';
+        return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function formatTanggalShort(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return '';
+        const bulanShort = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+        return `${d.getDate()} ${bulanShort[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function calcReadTime(content) {
+        if (!content) return '1 menit';
+        const words = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+        const minutes = Math.max(1, Math.ceil(words / 200));
+        return `${minutes} menit`;
+    }
+
+    function stripHtml(html) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || '';
+    }
+
+    function getExcerpt(content, maxLen = 150) {
+        const text = stripHtml(content);
+        return text.length > maxLen ? text.substring(0, maxLen).trim() + '...' : text;
+    }
+
+    function getAuthorInitials(name) {
+        if (!name) return 'PPC';
+        return name.split(' ').map(w => w[0]).join('').toUpperCase().substring(0, 2);
+    }
+
+    // ============================
+    //  LOAD BLOG FROM FIREBASE
+    // ============================
+    function loadBlogFromFirebase() {
+        db.collection('blog').onSnapshot((snapshot) => {
+            allPosts = [];
+            snapshot.forEach((doc) => {
+                allPosts.push({ id: doc.id, ...doc.data() });
+            });
+            allPosts.sort((a, b) => {
+                const dateA = a.date ? new Date(a.date).getTime() : 0;
+                const dateB = b.date ? new Date(b.date).getTime() : 0;
+                return dateB - dateA;
+            });
+            updateCategoryCounts();
+            applyFilters();
+        }, (error) => {
+            console.error('Error loading blog:', error);
+            document.getElementById('blogGrid').innerHTML = `
+                <div class="blog-empty">
+                    <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i>
+                    <h3>Gagal Memuat Artikel</h3>
+                    <p>Periksa koneksi internet Anda dan refresh halaman.</p>
+                </div>`;
+        });
+    }
+
+    function updateCategoryCounts() {
+        const counts = { all: allPosts.length, 'Sampling Pupuk': 0, 'Sampling Pestisida': 0, 'Standar & Regulasi': 0, 'Tips & Panduan': 0, 'Berita & Kegiatan': 0 };
+        allPosts.forEach(p => {
+            if (counts.hasOwnProperty(p.category)) counts[p.category]++;
+        });
+        document.getElementById('countAll').textContent = counts.all;
+        document.getElementById('countPupuk').textContent = counts['Sampling Pupuk'];
+        document.getElementById('countPestisida').textContent = counts['Sampling Pestisida'];
+        document.getElementById('countRegulasi').textContent = counts['Standar & Regulasi'];
+        document.getElementById('countTips').textContent = counts['Tips & Panduan'];
+        document.getElementById('countBerita').textContent = counts['Berita & Kegiatan'];
+    }
+
+    // ============================
+    //  FILTER & SEARCH
+    // ============================
+    function filterByCategory(category) {
+        currentCategory = category;
+        displayCount = 6;
+        document.querySelectorAll('.blog-filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-category') === category);
+        });
+        applyFilters();
+        window.scrollTo({ top: document.querySelector('.featured-section').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function handleSearch(query) {
+        currentSearch = query.trim().toLowerCase();
+        displayCount = 6;
+        applyFilters();
+    }
+
+    function applyFilters() {
+        let result = [...allPosts];
+
+        // Published only
+        result = result.filter(p => p.published !== false);
+
+        if (currentCategory !== 'all') {
+            result = result.filter(p => p.category === currentCategory);
+        }
+        if (currentSearch) {
+            result = result.filter(p => {
+                const title = (p.title || '').toLowerCase();
+                const excerpt = (p.excerpt || '').toLowerCase();
+                const content = stripHtml(p.content || '').toLowerCase();
+                const category = (p.category || '').toLowerCase();
+                const tags = (p.tags || []).join(' ').toLowerCase();
+                return title.includes(currentSearch) || excerpt.includes(currentSearch) ||
+                       content.includes(currentSearch) || category.includes(currentSearch) ||
+                       tags.includes(currentSearch);
+            });
+        }
+
+        filteredPosts = result;
+        renderFeatured();
+        renderBlogGrid();
+    }
+
+    // ============================
+    //  RENDER FEATURED
+    // ============================
+    function renderFeatured() {
+        const container = document.getElementById('featuredPost');
+        const section = document.getElementById('featuredSection');
+
+        if (filteredPosts.length === 0 || currentSearch) {
+            section.style.display = 'none';
+            return;
+        }
+
+        const featured = filteredPosts[0];
+        if (!featured.featured && allPosts.some(p => p.featured)) {
+            const realFeatured = allPosts.find(p => p.featured && p.published !== false);
+            if (realFeatured && currentCategory === 'all') {
+                renderFeaturedCard(realFeatured, container);
+                section.style.display = 'block';
+                return;
+            }
+        }
+
+        renderFeaturedCard(featured, container);
+        section.style.display = 'block';
+    }
+
+    function renderFeaturedCard(post, container) {
+        const readTime = calcReadTime(post.content);
+        const dateFormatted = formatTanggal(post.date);
+        container.innerHTML = `
+            <div class="featured-card" data-aos="fade-up" onclick="openBlogModal('${post.id}')">
+                <div class="featured-img-wrapper">
+                    <img src="${post.image || 'https://via.placeholder.com/800x500/064e3b/fbbf24?text=Blog+PPC'}" alt="${post.title}" class="featured-img">
+                    <div class="featured-badge-wrapper">
+                        ${post.featured ? '<span class="featured-label"><i class="fa-solid fa-star"></i> Unggulan</span>' : ''}
+                        <span class="featured-category-tag">${post.category}</span>
+                    </div>
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <span class="featured-meta-item"><i class="fa-regular fa-calendar"></i> ${dateFormatted}</span>
+                        <span class="featured-meta-item"><i class="fa-regular fa-clock"></i> ${readTime} baca</span>
+                        <span class="featured-meta-item"><i class="fa-regular fa-user"></i> ${post.author || 'PPC Certified'}</span>
+                    </div>
+                    <h2>${post.title}</h2>
+                    <p class="featured-excerpt">${post.excerpt || getExcerpt(post.content, 200)}</p>
+                    <span class="featured-read-btn">Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>`;
+    }
+
+    // ============================
+    //  RENDER BLOG GRID
+    // ============================
+    function renderBlogGrid() {
+        const grid = document.getElementById('blogGrid');
+        const loadMore = document.getElementById('blogLoadMore');
+        const loadMoreBtn = document.getElementById('blogLoadMoreBtn');
+        const counter = document.getElementById('blogCounter');
+        const title = document.getElementById('blogGridTitle');
+        const resultCount = document.getElementById('blogResultCount');
+
+        // Skip featured post (index 0) for grid if no search and no specific category filter
+        let gridPosts = filteredPosts;
+        if (!currentSearch && currentCategory === 'all' && filteredPosts.length > 0) {
+            gridPosts = filteredPosts.slice(1);
+        } else if (!currentSearch && currentCategory !== 'all' && filteredPosts.length > 0) {
+            gridPosts = filteredPosts.slice(1);
+        }
+
+        // Update title
+        if (currentSearch) {
+            title.innerHTML = `Hasil Pencarian: "<span style="color:var(--primary-mid)">${currentSearch}</span>"`;
+        } else if (currentCategory !== 'all') {
+            title.textContent = currentCategory;
+        } else {
+            title.textContent = 'Artikel Terbaru';
+        }
+        resultCount.innerHTML = `Menampilkan <strong>${Math.min(displayCount, gridPosts.length)}</strong> dari <strong>${gridPosts.length}</strong> artikel`;
+
+        if (gridPosts.length === 0) {
+            grid.innerHTML = `
+                <div class="blog-empty">
+                    <i class="fa-regular fa-newspaper"></i>
+                    <h3>Belum Ada Artikel</h3>
+                    <p>${currentSearch ? 'Tidak ada artikel yang cocok dengan pencarian Anda.' : 'Artikel akan segera dipublikasikan. Nantikan update terbaru!'}</p>
+                </div>`;
+            loadMore.style.display = 'none';
+            return;
+        }
+
+        const displayPosts = gridPosts.slice(0, displayCount);
+        grid.innerHTML = displayPosts.map((post, index) => renderBlogCard(post, index)).join('');
+
+        if (gridPosts.length > displayCount) {
+            loadMore.style.display = 'block';
+            const remaining = gridPosts.length - displayCount;
+            loadMoreBtn.disabled = false;
+            loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i> <span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Artikel Lagi</span>`;
+            counter.textContent = `Menampilkan ${displayCount} dari ${gridPosts.length} artikel`;
+        } else {
+            loadMore.style.display = 'none';
+        }
+
+        if (typeof AOS !== 'undefined') AOS.refresh();
+    }
+
+    function renderBlogCard(post, index) {
+        const readTime = calcReadTime(post.content);
+        const dateFormatted = formatTanggalShort(post.date);
+        const excerpt = post.excerpt || getExcerpt(post.content, 140);
+        const initials = getAuthorInitials(post.author || 'PPC');
+
+        return `
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="${(index % 3) * 100}" onclick="openBlogModal('${post.id}')">
+                <div class="blog-card-img-wrapper">
+                    <img src="${post.image || 'https://via.placeholder.com/600x400/064e3b/fbbf24?text=Blog+PPC'}" alt="${post.title}" class="blog-card-img" loading="lazy">
+                    <span class="blog-card-category">${post.category}</span>
+                    <span class="blog-card-read-time"><i class="fa-regular fa-clock"></i> ${readTime}</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-meta-item"><i class="fa-regular fa-calendar"></i> ${dateFormatted}</span>
+                        <span class="blog-card-meta-item"><i class="fa-regular fa-user"></i> ${post.author || 'PPC Certified'}</span>
+                    </div>
+                    <h3>${post.title}</h3>
+                    <p class="blog-card-excerpt">${excerpt}</p>
+                    <div class="blog-card-footer">
+                        <div class="blog-card-author">
+                            <div class="blog-card-author-avatar">${initials}</div>
+                            <span class="blog-card-author-name">${post.author || 'PPC Certified'}</span>
+                        </div>
+                        <span class="blog-card-read-more">Baca <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function loadMorePosts() {
+        displayCount += ITEMS_PER_LOAD;
+        renderBlogGrid();
+    }
+
+    // ============================
+    //  BLOG DETAIL MODAL
+    // ============================
+    function openBlogModal(postId) {
+        const post = allPosts.find(p => p.id === postId);
+        if (!post) return;
+        currentModalPost = post;
+
+        document.getElementById('modalImage').src = post.image || 'https://via.placeholder.com/850x400/064e3b/fbbf24?text=Blog+PPC';
+        document.getElementById('modalImage').alt = post.title;
+        document.getElementById('modalTitle').textContent = post.title;
+
+        const readTime = calcReadTime(post.content);
+        const dateFormatted = formatTanggal(post.date);
+
+        document.getElementById('modalMeta').innerHTML = `
+            <span class="modal-category-badge">${post.category}</span>
+            <span class="modal-meta-item"><i class="fa-regular fa-calendar"></i> ${dateFormatted}</span>
+            <span class="modal-meta-item"><i class="fa-regular fa-clock"></i> ${readTime} baca</span>
+            <span class="modal-meta-item"><i class="fa-regular fa-user"></i> ${post.author || 'PPC Certified'}</span>`;
+
+        // Render content with basic formatting
+        let content = post.content || '';
+        // If content doesn't have HTML tags, wrap paragraphs
+        if (!content.includes('<p>') && !content.includes('<h2>') && !content.includes('<h3>')) {
+            content = content.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('');
+        }
+        document.getElementById('modalContent').innerHTML = content;
+
+        // Tags
+        const tags = post.tags || [];
+        if (tags.length > 0) {
+            document.getElementById('modalTags').innerHTML = tags.map(t => `<span class="blog-modal-tag">#${t}</span>`).join('');
+            document.getElementById('modalTags').style.display = 'flex';
+        } else {
+            document.getElementById('modalTags').style.display = 'none';
+        }
+
+        document.getElementById('blogModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Track blog view
+        trackBlogView(post.id, post.title);
+    }
+
+    function closeBlogModal() {
+        document.getElementById('blogModal').classList.remove('active');
+        document.body.style.overflow = '';
+        currentModalPost = null;
+    }
+
+    // Close on backdrop click
+    document.getElementById('blogModal').addEventListener('click', function(e) {
+        if (e.target === this) closeBlogModal();
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeBlogModal();
+    });
+
+    // ============================
+    //  SHARE FUNCTIONS
+    // ============================
+    function getShareUrl() {
+        return window.location.href.split('?')[0] + '?post=' + (currentModalPost ? currentModalPost.id : '');
+    }
+
+    function shareWA() {
+        if (!currentModalPost) return;
+        const text = encodeURIComponent(`${currentModalPost.title} - PPC Certified Blog\n${getShareUrl()}`);
+        window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+    function shareFB() {
+        if (!currentModalPost) return;
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl())}`, '_blank');
+    }
+    function shareTwitter() {
+        if (!currentModalPost) return;
+        const text = encodeURIComponent(currentModalPost.title + ' - PPC Certified Blog');
+        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(getShareUrl())}`, '_blank');
+    }
+    function copyLink() {
+        if (!currentModalPost) return;
+        navigator.clipboard.writeText(getShareUrl()).then(() => {
+            showToastNotification('🔗 Link berhasil disalin!');
+        });
+    }
+
+    function showToastNotification(message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.3s';
+            setTimeout(() => toast.remove(), 300);
+        }, 2500);
+    }
+
+    // ============================
+    //  BLOG ANALYTICS
+    // ============================
+    function trackBlogView(postId, postTitle) {
+        db.collection('blogViews').add({
+            postId: postId,
+            postTitle: postTitle,
+            timestamp: new Date().toISOString(),
+            page: 'blog.html'
+        }).catch(err => console.log('Blog view tracking error:', err));
+    }
+
+    function trackVisitor() {
+        if (sessionStorage.getItem('blogVisitorTracked')) return;
+        const now = new Date();
+        const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+        const ua = navigator.userAgent;
+        let device = 'Desktop';
+        if (/Mobi|Android/i.test(ua)) device = 'Mobile';
+        else if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
+        let browser = 'Lainnya';
+        if (ua.includes('Chrome') && !ua.includes('Edg')) browser = 'Chrome';
+        else if (ua.includes('Firefox')) browser = 'Firefox';
+        else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
+        else if (ua.includes('Edg')) browser = 'Edge';
+
+        db.collection('analytics').add({
+            timestamp: now.toISOString(),
+            page: 'blog.html',
+            device: device,
+            browser: browser,
+            date: today
+        }).catch(err => console.log('Analytics error:', err));
+
+        const summaryRef = db.collection('analyticsSummary').doc('daily');
+        summaryRef.get().then(doc => {
+            if (doc.exists) {
+                const data = doc.data();
+                return summaryRef.update({ [today]: (data[today] || 0) + 1 });
+            } else {
+                return summaryRef.set({ [today]: 1 });
+            }
+        }).catch(err => console.log('Summary error:', err));
+
+        sessionStorage.setItem('blogVisitorTracked', 'true');
+    }
+
+    // ============================
+    //  DEEP LINK - Open specific post from URL
+    // ============================
+    function checkDeepLink() {
+        const params = new URLSearchParams(window.location.search);
+        const postId = params.get('post');
+        if (postId && allPosts.length > 0) {
+            const post = allPosts.find(p => p.id === postId);
+            if (post) {
+                setTimeout(() => openBlogModal(postId), 500);
+            }
+        }
+    }
+
+    // ============================
+    //  CONTENT PROTECTION
+    // ============================
+    (function() {
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+            if ((e.ctrlKey && e.shiftKey && e.key === 'I') || e.key === 'F12') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 'p') { e.preventDefault(); return false; }
+        });
+        document.addEventListener('selectstart', function(e) {
+            if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) { e.preventDefault(); return false; }
+        });
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
+
+        const style = document.createElement('style');
+        style.textContent = `body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } input, textarea, select { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }`;
+        document.head.appendChild(style);
+    })();
+
+    // ============================
+    //  INIT
+    // ============================
+    document.addEventListener('DOMContentLoaded', function() {
+        loadBlogFromFirebase();
+        trackVisitor();
+        setTimeout(checkDeepLink, 1000);
+    });
+</script>
+
+</body>
+</html>
