@@ -563,72 +563,6 @@
     padding-bottom: 56.25%;
     background: #f3f4f6;
 }
-
-/* Map Address Overlay */
-.maps-inner {
-    position: relative !important;
-}
-.map-address-overlay {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: rgba(6, 78, 59, 0.95);
-    color: #fff;
-    padding: 14px 18px;
-    border-radius: 12px;
-    max-width: 280px;
-    z-index: 10;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(251, 191, 36, 0.3);
-    animation: fadeInMap 0.8s ease-out 0.5s both;
-}
-@keyframes fadeInMap {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.map-address-overlay .addr-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #fbbf24;
-    margin-bottom: 6px;
-    font-family: 'Playfair Display', serif;
-}
-.map-address-overlay .addr-text {
-    font-size: 0.78rem;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.9);
-    margin-bottom: 10px;
-}
-.map-address-overlay .addr-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: #fbbf24;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: gap 0.3s;
-}
-.map-address-overlay .addr-link:hover {
-    gap: 10px;
-    color: #fff;
-}
-@media (max-width: 576px) {
-    .map-address-overlay {
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        max-width: none;
-        padding: 10px 14px;
-    }
-    .map-address-overlay .addr-title { font-size: 0.82rem; }
-    .map-address-overlay .addr-text { font-size: 0.72rem; }
-}
-        
 .maps-inner iframe {
     position: absolute;
     top: 0;
@@ -1149,27 +1083,14 @@
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-location-dot" style="color: var(--accent-gold); margin-right: 15px;"></i> Mataram Lombok - NTB</div>
                 
     <div class="maps-wrapper">
-    <div class="maps-inner">
-        <!-- ✅ OVERLAY ALAMAT -->
-        <div class="map-address-overlay">
-            <div class="addr-title">
-                <i class="fa-solid fa-building"></i>
-                PPC Certified
-            </div>
-            <div class="addr-text">
-                Jl. Diponegoro No.30, Sayang Sayang,<br>
-                Kec. Cakranegara, Kota Mataram,<br>
-                Nusa Tenggara Barat 83239
-            </div>
-            <a href="https://www.google.com/maps/search/Jl.+Diponegoro+No.30+Sayang+Sayang+Cakranegara+Mataram" 
-               target="_blank" 
-               class="addr-link">
-                <i class="fa-solid fa-diamond-turn-right"></i>
-                Petunjuk Arah
-            </a>
-        </div>
-        <!-- ✅ END OVERLAY -->
-        <iframe 
+        <div class="maps-inner">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.28726708057!2d116.12980887359507!3d-8.568352386919031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc0b45d6f9d95%3A0x5dae59c1683732e0!2sJl.%20Diponegoro%20No.30%2C%20Sayang%20Sayang%2C%20Kec.%20Cakranegara%2C%20Kota%20Mataram%2C%20Nusa%20Tenggara%20Bar.%2083239!5e0!3m2!1sid!2sid!4v1784530888183!5m2!1sid!2sid"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi PPC Certified - Mataram, Lombok">
+            </iframe>
         </div>
     </div>
                     
