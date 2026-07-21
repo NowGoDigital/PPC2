@@ -1,15 +1,7 @@
-# robots.txt for ppcbersertifikat.com
-# ====================================
-
 User-agent: *
 Allow: /
 Disallow: /admin.html
-Disallow: /admin
 
-# Block access to Firebase scripts (not relevant for SEO)
-Disallow: /*firebase*
-
-# Allow all bots to index main page
 User-agent: Googlebot
 Allow: /
 Disallow: /admin.html
@@ -18,5 +10,4 @@ User-agent: Bingbot
 Allow: /
 Disallow: /admin.html
 
-# Sitemap location
 Sitemap: https://ppcbersertifikat.com/sitemap.xml
